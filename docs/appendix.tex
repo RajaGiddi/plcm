@@ -1,0 +1,763 @@
+% ============================================================================
+% APPENDIX — every number below traces to a row in docs/CLAIM_LEDGER.md or to
+% the named artifact under runs/. Items marked \todo{} are the ones the ledger
+% does not yet carry; they are flagged rather than filled from memory.
+% ============================================================================
+\appendix
+
+% ----------------------------------------------------------------------------
+\section{Instrument specifications and controls}
+\label{app:instrument}
+
+\subsection{The three-channel decomposition}
+
+For each old task $k$ evaluated at the final parameters $\theta_T$ we measure
+four accuracies and report three differences:
+\begin{align}
+  R(k)            &= \mathrm{acc}_{\text{refit,ceil}}(k) - \mathrm{acc}_{\text{ceil}}(k)
+                     &&\text{instrument bias (recipe control)} \\
+  F_{\mathrm{enc}}(k)  &= \mathrm{acc}_{\text{refit,ceil}}(k) - \mathrm{acc}_{\text{refit}}(k)
+                     &&\text{encoder channel, recipe held fixed} \\
+  F_{\mathrm{read}}(k) &= \mathrm{acc}_{\text{refit}}(k) - \mathrm{acc}_{\text{orig}}(k)
+                     &&\text{reader channel, encoder held fixed} \\
+  F_{\mathrm{tot}}(k)  &= \mathrm{acc}_{\text{ceil}}(k) - \mathrm{acc}_{\text{orig}}(k)
+\end{align}
+with the identity $F_{\mathrm{enc}} + F_{\mathrm{read}} - R = F_{\mathrm{tot}}$
+holding by construction; the residual is printed per cell and was
+$0.0\times10^{0}$ on every cell reported in this paper.
+$\mathrm{acc}_{\text{ceil}}$ is the task's accuracy at its own boundary under the
+deployed reader; $\mathrm{acc}_{\text{orig}}$ is the deployed reader at
+$\theta_T$; the two refit quantities fit a fresh linear probe
+(\S\ref{app:hyperparams}) to the frozen features of the era checkpoint and of
+$\theta_T$ respectively. Measuring the refit \emph{at the ceiling too} converts
+the recipe's advantage over an online-trained head from a bias into the
+reported number $R$; the pooled $|R|$ is gated at $0.05$ per arm.
+
+Reader share is $F_{\mathrm{read}}/(F_{\mathrm{enc}}+F_{\mathrm{read}})$ computed
+\emph{per cell} and averaged (mean of ratios), never as a ratio of pooled means;
+a denominator guard of $0.02$ is applied per cell and exclusions are counted.
+
+\subsection{Capture-point identity (P3a) and its positive controls}
+
+The instrument claims to read the \emph{deployed} readout path. That claim is
+a premise, not a property, and is asserted on live inputs at the top of every
+consuming script:
+$\max_i \left|\,\mathrm{head}(f_i) - \ell_i\,\right| = 0$ exactly, where $f_i$ is
+the captured feature and $\ell_i$ the deployed logit. The tensor captured is
+architecture-specific:
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Architecture & Deployed feature captured & Positive control (must fail) \\
+\midrule
+LSTM / MLP (PLCM) & post-composition cell state $c'_t$ & raw $c_t$ (pre-composition) \\
+ViT-B/16 & post-norm CLS token, pre-head & pre-norm CLS token \\
+ResNet-50 & post-global-average-pool, pre-fc (2048-d) & spatial \textsc{max} over the same layer \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each control is a real tensor from the real forward, one layer or one reduction
+away from the correct one, so the assertion fails on it only because the
+capture point genuinely matters. Recorded control magnitudes,
+$\max|\mathrm{head}(\text{wrong feature}) - \ell|$: LSTM (S72 OFF, $\theta_T$,
+four tasks) $4.6$--$5.6$, flipping 8--33\% of predictions
+(\texttt{runs/path\_identity\_controls.json}); ViT-B/16 $66.9$--$86.7$ across
+five seeds (task-IL) and $40.3$--$111.2$ (class-IL), read from the
+decomposition logs (\texttt{runs/e12\_decomp\_v2/logs/},
+\texttt{runs/e12cildec\_*.log}); ResNet-50 $24.4$--$32.7$ across three seeds
+(\texttt{runs/e14\_decomp/logs/}) and $0.246$ at the build gate
+(\texttt{runs/e14\_build\_gate.json}). Live P3a read $0.0\times10^{0}$ on every
+cell of every arm.
+
+The LSTM-family instrument originally captured raw $c_t$ rather than the
+composed $c'_t$ (catch 28); the correction is what produced the recompute in
+\S\ref{app:results} and is retained in the process record.
+
+\subsection{Selection semantics (P3b) and its control}
+
+On task $k$ the readout module invoked must \emph{be} head $k$, verified by
+object identity (\texttt{mod is task\_classifiers[str(k)]}), never by comparing
+outputs---two heads can agree numerically on a batch and still be the wrong
+module. Positive control: routing to the latest head instead of head $k$ must
+fail the identity check. Both P3a and P3b controls were demonstrated before
+first live use on each architecture. The E7 arm is the reason this assertion
+exists: its heads existed and froze as designed, and no task was ever scored by
+its own head ($\alpha_{\text{own}} = 0.165$; own head top-weighted in 0/24
+cells).
+
+\subsection{Label alignment (catch 32)}
+
+Feature extraction collects $(x, y)$ in one pass per loader through
+\texttt{channel\_decomp.load\_task\_data}. Two separate passes over a
+\texttt{shuffle=True} loader draw two different permutations, and pairing the
+second pass's features with the first pass's labels trains the probe on randomly
+relabelled data; that defect produced $R \approx -0.63$ and, in E12, an inverted
+conclusion that was retracted before ledger entry. Every decomposition in this
+paper routes through the audited loader and asserts
+\texttt{torch.equal(y\_tr, y\_tr4)} between passes.
+
+\subsection{Era checkpoints}
+
+One checkpoint per task boundary, fp16, \emph{audited by loading} at save time
+through \texttt{PLCM.load\_era}, which restores the non-parameter
+\texttt{task\_stats} that \texttt{state\_dict()} omits (catch 29: a bare reload
+missed its own recorded matrix by up to $3.4$\,pp). The fidelity criterion is
+reproduction of the recorded accuracy matrix, not successful loading. The
+boundary-time value is authoritative; the fp16 reload delta is measured and must
+sit below the arm's reproduction floor (ViT: $0.00000$; ResNet: max
+$0.00400$, $27\times$ below its floor).
+
+\subsection{Subspace lemma}
+
+For the readout subspace $S$ defined as the row space of the classifier $W$,
+$W(I - P_S) = 0$ identically, so any check of the form ``drift outside $S$ does
+not move the logits'' passes by algebra. E4b's H-SUB3 was vacuous for this
+reason and was struck (catch 25's first instance). Drift-energy fractions in
+$S$ are reported against a chance baseline of $\mathrm{rank}(S)/d = 3.9\%$.
+
+% ----------------------------------------------------------------------------
+\section{Per-arm results}
+\label{app:results}
+
+All cells: pooled $|R| \le 0.05$, identity residual $0.0\times10^{0}$, P3a
+$0.0\times10^{0}$. Intervals are 95\% t-intervals over seeds unless stated;
+point estimates are pooled-of-means. (Audit 2026-09-18: the ViT, ResNet and
+class-IL shares had been printed with $\pm1.96$\,SE over \emph{cells}, which
+treats the 19 cells of one seed as independent; recomputed below as t-intervals
+over seeds. The intervals widened; no point estimate or ordering moved.)
+
+\subsection{Scratch-trained LSTM, UCI HAR (E6b recompute)}
+
+\texttt{runs/e11\_e6b/decomp.json}; 3 seeds $\times$ 4 old tasks $=12$ cells per
+arm. These four arms are the ``66--88\%'' band; they are four arms of one
+architecture on one dataset and are never pooled.
+
+\begin{center}\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Arm & $F_{\mathrm{enc}}$ & $F_{\mathrm{read}}$ & $R$ & Reader share \\
+\midrule
+OFF (\texttt{mafc\_off})   & $+0.1115$ & $+0.2180$ & $-0.0050$ & 66.2\% \\
+v1-ON                       & $+0.0844$ & $+0.2610$ & $-0.0096$ & 75.6\% \\
+v2-ON                       & $+0.0853$ & $+0.2894$ & $-0.0068$ & 77.2\% \\
+v2-control                  & $+0.0523$ & $+0.3785$ & $-0.0095$ & 87.9\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Scratch-trained MLP, Permuted MNIST (E17)}
+
+\texttt{runs/e20/seeded/mnist\_mlp\_linear.json} (the seeded re-run of the
+E17 decomposition, recorded probe draw; the E17 artifact
+\texttt{runs/e16\_decomp/mnist\_mlp.json} read $82.5\%$ $[74.1, 90.9]$ under an
+unrecorded draw); 266{,}752-parameter encoder (the arm of the brittleness
+study), 3 seeds, 12 cells. $F_{\mathrm{enc}} = +0.0723$,
+$F_{\mathrm{read}} = +0.3337$, $F_{\mathrm{tot}} = +0.4054$, $R = +0.0006$.
+Per-seed shares $84.6 / 81.0 / 80.9\%$; pooled-of-means $\mathbf{82.2\%}$,
+t-interval $[76.8, 87.4]$. This is the \emph{shared-content} Permuted-MNIST
+construction: every task's content is the same 60k images under a different
+permutation, so re-layout into the current frame reproduces the current
+task's own test set and the row cannot carry a re-layout column. Table~1's
+MLP row is therefore the disjoint-content construction below.
+
+\subsection{Disjoint-content Permuted and Rotated MNIST (E18)}
+
+\texttt{runs/e18\_\{pmd\_mlp,pmd\_lstm,rmd\_mlp\}/decomp.json}, read out of the
+E18 screen (\texttt{cures.json}: audited loader, recorded probe draw 20260916,
+path identity asserted per cell, identity residual $0.0$); 3 seeds $\times$ 4
+old tasks $= 12$ cells each; adapters OFF; era checkpoints with fp32 shadow.
+The last column is forgetting (diag form) after re-layout into the current
+frame with the known map, on the same 12 cells.
+
+\begin{center}\small
+\begin{tabular}{@{}llrrrrlr@{}}
+\toprule
+Construction & Encoder & $F_{\mathrm{tot}}$ & $F_{\mathrm{enc}}$ & $F_{\mathrm{read}}$ & $R$ & Reader share & re-laid \\
+\midrule
+Permuted, disjoint & MLP & 0.1941 & 0.0205 & 0.1753 & $+0.0017$ & $\mathbf{89.5}$ [88.5, 90.6] & $-0.0007$ \\
+Permuted, disjoint & LSTM & 0.7395 & 0.1718 & 0.5722 & $+0.0045$ & 76.9 [69.8, 84.0] & $-0.0002$ \\
+Rotated, disjoint & MLP & 0.4557 & 0.0387 & 0.4174 & $+0.0003$ & 91.5 [90.0, 93.0] & $-0.0037$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{ViT-B/16, Split-CIFAR-100, task-IL (E12)}
+
+\texttt{runs/e12\_hv1\_v2.json}; 5 seeds $\times$ 19 old tasks $= 95$ cells per arm.
+
+\begin{center}\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Arm & $F_{\mathrm{tot}}$ & $F_{\mathrm{enc}}$ & $F_{\mathrm{read}}$ & $R$ & Reader share \\
+\midrule
+base  & 0.7154 & 0.0599 & 0.6723 & $+0.0168$ & $\mathbf{91.8}$ [89.6, 94.1] \\
+adapt & 0.7230 & 0.0560 & 0.6821 & $+0.0151$ & 92.4 [90.5, 94.4] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Class-incremental protocol (\texttt{runs/e12\_decomp\_cil\_v4/}, 57 cells; the
+re-fit of the same checkpoints with per-fit iteration counts and library version
+recorded, identical to v3 under the ledger's interval method):
+within-task reader share $97.9\%$ [95.1, 100.6] (t over 3 seeds, per-seed 96.6 /
+98.8 / 98.2; the upper bound exceeds 100 because the share is a ratio and
+$F_{\mathrm{enc}}$ can be negative; the per-cell interval was [97.27, 98.45]).
+Definition: deployed 100-way head against within-task refit; the alternative,
+deployed head restricted to the task's own classes ($0.7075$), gives
+$F_{\mathrm{read}} = 0.234$, share $91.9\%$. Within-task refit
+$0.9411$ against a ceiling of $0.9448$ while the deployed system reads $0.0017$.
+Corroborative only---the recency-bias literature independently predicts
+readout-dominated failure here. The joint-access 100-way probe reaches $0.639$
+against a masked $0.941$ and is a ceiling, never a repair target.
+
+\subsection{ResNet-50, Split-CIFAR-100, task-IL (E14)}
+
+\texttt{runs/e14\_hv1.json}; 3 seeds $\times$ 19 old tasks $= 57$ cells.
+$F_{\mathrm{tot}} = 0.6514$ [0.6164, 0.6863],
+$F_{\mathrm{enc}} = \mathbf{0.0076}$ [0.0042, 0.0110],
+$F_{\mathrm{read}} = 0.6428$ [0.5261, 0.7596],
+$R = -0.0009$ [$-0.0014$, $-0.0005$], 0/57 cells over the bar; reader share
+$\mathbf{98.8\%}$ [98.3, 99.4] (t over 3 seeds; the per-cell interval was [98.25, 99.38]). Task 0 across seeds: ceiling $0.9447
+\rightarrow$ deployed $0.2807 \rightarrow$ refit $0.9313$ (Figure~1a). Refit
+over all old tasks: $0.9358$ against chance $0.2000$.
+
+\subsection{Span rotation under stable features (E15, H-R4)}
+
+Projecting $\theta_T$ features onto the span of a task's own era prototypes
+(rank 5 of 2048 on the ResNet) costs $+0.0001$ (max $+0.0100$) at the era
+checkpoint---information-preserving---and recovers $+4.0\%$ of the reader gap at
+$\theta_T$ (ViT: $+0.5\%$). Feature stability does not confer span stability,
+measured on two backbone families.
+
+\subsection{Learning without Forgetting (E16), matched protocol}
+
+\texttt{runs/e16\_decomp/}; 3 seeds $\times$ 4 old tasks $= 12$ cells per arm;
+era-checkpoint status matched across every cell; script content hash identical
+across all cells. $\lambda \in \{4, 16\}$ collapsed on per-task competence
+(DIAG $0.35/0.30$ on MNIST against a reference of $0.97$) and their
+decompositions answer ``where did what little it learned go''---they are not
+comparable to a competent arm's and are shown for completeness only.
+
+\begin{center}\small
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Benchmark & Arm & $F_{\mathrm{enc}}$ & $F_{\mathrm{read}}$ & Reader share \\
+\midrule
+MNIST & \texttt{mafc\_off} (ref.) & $+0.2441$ [0.182, 0.306] & $+0.4490$ [0.388, 0.510] & 64.8\% \\
+      & LwF $\lambda{=}0.25$      & $+0.1940$ [0.153, 0.235] & $+0.4966$ [0.444, 0.549] & 71.9\% \\
+      & LwF $\lambda{=}4$ (collapsed)  & $+0.0448$ & $+0.4960$ & 91.7\% \\
+      & LwF $\lambda{=}16$ (collapsed) & $+0.0224$ & $+0.4717$ & 95.5\% \\
+\midrule
+HAR   & \texttt{mafc\_off} (ref.) & $+0.0757$ [0.042, 0.110] & $+0.3100$ [0.237, 0.383] & 80.4\% \\
+      & LwF $\lambda{=}0.25$      & $+0.0159$ [0.004, 0.027] & $+0.3546$ [0.227, 0.482] & 95.7\% \\
+      & LwF $\lambda{=}4$ (collapsed)  & $-0.0018$ & $+0.1265$ & --- \\
+      & LwF $\lambda{=}16$ (collapsed) & $+0.0035$ & $+0.1339$ & 97.4\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Paired by (seed, task), LwF $\lambda{=}0.25$ minus reference:
+
+\begin{center}\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & $\Delta F_{\mathrm{enc}}$ & $\Delta F_{\mathrm{read}}$ & $\Delta F_{\mathrm{tot}}$ \\
+\midrule
+MNIST & $\mathbf{-0.0501}$ [$-0.0821$, $-0.0180$] & $+0.0476$ [$+0.0140$, $+0.0812$] & $-0.0022$ [$-0.0348$, $+0.0304$] \\
+HAR   & $\mathbf{-0.0599}$ [$-0.0890$, $-0.0308$] & $+0.0447$ [$-0.0226$, $+0.1119$] & $-0.0094$ [$-0.0524$, $+0.0337$] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+LwF reduces encoder-side damage on both benchmarks (CIs exclude zero;
+$-20\%$ and $-79\%$ of the encoder channel), as its authors' mechanism
+predicts. Total forgetting does not move; the reader channel worsens (measured
+on MNIST, suggestive on HAR).
+
+% ----------------------------------------------------------------------------
+\section{Benchmarks, configurations, and reproduction floors}
+\label{app:floors}
+
+\subsection{Benchmark construction and fingerprints}
+
+\paragraph{Permuted MNIST.} 5 tasks, one fixed pixel permutation per task,
+generated from the run seed; a checkpoint is always scored against its own
+permutations (seed-1337 weights score chance against seed-42 permutations).
+Full test split, no subsampling.
+
+\paragraph{UCI HAR.} Subject-disjoint construction (E10). The as-executed
+partition is \texttt{1104af185c87}; the registered value \texttt{5d047e4213d1}
+was the development laptop's, differing by a single subject swap on an exact tie
+broken differently on ARM and x86. Test subjects, disjointness, and counts are
+exactly as registered; \textbf{reproduction requires x86}. Hardware-revision
+shifts are $9\times9$ channel maps applied identically at every timestep;
+the per-timestep adapter represents them exactly at 81 parameters per task.
+
+\paragraph{Split-CIFAR-100.} 20 tasks $\times$ 5 classes; class order
+fingerprint \texttt{4da9de3736a6}, seed-keyed, computed and gated in the
+execution environment. Backbones: \texttt{vit\_base\_patch16\_224.augreg2\_in21k\_ft\_in1k}
+and \texttt{resnet50.a1\_in1k} (weight hash \texttt{4aa4ff84c7e0}),
+\texttt{timm} 1.0.20, weights hash-asserted at container start.
+
+\subsection{Reproduction floors}
+
+A floor is a property of the tuple (arm, configuration, platform, thread count,
+quantity, seed), established per pair, and transfers to no other tuple. Every
+floor cited in the paper:
+
+\begin{center}\small
+\begin{tabular}{@{}lllcl@{}}
+\toprule
+Arm / benchmark & Threads & Seed & Cells identical & Floor \\
+\midrule
+\texttt{mafc} adapters, MNIST       & 4 & 42   & 15/15 ($\times 2$ pairs, 4 runs) & $0$ \\
+\texttt{mafc} adapters, MNIST       & 4 & 1337 & 0/15 (launches weeks apart)     & $1.49$\,pp AVG \\
+\texttt{mafc} adapters, MNIST       & 4 & 2024 & 15/15 (launches weeks apart)    & $0$ \\
+\texttt{mafc\_off}, MNIST           & 4 & 42   & 15/15                           & $0$ \\
+\texttt{plain\_lstm}, MNIST         & 4 & 42   & 0/15, max $0.1060$              & $1.44$\,pp AVG \\
+\texttt{plain\_lstm}, MNIST         & 1 & 42   & 15/15                           & $0$ \\
+\texttt{mlp}, MNIST                 & 4 & 42   & 0/15, max $0.0878$              & $3.68$\,pp AVG; $\mathbf{0.01}$\,pp share \\
+LwF $\lambda{=}0.25$, MNIST (era)   & 4 & 42   & 15/15                           & $0$ \\
+LwF $\lambda{=}0.25$, MNIST (no era)& 1 & 42   & 1/15, max $0.0961$              & $1.25$\,pp AVG \\
+\texttt{mafc\_off}, HAR             & 4 & 42   & 15/15 (reproduces 2-week-old runs) & $0$ \\
+\texttt{mafc\_off}, HAR             & 1 & 42   & 0/15, max $0.1069$              & $1.06$\,pp AVG \\
+LwF $\lambda{=}0.25$, HAR (era)     & 4 & 42   & 15/15                           & $0$ \\
+ViT-B/16 base, CIFAR-100            & GPU & 42 & 5/210, max $0.1480$             & $0.42$\,pp AVG, $3.4$\,pp/cell mean \\
+ResNet-50 base, CIFAR-100           & GPU & 42 & 5/210, max $0.1080$             & $0.27$\,pp AVG, $2.5$\,pp/cell mean \\
+HAR E5 arms                         & CPU & 42 / 2024 & identical / diverged     & $0$ / $+5.5$\,pp \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Observations recorded without mechanism: on MNIST at 4 threads the arms routing
+through the composition path are bit-exact and the plain backbones are not;
+pinning to one thread is an axis, not a stabilizer (HAR inverts MNIST); the
+same two runs give a $3.68$\,pp AVG floor and a $0.01$\,pp share floor, so floors
+attach to quantities; seeds 42 and 2024 reproduce across launches weeks apart on
+the adapters arm and seed 1337 does not. Every floor pair in this program ran on
+seed 42, which separately runs high on outcomes---recorded as coincidence.
+
+\subsection{Era-checkpointing is configuration}
+
+Writing era checkpoints reloads, evaluates, refits, and gates inside the
+training loop. Measured effect on final average accuracy (seed 42):
+MNIST $+2.13$\,pp, HAR $-1.67$\,pp; on the reference arms at $n{=}3$,
+$-1.66$\,pp and $-4.32$\,pp. Matching the flag reproduced the sweep runs
+bit-identically (15/15, both benchmarks). Runtime overhead on the MLP arm:
+$+5.2$\,min on $14.2$ ($+37\%$), no other confound present. Every comparison in
+this paper is uniform on this axis, checked across the arms of the comparison.
+
+\subsection{Precondition measurements}
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Experiment & Clause & Bar & Measured \\
+\midrule
+E12 ViT & task-0 drop & $\ge 0.15$ & $0.7233$ \\
+E12 ViT & repeat-task control & $\le 0.05$ & $0.0040$ \\
+E14 ResNet & frozen-probe DIAG & $\ge 0.85$ & $0.9552$ (min $0.8600$, $n{=}60$) \\
+E14 ResNet & trainable within 5\,pp of frozen & & $0.9446$, gap $+0.0106$ \\
+E14 ResNet & task-0 drop & $\ge 0.15$ & $0.6620$ \\
+E14 ResNet & repeat-task control & $\le 0.05$ & $0.0010$ \\
+E16 LwF & competence floor (DIAG) & within 5\,pp of ref. & MNIST ref.\ $0.9711$; HAR ref.\ $0.9100$ \\
+E16 LwF & $\lambda{=}0$ control & bit-identical to \texttt{mafc\_off} & 15/15, witness $6.18 \rightarrow 14.90$ \\
+W1 EWC & arm witness & penalty $>0$ on tasks $\ge 1$ & 3/3 seeds; grows $\sim150\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ----------------------------------------------------------------------------
+\section{Hyperparameters and compute}
+\label{app:hyperparams}
+
+\subsection{Training}
+
+\begin{center}\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+ & LSTM / MLP (MNIST, HAR) & ViT-B/16 & ResNet-50 \\
+\midrule
+Config file & \texttt{mafc\_phase1.yaml} & \texttt{e12\_vit.yaml} & \texttt{e14\_resnet.yaml} \\
+Tasks $\times$ epochs & $5 \times 10$ & $20 \times 5$ & $20 \times 5$ \\
+Hidden / embed dim & 256 & 768 & 2048 \\
+Optimizer & Adam & Adam & Adam \\
+Learning rate & $10^{-3}$ & $10^{-4}$ & $10^{-4}$ \\
+Batch size & 128 & 64 & 64 \\
+Weight decay & 0 & 0 & 0 \\
+Gradient clip & 1.0 & 1.0 & 1.0 \\
+Trunk & trained from scratch & fully fine-tuned & fully fine-tuned \\
+Adapters (ON arm) & full-rank $784\times784$ / per-step $9\times9$ & patch-embedding linear & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\todo{ViT/ResNet weight decay and gradient clip to be re-read from the two
+config files before submission; the LSTM column is verified.}
+
+\paragraph{Baselines.} EWC: $\lambda{=}200$ (the historically cited value),
+whole-model Fisher from 200 samples, penalty recorded per epoch. ER: buffer of
+100 per task. LwF (Li \& Hoiem, 2017): $T{=}2$, forward KL scaled by $T^2$,
+$\lambda_o \in \{0.25, 1, 4, 16\}$ swept at 3 seeds and selected on average
+accuracy subject to a competence floor (never on forgetting), teacher
+re-snapshotted at every boundary, teacher forward under a separate RNG stream,
+one readout-only warm-up epoch per boundary (an asymmetry the comparison arms do
+not receive, kept for fidelity to the original protocol).
+
+\subsection{Probe fitting}
+\label{app:probe}
+
+All probes are multinomial logistic regressions fit with L-BFGS
+\citep{liu1989limited} as implemented in \texttt{scikit-learn}
+\citep{pedregosa2011scikit}, with $\ell_2$ regularization at $C = 1$, an
+iteration cap of 5000, and the library's default tolerance of $10^{-4}$.
+Features are standardized to zero mean and unit variance using training-split
+statistics only, so $C = 1$ applies throughout to standardized features.
+
+\paragraph{The default tolerance is not convergence, and we measure the gap.}
+The default $10^{-4}$ terminates $5$--$20\times$ earlier than a tight fit and
+leaves the objective $0.5$--$1.9$ units above its optimum; the iteration cap is
+never approached, so it cannot witness this. Re-fitting the identical features
+at $\mathrm{tol} = 10^{-10}$ gives the probe floor below, measured on every arm.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+arm & $d$ & cells & max $|\Delta F_{\mathrm{enc}}|$ & L-BFGS iters (default / tight) \\
+\midrule
+Permuted MNIST, MLP   &  256 & 12 & 0.0020 & 18 / 291 \\
+Rotated MNIST, MLP    &  256 & 12 & 0.0030 & 20 / 317 \\
+Permuted MNIST, LSTM  &  256 & 12 & 0.0020 & 91 / 666 \\
+UCI HAR, LSTM         &  256 & 12 & 0.0116 & 132 / 1502 \\
+Split-CIFAR, ViT-B/16 &  768 & 38 & 0.0080 & 59 / 455 \\
+Split-CIFAR, ResNet-50 & 2048 & 57 & 0.0140 & 21 / 434 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The floor is $\le 0.3$\,pp on the $256$-dimensional MNIST arms and reaches
+$1.4$\,pp on the $2048$-dimensional ResNet features; HAR's $1.2$\,pp is
+dominated by its test-set size, where one of 344--409 windows is already
+$0.24$--$0.29$\,pp.
+
+The induced error in $F_{\mathrm{enc}}$ is \emph{unsigned}. Across all 143 cells
+it inflates $F_{\mathrm{enc}}$ in 57, deflates it in 59 and leaves it unchanged
+in 27: both the era and the final refit terminate early, and which of the two
+loses more decides the sign per cell. We therefore do not claim the direction is
+conservative. No number in this paper is re-fit at the tighter tolerance; the
+floor above is the quantity to read differences against. The
+solver is multinomial across the supported library range ($\ge 1.2$); at 1.9.0
+the \texttt{multi\_class} parameter has been removed and L-BFGS is multinomial
+by construction for more than two classes.
+
+Convergence is measured rather than assumed. Every fit is checked against the
+iteration cap after solving. The guard fired on none of the 26 retained
+task-incremental decomposition cells, evidenced by retained solver logs, and on
+none of the 171 fits across the 57 class-incremental cells, evidenced by
+per-fit iteration counts recorded in the artifacts. The most expensive fit in
+the paper, a 100-way readout over all seen training splits, terminates at 564
+iterations, 11\% of the cap. The guard detects iteration exhaustion rather than
+abnormal termination before it; the latter is unlikely on standardized features
+but is not excluded.
+
+Probes were fit under \texttt{scikit-learn} 1.9.0, recorded per artifact from
+this audit onward. The version behind earlier artifacts was not recorded, as
+the execution image installs the library unpinned; those artifacts reproduce
+under 1.9.0 to the single-sample level.
+
+\subsection{Hardware and compute}
+
+All LSTM/MLP arms on CPU (4 vCPU, default 4 math threads) in Modal containers,
+x86 Linux, \texttt{torch} 2.13.0; every comparison arm runs on the same device
+class as the arms it is compared against. CIFAR-100 arms on a single NVIDIA L4.
+Measured per-run wall clock: Permuted MNIST LSTM $19$--$32$\,min; HAR $15$\,min;
+MLP $14.2$\,min ($19.4$ with era checkpoints); ViT-B/16 and ResNet-50
+$\approx 50$\,min per 20-task run. \todo{Total compute across the program to be
+summed from \texttt{training\_time} fields at submission; order of magnitude is
+tens of CPU-hours and a few GPU-hours.}
+
+% ----------------------------------------------------------------------------
+\section{Process record}
+\label{app:process}
+
+Every claim in this paper traces to an artifact that records its own
+configuration. This section records what it took to make that sentence true.
+
+\subsection{Retractions}
+
+\begin{itemize}\setlength\itemsep{2pt}
+\item \textbf{E12 ``encoder-side architecture boundary.''} Reported in-session
+  from a probe trained on misaligned labels (catch 32): refit at chance,
+  $F_{\mathrm{enc}} = 0.75$. Retracted before ledger entry; corrected values
+  $F_{\mathrm{enc}} = 0.06$, reader share $91.8\%$.
+\item \textbf{The tier-0 stack literal $0.347$.} Carried by citation with no
+  computing artifact; first computed in E13 at $+0.075$ [$+0.052$, $+0.098$],
+  wrong by $\sim 4.6\times$.
+\item \textbf{``The H-C3$'$ instrument gate fails both arms.''} A symptom of the
+  capture-point defect (catch 28); corrected $R$ of $+0.0058 / -0.0049$.
+\item \textbf{``Historical deltas are certainly code state.''} Generalized from
+  one arm's zero floor to the pipeline; killed by a $1.44$\,pp same-seed spread
+  on a different arm. Withdrawn, not softened.
+\item \textbf{``The nondeterminism is BLAS reduction order.''} Killed by HAR
+  being deterministic at 4 threads and nondeterministic at 1---the inverse of
+  MNIST. Withdrawn; the observation survives, the mechanism does not.
+\item \textbf{The adapter reference $0.9331$ and the attribution $+50.3$\,pp.}
+  Averaged from runs recording no configuration, one of them
+  (\texttt{fullrank\_ref}) later shown by measurement to be a different
+  study's arm. Superseded by $0.9183$ and $+48.4$\,pp [$\pm 1.9$].
+\end{itemize}
+
+\subsection{The claim-integrity chain}
+
+The paper's most-repeated sentence---reader dominance across four
+architectures---was, in sequence: \emph{claimed} (from the summary sentence,
+propagating by citation of prior copies); \emph{audited} when Figure~1 required
+a number for every row and found no MLP decomposition existed; \emph{narrowed}
+to three architectures the same day; \emph{measured} by E17 under a
+pre-committed reading (majority with the full uncertainty budget, or the
+narrowing stands); and \emph{restored} at $82.2\%$ [76.8, 87.4] (seeded re-run;
+the E17 artifact read $82.5\%$ [74.1, 90.9]). The narrowing
+is recorded as superseded by measurement, not withdrawn---it was correct on the
+evidence then available.
+
+\subsection{Catch log (abbreviated)}
+
+Thirty-four numbered catches over seventeen experiments; the recurring
+families, with one instance each:
+\begin{itemize}\setlength\itemsep{1pt}
+\item \emph{A cheap signal standing in for the expensive one}: directory
+  existence for run completion (18); checkpoint presence for loadability---14
+  of 33 unusable (E11); a checkpoint directory for the checkpoint file it does
+  not contain (E16).
+\item \emph{An unverified premise in a load-bearing clause}: ``the MNIST arm
+  uses per-task heads''---no arm ever did (21); ``\texttt{mafc\_off} is already
+  decomposed''---it was not (E16 review).
+\item \emph{A gate that cannot fail}: H-SUB3 vacuous by algebra (25); a P3
+  certificate six orders of magnitude from its threshold; a KL-direction unit
+  test on a symmetric example (E16).
+\item \emph{A parallel implementation escaping an audited path}: a fresh
+  extraction path pairing features with the wrong labels (32); a launcher
+  composing its own flag list and dropping \texttt{--era-checkpoints} (E16).
+\item \emph{Arm identity inferred from the launcher rather than the artifact}:
+  a ``base arm'' that was adapters-ON with one shared head, passing its gate at
+  $5\times$ the bar (30); \texttt{--adapter-rank 784} read as ``full rank''---it
+  builds a different module with $2\times$ the parameters (E17).
+\item \emph{A contract clause with no mechanism}: a repeat-task control with no
+  launcher entry (33); a commit-hash precondition in a repository with no
+  commits (E16); an EWC witness the trainer never recorded (W1).
+\item \emph{A measured property generalized beyond the configuration that
+  measured it}: one arm's determinism read as the path's; two model types' class
+  read as a category's---an error that survived two authors by passing between
+  them.
+\item \emph{Interim evidence read as a verdict while the deciding instrument
+  was running}: twice in one afternoon, in opposite directions (34, companion).
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\section{Prediction ledger}
+\label{app:predictions}
+
+Predictions were registered in each pre-registration before compute was spent.
+Scored below; a miss is a miss regardless of direction.
+
+\begin{center}\small
+\begin{tabular}{@{}llcl@{}}
+\toprule
+Experiment & Prediction & Odds & Outcome \\
+\midrule
+E12 & task-0 drop $\ge 0.15$ & $\sim$60\% & fired ($5\times$ the bar) \\
+E14 & H-R1 met (share $\ge 0.50$) & $\sim$75\% & fired \\
+E14 & share $\ge 0.85$ & $\sim$45\% & fired ($98.8\%$) \\
+E14 & $F_{\mathrm{enc}} \le 0.15$ & $\sim$70\% & fired ($0.0076$) \\
+W1  & \texttt{plain\_lstm} within $\pm1.5$\,pp of $0.4399$ & $\sim$70\% & fired ($0.80$\,pp) \\
+W1  & EWC null survives verification & $\sim$85\% & fired ($+0.10$\,pp) \\
+W1  & HAR OFF DIAG $\approx 0.9100$ (from unverified runs) & --- & exact ($0.9100$) \\
+E16 & $\lambda$-sweep noise-dominated & $\sim$40\% & did not fire ($11\times$ structure) \\
+E16 & LwF $>$ reference on MNIST & $\sim$80\% & \textbf{miss} (indistinguishable) \\
+E16 & LwF protection concentrates in $F_{\mathrm{read}}$ & $\sim$65\% & \textbf{miss} ($F_{\mathrm{enc}}$) \\
+E16 & collapsed arms uninterpretable under H-D2 & $\sim$80\% & fired \\
+E16 & bridging $>$ LwF on HAR/OFF & $\sim$55\% & fired (S72: $0.095$ vs $0.226$, both formulas; C0deg $-0.038$ ahead of both) \\
+E17 & MLP share $\ge 66\%$ & $\sim$75\% & fired ($82.5\%$) \\
+E17 & MLP share within 66--88\% & $\sim$45\% & fired \\
+E17 & MLP share $> 88\%$ & $\sim$35\% & did not fire \\
+E17 & MLP share $< 50\%$ (H-M3) & $\sim$5\% & did not fire \\
+E18 & Permuted-disjoint MLP: C0deg forgetting $\le 0.02$ & $\sim$85\% & fired ($-0.0007$) \\
+E18 & Permuted-disjoint MLP: bridging recovers $> 80\%$ of the reset gain & $\sim$60\% & fired (89--99\% per task) \\
+E18 & Permuted-disjoint: C0deg $>$ bridging & $\sim$80\% & fired, resolved \\
+E18 & Permuted-disjoint: LSTM-OFF and MLP rankings agree & $\sim$65\% & fired \\
+E18 & Rotated-disjoint: lossy pairs $\ge 5$\,pp below the exact pair & $\sim$55\% & \textbf{miss} (within 0.3\,pp) \\
+E20-B & all three ON arms inside 66--88 on \texttt{har\_subject} & $\sim$55\% & \textbf{miss} (v2-control 89.1) \\
+E20-B & band narrower than 22\,pp & $\sim$50\% & fired (14.3) \\
+E20-B & E11 ordering OFF $<$ v1 $<$ v2 $<$ v2-ctl preserved & $\sim$40\% & did not fire (v2-ON $<$ OFF) \\
+E20-B & v2-control $\ge 85\%$ & $\sim$45\% & fired (89.1) \\
+E20-B & every ON floor pair bit-identical & $\sim$60\% & \textbf{miss} (2 of 3; and a pair is one observation) \\
+E20-A & primary $|\Delta F_{\mathrm{enc}}| \le 0.01$ & $\sim$45\% & fired ($-0.0073$) \\
+E20-A & primary $\Delta F_{\mathrm{enc}} < -0.01$ & $\sim$40\% & did not fire \\
+E20-A & primary $\Delta F_{\mathrm{enc}} > +0.01$ & $\sim$15\% & did not fire \\
+E20-A & overfit flag on $\ge 1$ primary cell & $\sim$35\% & did not fire (0/12) \\
+E20-A & MLP init spread $> 0.01$ on $\ge 1$ cell & $\sim$50\% & fired (0.0145) \\
+E20-A & $|R^{\mathrm{mlp}}| > 0.05$ on either arm & $\sim$15\% & did not fire \\
+E21 & C0deg within its floor of $\epsilon=0$ across the realistic range (gain $\le 0.05$, offset $\le 0.1\sigma$) & $\sim$80\% & fired (flat to 30\% gain, 0.2$\sigma$) \\
+E21 & C0deg loses $\ge 20$\,pp at one channel transposition & $\sim$85\% & \textbf{miss} (14.5\,pp) \\
+E21 & a C0deg/bridging crossing exists in at least one family & $\sim$40\% & did not fire \\
+E21 & P-gain crossing & $\sim$15\% & did not fire \\
+E21 & P-offset crossing & $\sim$15\% & did not fire \\
+E21 & P-swap crossing & $\sim$40\% & did not fire (both collapse, within floor) \\
+E21 & era-teacher refinement beats both self-supervised objectives by $>$ floor in $\ge 1$ family & $\sim$45\% & did not fire (registered read; paired swap margin 9/9, measured) \\
+E21 & self-supervision moves a correct map at $\epsilon=0$ by $>$ floor in $\ge 1$ family & $\sim$35\% & fired (swap, $-0.9$\,pp) \\
+D1 & drift transfer loss $\le 5$\,pp on adjacent tasks, all four scratch arms (re-laid) & $\sim$60\% & fired ($\le 0.6$\,pp) \\
+D1 & transfer loss $\le 5$\,pp on all pairs, all four arms & $\sim$35\% & fired ($\le 2.1$\,pp) \\
+D1 & deployed head inherits the repair within resolution on $\ge 3$ of 4 arms & $\sim$40\% & fired (4/4) \\
+D1 & drift near-orthogonal (spread $< 0.5$) on the MLP arms & $\sim$65\% & \textbf{miss} (8.3--8.5) \\
+D1 & drift near-orthogonal on the LSTM arms & $\sim$45\% & did not fire (9.5--11.7) \\
+D1 & $F_{\mathrm{enc}}$ correlates with $\log\sigma_d$ across 48 cells ($r < -0.5$) & $\sim$55\% & fired ($-0.55$) \\
+D1 & the linear fit's residual explains $F_{\mathrm{enc}}$ better than $\sigma_d$ & $\sim$45\% & fired (partial $+0.75$ vs $-0.33$) \\
+D1 & re-laid $F_{\mathrm{enc}}$ within resolution of 0 on $\ge 3$ of 4 arms & $\sim$55\% & fired (4/4) \\
+D1 & linear-drift fit residual under 10\% of $\|Z_k\|$ & $\sim$70\% & \textbf{miss} (41--45\%) \\
+D1 & shuffled-pairing must-fail passes 12/12 on every arm & $\sim$90\% & fired \\
+D1 & subspace lemma, pretrained arms: $\|D_{\mathrm{in}}\|$ coefficient positive, interval excluding 0 & $\sim$60\% & \textbf{miss} ($R^2$ 0.01 / 0.06) \\
+D1 & subspace lemma, pretrained arms: $\|D_{\mathrm{out}}\|$ coefficient's interval includes 0 & $\sim$55\% & fired (nothing tracks) \\
+E23 & P1 passes on both pretrained arms on \texttt{cifar100\_permuted} & $\sim$90\% & \textbf{miss} (frozen reference 0.72 / 0.70; arms above it by 6--10\,pp) \\
+E23 & (E2): raw $F_{\mathrm{enc}}$ exceeds re-laid by more than floor, ViT-B/16 & $\sim$75\% & \textbf{miss} (re-laid \emph{worse}, $-1.9$\,pp) \\
+E23 & (E2) on ResNet-50 & $\sim$80\% & \textbf{miss} ($-1.3$\,pp) \\
+E23 & (E1): re-laid $F_{\mathrm{enc}}$ within floor of the no-map arm, ViT-B/16 & $\sim$45\% & fired (at the floor: 0.043 vs 0.044) \\
+E23 & (E1) on ResNet-50 & $\sim$50\% & fired (0.018 vs 0.020) \\
+E23 & re-laid $F_{\mathrm{enc}}$ above the no-map arm's on both backbones & $\sim$60\% & fired (3/3 seeds each) \\
+E23 & arm B (MLP on HAR) passes all preconditions & $\sim$80\% & fired (P1 against the S72 LSTM, ruled; the contracted 0.85 bar was the defective gate) \\
+E23 & arm B reader share within 10 points of the LSTM's 77.8 & $\sim$45\% & did not fire (100.2) \\
+E23 & arm B $F_{\mathrm{enc}}$ below the LSTM's 0.087 & $\sim$65\% & fired ($-0.001$) \\
+E23 & wrong-permutation must-fail 19/19 on every seed and backbone & $\sim$90\% & \textbf{miss} (7--13 of 19; the right map recovers nothing, so wrong and right are indistinguishable) \\
+E23-B & at 20 tasks the scratch LSTM still has its encoder term removed by re-layout & $\sim$55\% & fired ($-0.006$ vs floor 0.030) \\
+E23-B & at 5 tasks with 3k images/task it is removed & $\sim$85\% & fired ($-0.005$) \\
+E23-B & at 20 tasks re-laid deployed accuracy exceeds raw & $\sim$70\% & fired ($+71.7$\,pp, 57/57 cells) \\
+E23-B & total forgetting higher at 20 tasks than at 5, images/task held fixed & $\sim$75\% & fired (0.697 vs 0.665) \\
+E23-B & 3k vs 12k images/task moves $F_{\mathrm{enc}}$ by $\le 2$\,pp & $\sim$50\% & \textbf{miss} (4.6\,pp: 0.126 vs 0.172) \\
+E23-B & wrong-permutation must-fail passes on both new scratch arms & $\sim$80\% & fired (4/4, 19/19) \\
+E25-B & per-step residual $<15\%$ on the MLP arms & $\sim$50\% & \textbf{miss} (0.418, 0.420) \\
+E25-B & per-step residual $<15\%$ on the LSTM arms & $\sim$35\% & did not fire (0.457--0.502) \\
+E25-B & composed repair within 5\,pp of single-shot & $\sim$55\% & \textbf{miss} \\
+E25-B & per-step repair shared across tasks within floor & $\sim$30\% & did not fire (10/36--36/36) \\
+E25-B & A3's 20-step composition within 5\,pp of refit & $\sim$30\% & fired (scored against the \emph{ceiling}, not the refit) \\
+E25-C & A4 at $\lambda=40$ beats A3 by more than floor at $m=1$ & $\sim$40\% & did not fire \\
+E25-C & $\lambda=40$ beats $\lambda=1$ & $\sim$45\% & fired (at $m=1$; reverses at $m=2,3$, index unstated) \\
+E25-C & A4 at $\lambda=40$ recovers the exact map at $m=1$ on $\ge 27/36$ & $\sim$30\% & fired \\
+E25-C & sign-flip must-fail passes 36/36 & $\sim$85\% & fired \\
+E26-FS & pretrained $\arg\max_j D_k(j) = k$ on a majority of cells, ViT-B/16 & $\sim$55\% & \textbf{miss} (21/57) \\
+E26-FS & the same on ResNet-50 & $\sim$50\% & \textbf{miss} (11/57) \\
+E26-FS & pretrained peak within $\pm2$ frames of $k$, either backbone & $\sim$60\% & \textbf{miss} \\
+E26-FS & pretrained peaks at $j=0$ on a majority, either backbone & $\sim$25\% & did not fire (counted on $k\ge1$) \\
+E26-FS & scratch A3 peaks at $j=T$ on a majority of cells & $\sim$90\% & fired (57/57) \\
+E26-FS & $P_k(j)$ flat within floor across the six frames, pretrained & $\sim$50\% & \textbf{miss} \\
+E26-FS & held-out re-run: ViT seed 1337 reproduces the base-frame majority & $\sim$85\% & \textbf{miss} (9/18, exactly half) \\
+E26-DC & N-LDC beats N-naive on the pretrained arms & $\sim$70\% & \textbf{miss} \\
+E26-DC & N-LDC beats A0, pretrained & $\sim$55\% & \textbf{miss} \\
+E26-DC & N-LDC within 5\,pp of $A_\infty$, ResNet-50 & $\sim$20\% & did not fire \\
+E26-DC & N-LDC recovers $\ge 50\%$ of the naive$\to$oracle gap, ResNet-50 & $\sim$45\% & did not fire (0.145) \\
+E26-DC & N-SDC$_{0.3}$ beats N-naive by more than floor, any arm & $\sim$35\% & fired (\texttt{e18\_rmd\_mlp}) \\
+E26-DC & $A_{10}$ beats N-LDC where both are read & $\sim$65\% & \emph{not comparable} (different benchmark; caught by the \texttt{arm} field) \\
+E26-DC & N-LDC falls with boundaries crossed ($r<-0.3$), A3 and pretrained & $\sim$75\% & fired ($r=-0.43,-0.78,-0.56$) \\
+E27 & $\rho(\tilde\delta, G) \ge 0.6$ with interval excluding zero & $\sim$40\% & did not fire ($+0.596$) \\
+E27 & mean $\tilde\delta$ on the LSTM arms exceeds the MLP arms & $\sim$70\% & fired (1.851 vs 1.254) \\
+E27 & $\tilde\delta < 1$ on the MLP arms & $\sim$55\% & \textbf{miss} (1.18, 1.24, 1.34) \\
+E27 & $\tilde\delta > 1$ on the LSTM arms & $\sim$50\% & fired (1.51, 1.85, 2.19) \\
+E27 & positive control below 0.01 & $\sim$95\% & fired ($1.7\times10^{-9}$) \\
+E27 & must-fail passes on every cell & $\sim$90\% & \textbf{miss} (116/117) \\
+E28 & B2's $\Delta_{\mathrm{refit}}$ below B0's by more than floor & $\sim$65\% & fired ($0.1806 \to 0.0442$, floor 0.0620) \\
+E28 & B2's $\Delta_{\mathrm{refit}}$ below 0.02 & $\sim$20\% & did not fire ($+0.0442$) \\
+E28 & B1 swapped within 2\,pp of clean & $\sim$60\% & \textbf{miss} (drop $-0.0302$, swapped \emph{beat} clean) \\
+E28 & B1 passes competence & $\sim$65\% & \textbf{miss} (worst $-0.235$) \\
+E28 & B2 passes competence at some $\mu$ & $\sim$75\% & \textbf{miss} (worst $-0.175$) \\
+E28 & B2 shows $\|A-I\|$ larger than B1's while $\delta$ comparable & $\sim$50\% & \textbf{miss} ($\delta$ 0.466 vs 0.947, unresolvable at $n=3$) \\
+E28 & B0 must-fail passes on the primary set & $\sim$90\% & fired ($+0.1806$) \\
+E29 & A1 two dynamic activities, balanced, pool succeeds & $\sim$55\% & \textbf{miss} (0/22 targets) \\
+E29 & A2 one static + one dynamic, balanced, succeeds & $\sim$60\% & fired (22/22) \\
+E29 & A3 three static activities only, succeeds & $\sim$25\% & did not fire (0/22) \\
+E29 & A4 all six activities skewed 80/20, succeeds & $\sim$50\% & fired (22/22) \\
+E29 & A5 contiguous session, stride 2, succeeds & $\sim$45\% & \emph{unmeasurable} (needs 512 consecutive windows; subjects hold $\sim$300) \\
+E29 & A6 contiguous session, stride 1, succeeds & $\sim$35\% & did not fire (0/22; pooled rate 0.49) \\
+E29 & B1 median transfer bias at $n=256$ below $10^\circ$ & $\sim$55\% & \textbf{miss} ($12.21^\circ$) \\
+E29 & B2 error plateaus by $n=256$ (bias, not variance) & $\sim$65\% & fired ($12.21 \to 13.36^\circ$; plateau defined post hoc) \\
+E29 & B3 deployed accuracy at $9^\circ$ error within 2\,pp of exact & $\sim$50\% & fired ($+0.0094$) \\
+E29 & B4 estimated re-layout within 2\,pp of exact, rotations & $\sim$45\% & fired ($-0.0033$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+One hundred and twelve scored entries, thirty-one misses (2026-09-22); two
+further entries are not scored --- one recorded as not comparable, one as
+unmeasurable, its arm being unbuildable at the sample size the prediction
+named. A miss is a prediction
+given above even odds that did not occur; a prediction given below even odds
+that did not occur is recorded as ``did not fire'' and is not counted against
+the series. The misses fall in three groups. Four ran toward more structure and less
+determinism than predicted (E16's two LwF entries, E20-B's band and floor
+pairs). Five ran toward \emph{less} encoder structure than predicted: E18's
+lossy rotations cost the MLP 0.3\,pp where 5 was predicted; E21's one channel
+transposition cost re-layout 14.5\,pp where 20 was predicted; and D1's drift
+maps are neither near-orthogonal (spread 8--12 against a bar of 0.5) nor
+linear (residual 41--45\% against 10\%), and on the pretrained arms a linear
+drift model does not explain the frozen head's loss at all ($R^2 \le 0.06$).
+Four, all in E23, are the largest single calibration event in this ledger:
+every prior about the pretrained regime under a known map was transferred
+from the scratch regime, and the data do not support the transfer --- on
+pretrained trunks re-laying into the current frame recovers nothing and
+costs, where on every scratch arm it removes the encoder term entirely.
+E23-B then ruled out the alternative explanation (sequence length) with five
+of six predictions firing, so the transfer that failed is the one across the
+training regime and not across the length of the task sequence.
+E21's
+non-events (a crossing, a teacher advantage) point where every stored-self
+and known-map result in this program has pointed: the author's priors
+over-weight the stored self and under-weight the trivial use of the map. The E14 set was three
+for three and uniformly under-confident, with the stated reason for doubt
+empirically backwards. The E16 $F_{\mathrm{read}}$ miss is the most valuable
+entry in the ledger: the prediction was wrong and the truth is the better paper.
+
+A fourth group arrived with E25--E28 and is the largest single block in the
+series: fifteen misses in thirty-five scored entries, a rate of 43\% against
+21\% over everything before it. Seven are E26's, and they divide into two
+causes that must not be pooled. \emph{Five are the regime}: E23's calibration
+event recurring rather than a new one --- priors formed on scratch arms,
+transferred to pretrained arms, failing again on where the frame sweep peaks,
+and a held-out re-run registered at $\sim$85\% to test exactly that transfer
+came back 9/18, exactly half. \emph{Two are the reader}, and they are a
+different error: drift compensation was predicted to beat its own naive
+baseline on both pretrained trunks, and the nearest-class-mean reader it is
+built on cannot carry that much. Its \emph{oracle} --- perfect prototypes
+recomputed from task-$k$ data --- reaches only 0.502 (ResNet-50) and 0.548
+(ViT-B/16) where a linear refit on the same features reads 0.745 and 0.769,
+so the whole prototype family sits roughly 25\,pp under the refit before any
+compensation is applied. The prediction held on ResNet and failed on ViT, and
+the prior that was wrong was about how much a class mean can read, not about
+the regime it was read in. Two of E25's and two of E27's continue the D1 group:
+drift repair is less linear, less composable and less near-equivariant than
+predicted, on every arm where it has been measured. Four are E28's, and three
+of those are one fact --- permutation augmentation costs more within-task
+accuracy than predicted, at every $\mu$ tried. Two entries are misses whose
+direction deserves recording without re-grading them: E28's ``B1 swapped
+within 2\,pp of clean'' failed because swapped \emph{beat} clean, the opposite
+of the failure the bar guarded, and its $\|A-I\|$ entry failed on a conjunct
+($\delta$) that the measurement cannot resolve at $n=3$. Both are scored as
+misses, because a bar is not moved after the data.
+E25 registered fifteen predictions; nine are scored here, the nine its row
+artifacts record. The remaining six are \textbf{withdrawn, experiment not
+run}: they were registered against replay arms for the pretrained backbones,
+and that replay was never built, so there is no measurement they could be
+scored against. They are withdrawn rather than left pending, because a
+prediction held open indefinitely is counted by no one and quietly flatters
+the series --- the same error as a miss recorded as ``did not fire.'' A
+withdrawal states which experiment was not run; it is not a way to retire a
+prediction whose experiment ran and disappointed.
+% NOTE: the count line and this paragraph were regenerated mechanically from
+% the table on 2026-09-22 when E25--E28 were added, reading each row from the
+% `predictions` list of runs/e2{5b,5c,6_fs,6_dc,7,8}_row.json rather than from
+% the memos' prose. That mattered: MEMO_e26's prose says frame-sweep
+% "predictions 1-4 and 6 do not fire", collapsing four misses into the
+% did-not-fire category the ledger keeps separate; the artifact distinguishes
+% them and the artifact is the source.
+% The previous count line read "sixty-seven" against a table of sixty-eight
+% rows -- the quote had drifted one row behind the table it quotes, and
+% MEMO_e25 re-read and propagated it faithfully at signing. Re-reading the
+% sentence is not enough: RECOUNT FROM THE TABLE.
