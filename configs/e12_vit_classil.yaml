@@ -1,0 +1,85 @@
+# E12 — class-IL secondary setting (docs/E12_prereg.md sec 1, H-V3).
+#
+# Differs from configs/e12_vit.yaml in exactly two registered ways:
+#   remap_labels: false      -> global class ids, 100-way
+#   a SINGLE SHARED HEAD     -> no per-task heads, so nothing to route by hint
+#
+# Everything else — backbone, weights, class order, optimizer, budget — is the
+# base arm's, so the task-IL/class-IL difference is the setting and not a second
+# uncontrolled variable. Reported with the recency-bias caveat in the same
+# sentence, and never cited as primary evidence for H-V1.
+
+seed: 42
+
+benchmark:
+  name: cifar100
+  root: ./data
+  remap_labels: false     # class-IL: global ids over seen classes
+  # Same seeded class order as task-IL, so the two settings partition CIFAR-100
+  # identically and only the label space differs. Gated, not printed.
+  expected_class_order:
+    42: 4da9de3736a6
+    1337: f578703face8
+    2024: 4019d151cd42
+  expected_shift:
+    42: 24b6131095fd
+    1337: d5930aefe862
+    2024: a14c0f3f9cfc
+
+model:
+  backbone: vit
+  vit_model: vit_base_patch16_224.augreg2_in21k_ft_in1k   # hash 3416d11351bb (B2)
+  vit_pretrained: true
+  # Both false, and they belong together: class-IL's readout IS the shared head,
+  # so there is no head k for a hint to select. P3b is skipped here with that
+  # reason recorded rather than silently passing on a shared readout.
+  head_routing_by_hint: false
+  use_task_heads: false
+  input_size: 3
+  hidden_size: 768
+  num_classes: 100             # set by the benchmark; stated for the reader
+  num_layers: 1
+  dropout: 0.0
+  freeze_encoder_after_first_task: false
+
+adapters:
+  enabled: false
+  mode: per_step
+  dim: 768
+  rank: 0
+
+memory:
+  enabled: false
+  capacity: 512
+  key_dim: 128
+  top_k: 8
+  num_heads: 4
+  write_threshold: 0.5
+  consolidation_interval: 50
+  consolidation_clusters: 64
+
+composition:
+  mode: ggc
+
+plcm_features:
+  gate_filter: false
+  coord_align: false
+  context_heads: false
+
+router:
+  enabled: false
+
+training:
+  num_tasks: 20
+  epochs_per_task: 5
+  epochs: 5
+  grad_clip: 1.0
+  batch_size: 64
+  learning_rate: 1.0e-4        # identical to task-IL; the setting is the variable
+  weight_decay: 0.0
+
+logging:
+  save_checkpoints: false
+  # H-V3 is a DECOMPOSITION hypothesis, so era checkpoints are required input,
+  # not optional. Turned on by --era-checkpoints at launch alongside the dir.
+  era_checkpoints: false

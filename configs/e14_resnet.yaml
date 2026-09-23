@@ -1,0 +1,78 @@
+# E14 — ResNet-50 on Split-CIFAR-100 (docs/E14_resnet_prereg.md, signed 2026-08-10)
+#
+# Parallel to configs/e14... deliberately mirrors configs/e12_vit.yaml: the
+# ResNet path reads post-global-average-pool, pre-fc (2048-d) and bypasses
+# memory / GGC / output-gate. PLCM contributes task bookkeeping and head routing
+# only. No adapt arm (contract sec 1).
+
+seed: 42
+
+benchmark:
+  name: cifar100
+  root: ./data
+  remap_labels: true          # task-IL only
+  expected_class_order:       # GATED, not printed — identical to E12's split
+    42: 4da9de3736a6
+    1337: f578703face8
+    2024: 4019d151cd42
+    7: ecaa61aa1c21
+  expected_shift:             # E23 (2026-09-19): cifar100_permuted on this backbone. The shift is
+    42: 24b6131095fd          # build_patch_consistent_perm(image_size, seed*1000+k) -- seed and
+    1337: d5930aefe862        # image size only, both shared with E12 -- so the fingerprints are E12's;
+    2024: a14c0f3f9cfc        # train.py asserts them at run time (the A-RN smoke is the check).
+    7: 1a11ea93dc80
+    1234: 5e00e4c7a8cf
+
+model:
+  backbone: resnet            # C1 amendment, opt-in; default is "lstm"
+  resnet_model: resnet50.a1_in1k   # VARIANT pinned, hash 4aa4ff84c7e0 (C4)
+  vit_pretrained: true        # shared flag: load pretrained weights
+  head_routing_by_hint: true  # task-IL made real (P3b)
+  use_task_heads: true
+  input_size: 3
+  hidden_size: 2048           # ResNet-50 penultimate width
+  num_classes: 5
+  num_layers: 1
+  dropout: 0.0
+  freeze_encoder_after_first_task: false
+
+adapters:
+  enabled: false              # no adapt arm in E14
+  mode: per_step
+  dim: 2048
+  rank: 0
+
+memory:
+  enabled: false
+  capacity: 512
+  key_dim: 128
+  top_k: 8
+  num_heads: 4
+  write_threshold: 0.5
+  consolidation_interval: 50
+  consolidation_clusters: 64
+
+composition:
+  mode: ggc
+
+plcm_features:
+  gate_filter: false
+  coord_align: false
+  context_heads: false
+
+router:
+  enabled: false
+
+training:
+  num_tasks: 20
+  epochs_per_task: 5
+  epochs: 5
+  grad_clip: 1.0
+  batch_size: 64
+  learning_rate: 1.0e-4       # the one permitted capacity/lr decision, n=3
+  weight_decay: 0.0
+
+logging:
+  save_checkpoints: false
+  era_checkpoints: true       # ~50MB fp16 x 20 x 3 = ~3GB
+  checkpoint_fp16: true

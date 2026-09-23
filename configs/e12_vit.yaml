@@ -1,0 +1,97 @@
+# E12 — ViT-B/16 on Split-CIFAR-100 (docs/E12_prereg.md, signed 2026-08-03)
+#
+# The ViT path reads post-norm CLS -> head and bypasses memory / GGC / output
+# gate: P3a registers that tensor as the deployed feature. PLCM contributes task
+# bookkeeping and head routing only, which is stated as scope in the memo — what
+# transfers is the instrument, not the architecture.
+
+seed: 42
+
+benchmark:
+  name: cifar100          # cifar100_permuted = the efficacy control's data (B6)
+  root: ./data            # baked into the image at build time (B3)
+  remap_labels: true      # task-IL primary; false = class-IL secondary
+  # GATED, not merely printed. E10's partition fingerprint was printed by every
+  # run and checked by none, so a divergence between the registered split and the
+  # executed one went unnoticed for an entire experiment. These are the 20x5
+  # values, computed in both environments and identical in both; train.py
+  # asserts against them and refuses to train on a mismatch.
+  # Seeds 7 and 1234 added 2026-08-07 to meet sec 7's five-seed lock on
+  # base/adapt. Chosen before any headline number existed, and their
+  # fingerprints computed BOTH locally and in the execution environment
+  # (scripts/e12_register_seeds.py) — identical in both, as B1/B6 established
+  # for this benchmark. The launcher's refusal to run unregistered seeds is the
+  # E10 rule working; the answer is to register properly, not to relax it.
+  expected_class_order:
+    42: 4da9de3736a6
+    1337: f578703face8
+    2024: 4019d151cd42
+    7: ecaa61aa1c21
+    1234: 5e00e4c7a8cf
+  expected_shift:         # cifar100_permuted (B6) only
+    42: 24b6131095fd
+    1337: d5930aefe862
+    2024: a14c0f3f9cfc
+    7: 1a11ea93dc80
+    1234: d38fed7b4dfe
+
+model:
+  backbone: vit           # AMENDMENT 1 of 2 — opt-in, default is "lstm"
+  vit_model: vit_base_patch16_224.augreg2_in21k_ft_in1k   # hash 3416d11351bb (B2)
+  vit_pretrained: true
+  head_routing_by_hint: true   # AMENDMENT 2 of 2 — "task-IL" made real (P3b)
+  use_task_heads: true         # per-task heads, frozen at their task boundary
+  input_size: 3                # unused by the ViT path; set by the benchmark
+  hidden_size: 768             # ViT-B/16 embed dim
+  num_classes: 5               # 5-way per task (task-IL); set by the benchmark
+  num_layers: 1
+  dropout: 0.0
+  freeze_encoder_after_first_task: false   # trainable trunk IS the regime
+
+adapters:
+  enabled: false          # base arm; the adapt arm flips this
+  mode: per_step          # per-token linear on patch embeddings
+  dim: 768                # set by PLACEMENT, not by input size
+  rank: 0
+
+memory:
+  enabled: false          # the ViT path does not use the bank; make it explicit
+  capacity: 512
+  key_dim: 128
+  top_k: 8
+  num_heads: 4
+  write_threshold: 0.5
+  consolidation_interval: 50
+  consolidation_clusters: 64
+
+composition:
+  mode: ggc               # inert with memory disabled; kept for config parity
+
+plcm_features:
+  gate_filter: false
+  coord_align: false
+  context_heads: false
+
+router:
+  enabled: false
+
+training:
+  num_tasks: 20
+  epochs_per_task: 5      # the trainer's key name
+  epochs: 5
+  grad_clip: 1.0          # required by ContinualTrainer
+  batch_size: 64          # 224x224 ViT-B/16 on an L4
+  # The trainer builds torch.optim.Adam. There is deliberately NO `optimizer`
+  # key here: writing `optimizer: adamw` would name a setting the code does not
+  # have, which is the defect P3b was about one level down. Adam + lr 1e-4 is
+  # what runs, and lr is the ONE capacity/lr decision the contract permits —
+  # made at n=3, recorded, applied identically to every arm.
+  learning_rate: 1.0e-4
+  weight_decay: 0.0
+
+logging:
+  # OFF for the P1/P2 precondition probe: preconditions read the accuracy matrix
+  # (diagonal for P1, final row for P2), and no checkpoint is needed for either.
+  # The headline run flips this on, at which point the fp16 storage plan and its
+  # boundary-vs-reload delta measurement come into force.
+  save_checkpoints: false

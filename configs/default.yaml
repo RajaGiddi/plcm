@@ -1,0 +1,90 @@
+# PLCM Default Configuration
+
+seed: 42
+
+# Model architecture
+model:
+  hidden_size: 256
+  input_size: 28           # MNIST row width; images fed as 28-step [28, 28] sequences
+  num_classes: 10
+  num_layers: 1
+  dropout: 0.0
+
+# Memory bank
+memory:
+  capacity: 512            # max stored vectors
+  key_dim: 128             # projected key dimension
+  top_k: 8                 # retrieved memories per query
+  num_heads: 4             # attention heads in read controller
+  write_threshold: 0.2     # importance score threshold for storage
+  consolidation_interval: 200  # steps between consolidation runs
+  consolidation_clusters: 256  # target clusters after consolidation
+
+# Composition
+composition:
+  mode: "ggc"              # "ggc" | "additive" | "mobius" (phase 2)
+
+# Per-task input adapters (Option B) — enabled by the plcm_adapter model.
+# The adapter is a dim x dim linear map on the FLATTENED image that undoes each
+# task's pixel permutation before the frozen encoder (dim = 28*28 = 784).
+adapters:
+  enabled: false
+  dim: 784
+
+# MAFC (prereg v2) — two-term functional consistency.
+#   L_enc  : adapter-anchored, constrains theta + phi (snapshot targets)
+#   L_read : bank-anchored, constrains phi only (bank's committed triples)
+# Arms are selected with --mafc-arm; lambda with --mafc-lambda.
+mafc:
+  lambda: 0.0            # 0 = off; prereg sweep {0.1, 0.5, 1, 2, 5}
+  temperature: 2.0       # forward KL, standard LwF form
+  encoder_term: true
+  readout_term: true
+  adapter_probes: true   # false = M4-LwF (raw probe inputs)
+  bank_batch: 128
+
+# Task-free routing: a small classifier over cell states -> task id, used at eval
+# to pick the adapter/head when task identity is unknown. Trained continually with
+# balanced bank replay (the replay is what stops the router itself from forgetting
+# old-task boundaries). Enabled by the plcm_adapter model.
+router:
+  enabled: false
+  replay: true            # replay old-task cell states from the bank (ablation: false)
+  num_tasks: 5
+  max_views: 3            # adapter views per live batch (current + sampled others)
+  joint_ceiling: true     # also retrain a fresh router jointly (non-continual upper bound)
+  joint_steps: 300        # training steps for the joint ceiling router
+
+# Training
+training:
+  num_tasks: 5             # sequential tasks
+  epochs_per_task: 10
+  epochs_first_task: 15    # extra epochs for Task 0 (its features freeze afterward)
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0
+  optimizer: "adam"
+  grad_clip: 1.0
+
+# EWC baseline
+ewc:
+  lambda: 400.0            # regularization strength
+  fisher_samples: 200      # samples for Fisher matrix estimation
+
+# PLCM + EWC hybrid (selective EWC: constrains only LSTM params, so it
+# tolerates a higher lambda than full EWC)
+plcm_ewc:
+  lambda: 500.0
+  fisher_samples: 200      # samples for Fisher matrix estimation
+
+# Evaluation
+eval:
+  eval_interval: 1         # evaluate every N epochs
+  eval_all_tasks: true     # evaluate on all seen tasks after each task
+
+# Logging
+logging:
+  log_dir: "runs/"
+  save_checkpoints: true
+  checkpoint_dir: "checkpoints/"
+  verbose: true

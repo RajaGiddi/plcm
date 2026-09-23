@@ -1,0 +1,61 @@
+# MAFC Phase 0' / Phase 1 (prereg v2 §2, v3 escalation) — full scale.
+# 5 tasks x 10 epochs. Phase 0' runs the M-lambda0 control ALONE on seed 42 to
+# measure how much forgetting unfrozen+adapters actually exhibits at scale;
+# Phase 1 (if branch (a) or (c)) reuses this config for the MAFC arms.
+seed: 42
+
+model:
+  hidden_size: 256
+  input_size: 28
+  num_classes: 10
+  num_layers: 1
+  dropout: 0.0
+  freeze_encoder_after_first_task: false   # encoder deliberately UNFROZEN
+  use_task_heads: false                    # SHARED readout phi (prereg §1)
+
+memory:
+  capacity: 512
+  key_dim: 128
+  top_k: 8
+  num_heads: 4
+  write_threshold: 0.2
+  consolidation_interval: 200
+  consolidation_clusters: 256
+  enabled: true
+
+composition:
+  mode: "ggc"
+
+adapters:
+  enabled: true
+  dim: 784
+
+router:
+  enabled: false
+
+mafc:
+  lambda: 0.0            # set per-arm via --mafc-lambda
+  temperature: 2.0
+  encoder_term: true
+  readout_term: true
+  adapter_probes: true
+  bank_batch: 128
+
+training:
+  num_tasks: 5
+  epochs_first_task: 10   # uniform 10 epochs per prereg "5 tasks, 10 epochs"
+  epochs_per_task: 10
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0
+  optimizer: "adam"
+  grad_clip: 1.0
+
+eval:
+  eval_interval: 1
+  eval_all_tasks: true
+
+logging:
+  log_dir: "runs/mafc_phase1/"
+  save_checkpoints: false
+  verbose: true

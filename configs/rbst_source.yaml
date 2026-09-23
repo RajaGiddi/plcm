@@ -1,0 +1,51 @@
+# RBST feasibility — source run config (pre-registered experiment).
+# Unfrozen plcm on real Permuted MNIST, Tasks 0 -> 1 only, checkpoint every
+# epoch. This is the drift-generating run the transport experiment reads from.
+seed: 42                   # overridden per run via --seed (42, 1337, 2024)
+
+model:
+  hidden_size: 256
+  input_size: 28
+  num_classes: 10
+  num_layers: 1
+  dropout: 0.0
+  freeze_encoder_after_first_task: false   # drift must occur — unfrozen
+
+memory:
+  capacity: 512
+  key_dim: 128
+  top_k: 8
+  num_heads: 4
+  write_threshold: 0.2
+  consolidation_interval: 200
+  consolidation_clusters: 256
+  enabled: true
+
+composition:
+  mode: "ggc"
+
+adapters:
+  enabled: false
+
+router:
+  enabled: false
+
+training:
+  num_tasks: 2             # Task 0 -> Task 1 transition suffices for feasibility
+  epochs_first_task: 15
+  epochs_per_task: 10
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0
+  optimizer: "adam"
+  grad_clip: 1.0
+
+eval:
+  eval_interval: 1
+  eval_all_tasks: true
+
+logging:
+  log_dir: "runs/rbst_source/"
+  save_checkpoints: true
+  checkpoint_dir: "checkpoints/rbst/"
+  verbose: true
