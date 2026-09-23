@@ -1,0 +1,50 @@
+# Datasets (downloaded on first run; checksum-verified but bulky)
+data/
+*.gz
+*.tar.gz
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Experiment outputs
+# runs/ is TRACKED, deliberately: it holds every memo and every artifact the
+# claim ledger cites. A ledger row whose evidence lives outside the repository
+# is a citation that cannot be checked out. The model weights stay out — those
+# are reproducible from the recorded configs.
+#
+# `checkpoints/` ALONE DID NOT DO THAT JOB. It matches only a top-level
+# directory, and every checkpoint this program actually writes lives under
+# `runs/ckpt_<arm>_seed<s>/mafc_seed<s>[_fp32]/task<k>_epoch<e>.pt`. So 76
+# weight files totalling 1.22 GB were tracked while this file claimed they were
+# excluded, and GitHub rejected the push on five of them (161-181 MB each,
+# against a 100 MB limit). The pattern now names the path that exists, and
+# `*.pt` backs it up so a future arm in a new directory cannot slip through.
+runs_*/
+checkpoints/
+runs/ckpt_*/
+*.pt
+*.pth
+*.json.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Datasets supplied locally (bulky; provenance recorded in runs/e5/FROZEN_CONFIG.json)
+human+activity+recognition+using+smartphones.zip
+*.zip

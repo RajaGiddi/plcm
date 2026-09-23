@@ -1,0 +1,15 @@
+torch>=2.0.0
+torchvision>=0.15.0
+pyyaml>=6.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+tqdm>=4.65.0
+pytest>=7.3.0
+scikit-learn>=1.2.0
+# E12 (B2). Pinned, not floated: "ImageNet-pretrained ViT-B/16" without a fixed
+# version and weight hash is the E10 partition gap in new clothes — timm's
+# default weights are superseded upstream, so an unpinned image rebuilt months
+# later trains from a different initialization while every config reads
+# identical. The weight hash is recorded beside the class-order and shift
+# fingerprints; see scripts/e12_build_gate.py.
+timm==1.0.20
