@@ -1,239 +1,480 @@
 # PLCM — Persistent Latent Cell Memory
 
-A continual-learning research program. It began as an architecture — an LSTM with
-a persistent external memory of cell states — and became, mostly, an
-investigation of **what catastrophic forgetting actually consists of**, run under
-a pre-registration discipline strict enough that the negative results are the
-ones worth reading.
+**Where does catastrophic forgetting happen — in a network's representation,
+or in the layer that reads it out?** This repository contains an empirical
+study of that question across four architecture families, the code and
+artifacts behind every number, and an account of which conclusions held up
+under external review and which did not.
 
-The repository is organised so that **every number in a write-up traces to the
-artifact that produced it, and every prediction to the contract that registered
-it before the compute was spent.**
+> **Status: concluded (September 2026).** Two of the study's original headline
+> claims did not survive review. They are corrected below, before any results,
+> so that readers meet the limitations first. The measurements, code and
+> negative results remain useful, and several open problems are described in
+> [§9](#9-open-problems).
 
 ---
 
-## The central finding
+## Contents
 
-**Forgetting is mostly the readout, not the representation.**
+1. [Summary](#1-summary)
+2. [Setup and terminology](#2-setup-and-terminology)
+3. [Corrections to the original claims](#3-corrections-to-the-original-claims)
+4. [Results](#4-results)
+5. [Results that carry caveats](#5-results-that-carry-caveats)
+6. [Approaches that did not work](#6-approaches-that-did-not-work)
+7. [Recovering an unknown input change](#7-recovering-an-unknown-input-change)
+8. [Why readout repair is hard: three causes](#8-why-readout-repair-is-hard-three-causes)
+9. [Open problems](#9-open-problems)
+10. [Methodology](#10-methodology)
+11. [Using this repository](#11-using-this-repository)
+12. [Provenance and limitations](#12-provenance-and-limitations)
 
-A three-channel decomposition splits total forgetting on an old task into what
-the encoder lost, what the readout lost, and instrument bias:
+---
 
-```
-F_enc   = acc_refit_ceiling - acc_refit_T     the ENCODER's loss
-F_read  = acc_refit_T       - acc_orig        the READOUT's loss
-R       = acc_refit_ceiling - acc_ceiling     instrument bias
-                                              F_enc + F_read - R = F_total
-```
+## 1. Summary
 
-`acc_refit` is a linear probe fit to convergence on the features the deployed
-model actually computes. The split matters because a readout term can be
-repaired by refitting a head and an encoder term cannot.
+**Measured.** After sequential training, most of the accuracy a model loses on
+an old task can be recovered by fitting a new linear readout to its current
+features. This holds across recurrent, feed-forward, convolutional and
+transformer encoders, and replicates Davari et al. (2022) and Anthes et al.
+(2023) on a broader set of architectures.
 
-The readout share, across four architecture families and one instrument:
+**Originally claimed, and not supported:**
 
-| Arm | Reader share |
+- that recovering accuracy by transforming old inputs into the current input
+  format shows the encoder *retained* them — on the benchmarks used, this
+  outcome is guaranteed by how the tasks are constructed;
+- that scratch-trained and pretrained models behave oppositely because of how
+  they were trained — the comparison is confounded;
+- that the decomposition's identity detects computational errors — it holds
+  for any four numbers.
+
+**Supported:**
+
+- exemplar-free drift-compensation methods fail when tasks differ by
+  discontinuous input changes;
+- class-mean (prototype) readouts are capped far below a linear readout on
+  pretrained features;
+- fine-tuning a pretrained model erodes its reading of its native input layout;
+- reproduction noise must be measured separately for each reported quantity;
+- repairing a stale readout without labels faces a symmetry that no search
+  can resolve.
+
+**A recommendation for similar studies.** Before running an experiment, compute
+what it would show for a model that learned nothing — one trained only on the
+current task, a randomly initialised encoder, or a linear probe on raw inputs.
+If that baseline already produces the result, the experiment cannot
+distinguish the hypotheses.
+
+---
+
+## 2. Setup and terminology
+
+### Protocol
+
+A shared encoder $f_\theta$ is trained on tasks $0, \ldots, T$ in sequence.
+Each task's performance is read out by a linear **readout** (classification
+head). A snapshot of the model saved at the end of task $k$ is called its
+**era checkpoint**, $\theta_k$.
+
+- On the scratch-trained models, one readout is **shared** across tasks and all
+  tasks use the same labels. This is **domain-incremental** learning.
+- On the pretrained models, each task has its own readout over its own classes.
+  This is **task-incremental** learning.
+
+### The decomposition
+
+For an old task $k$, four accuracies are measured:
+
+| Symbol | Accuracy on task $k$ |
 |---|---|
-| Scratch LSTM · subject-disjoint UCI HAR | 75–89% (four arms) |
+| $a = A_k(\hat h_{\theta_k}, \theta_k)$ | a freshly fitted linear probe on the era checkpoint |
+| $b = A_k(\hat h_{\theta_T}, \theta_T)$ | a freshly fitted linear probe on the final model |
+| $c = A_k(h_k, \theta_T)$ | the deployed readout on the final model |
+| $d = A_k(h_k, \theta_k)$ | the model's own readout on the era checkpoint |
+
+These define
+
+$$
+F_{\mathrm{enc}} = a - b, \qquad
+F_{\mathrm{read}} = b - c, \qquad
+R = a - d, \qquad
+F_{\mathrm{total}} = d - c,
+$$
+
+where $F_{\mathrm{enc}}$ is loss the encoder no longer supports,
+$F_{\mathrm{read}}$ is loss a new readout can recover, and $R$ is the probe's
+advantage over the model's own readout. They satisfy
+
+$$
+F_{\mathrm{enc}} + F_{\mathrm{read}} - R = F_{\mathrm{total}}.
+$$
+
+This identity holds by construction: substituting gives $d - c = d - c$. It
+cannot detect an error in any single accuracy.
+
+The **readout share** is a ratio of pooled terms over tasks and seeds:
+
+$$
+\text{share} = \frac{\overline{F_{\mathrm{read}}}}{\overline{F_{\mathrm{enc}}} + \overline{F_{\mathrm{read}}}}.
+$$
+
+**The probe** is $\ell_2$-regularised multinomial logistic regression
+($C = 1$), fitted with L-BFGS to scikit-learn's default tolerance. Refitting at
+a tolerance of $10^{-10}$ changes the pooled encoder term by at most $0.0007$
+where measured, and a single task by up to $0.014$, with no consistent sign.
+
+### Other terms
+
+| Term | Meaning |
+|---|---|
+| **Format change** | A transformation $M$ applied to one task's inputs relative to another's — a channel permutation, rotation, or gain and offset on sensor data; a pixel permutation or rotation on images |
+| **Re-laying** | Applying the known transformation to an old task's inputs so they arrive in the format the final model was last trained on |
+| **Bridging** | Regenerating old-format training data from current data using a stored checkpoint and the known map, then refitting the readout |
+| **Frozen trunk** | A pretrained encoder that is never fine-tuned, used as a reference |
+
+---
+
+## 3. Corrections to the original claims
+
+Two independent reviews of a draft write-up, each checked against the code,
+established the following.
+
+| Finding | Basis | Consequence |
+|---|---|---|
+| **Recovery by re-laying is guaranteed by the benchmark construction.** Tasks share labels and draw content from a common pool, so old inputs re-laid into the current format are statistically identical to fresh samples of the current task | Every task's training data is a chunk of one training split; every test set a chunk of one test split | Re-laying is a valid repair when the transformation is known, but not evidence that anything was retained |
+| **The encoder discards old-format information.** A linear probe on raw permuted-MNIST pixels reaches roughly 0.92; a probe on the final encoder reaches 0.62–0.78 in old formats | Frame-sweep measurements | This is forgetting in the encoder |
+| **The scratch-versus-pretrained comparison is confounded.** Scratch tasks share labels; pretrained Split-CIFAR tasks each have different classes. Architecture and dataset also differ between the two groups | Benchmark construction | No claim about training regime is supported |
+| **A frozen pretrained trunk reads as well as a fine-tuned one** (0.955 against 0.945) and forgets nothing | Frozen-trunk reference | High probe accuracy on pretrained features is consistent with generic features rather than retained learning |
+| **The identity is a tautology** | §2 | It is bookkeeping, not an error check |
+| **The readout-share finding replicates prior work** | Davari et al. 2022; Anthes et al. 2023 | A replication across architectures, not a new finding |
+
+**Unresolved.** The decomposition reported for Learning without Forgetting may
+imply $R \approx 0.074$, above the study's own admissibility threshold of
+$|R| \le 0.05$. It should not be cited until checked.
+
+---
+
+## 4. Results
+
+### 4.1 A new readout recovers most lost accuracy
+
+| Model and benchmark | Readout share [95% CI] |
+|---|---|
+| Scratch LSTM · subject-disjoint UCI HAR (four configurations) | 75–89% |
 | Scratch MLP · disjoint-content Permuted MNIST | 89.5% [88.5, 90.6] |
-| Pretrained ViT-B/16, full fine-tuning, 20 tasks | 91.8% [89.6, 94.1] |
-| Pretrained ResNet-50, full fine-tuning, 20 tasks | 98.8% [98.3, 99.4] |
+| Pretrained ViT-B/16, fine-tuned, 20 tasks · Split-CIFAR-100 | 91.8% [89.6, 94.1] |
+| Pretrained ResNet-50, fine-tuned, 20 tasks · Split-CIFAR-100 | 98.8% [98.3, 99.4] |
 
-Old-task features survive fine-tuning nearly intact — `F_enc` is **0.06** on the
-ViT and **0.0076** on the ResNet. The drift carrying the mismatch is *aimed* at
-the readout subspace (32–42% of drift energy, against a 3.9% chance baseline),
-not scattered. The same split holds under class-incremental evaluation.
+The pattern also holds under class-incremental evaluation. §3 explains why a
+small encoder term does not, by itself, show retention.
 
-`docs/CLAIM_LEDGER.md` is authoritative for the claim and its sourcing.
+### 4.2 Drift compensation fails on discontinuous input changes
 
----
+Semantic Drift Compensation (Yu et al., 2020) and Learnable Drift Compensation
+(Gomez-Villa et al., 2024), adapted to nearest-class-mean readouts:
 
-## What that bought, and what it did not
+| Benchmark | Uncompensated | LDC | Oracle prototypes |
+|---|---|---|---|
+| MLP · Rotated MNIST (smooth change) | 0.553 | **0.670** | 0.848 |
+| MLP · Permuted MNIST (discontinuous change) | 0.797 | **0.135** | 0.906 |
 
-**Correcting the input path works — when the map is known.** On sensor data the
-forgetting is presentation drift entirely, and re-laying old inputs into the
-*current* frame with the known transform recovers more than the era checkpoint
-had (forgetting **−0.038**, one encoder, no stored model, no refit). Into the
-*base* layout it is harmful.
+Drift estimated on the current task's data does not describe an old task's data
+when their formats are unrelated, and compensation can make accuracy much
+worse.
 
-**And that is exactly what defeated the methods built on top of it.** Certified
-generative refit ("bridging") reaches ρ ≈ **1.02 [0.82, 1.22]** and beats the
-field's training-time baseline (LwF 0.226) — but it is dominated by the trivial
-use of its own required resources: simply running old tasks through the stored
-era snapshot scores ρ = **1.237**, above every ceiling in the program. *Bridging
-has no regime where the map is known, because in that regime you apply the map.*
-It is reported as a measured intermediate, not a contribution.
+### 4.3 Prototype readouts are capped on pretrained features
 
-**The adapter result is a storage result, not a memory result.** Per-task input
-adapters take permuted-MNIST accuracy from **0.4304** to **0.9183**, +50.3 pp —
-and cost roughly **10× more storage than the replay buffer they beat**. The
-`O(T·d²)` objection turns out to be regime-dependent rather than fundamental:
-adapter cost tracks the shift's intrinsic dimensionality, not the input's (HAR's
-9×9 channel map is 81 parameters per task; a flattened variant is 1.33 M with no
-additional expressivity).
+| Backbone | Oracle prototypes | Linear refit | LDC |
+|---|---|---|---|
+| ResNet-50 | 0.502 | 0.745 | 0.313 |
+| ViT-B/16 | 0.548 | 0.769 | 0.245 |
 
-**The scratch result does not transfer to pretrained trunks.** On every scratch
-arm, re-laying into the current frame removes the encoder term entirely. On
-pretrained trunks it recovers nothing and costs. That transfer failure is the
-largest single calibration event in the prediction ledger.
+Even exactly updated class means fall about 25 points short of a linear
+readout, which caps every prototype-based compensation method. On these
+features the exact solution of LDC's objective collapses all prototypes to a
+single class; the published recipe avoids this only because its optimiser,
+started from the identity, does not reach that solution.
 
-**Fine-tuning trades layouts rather than accumulating them.** Against a frozen
-ImageNet ResNet-50 on the same frames, loaders and probe, the fine-tuned trunk
-reads 4.7–5.1 pp *above* frozen on every permuted frame and **17.2 pp below** at
-the base layout — the loss is 3.6× the gain.
+### 4.4 Fine-tuning erodes the native input layout
 
----
+Change in linear-probe accuracy on old tasks, fine-tuned trunk minus frozen
+trunk, after twenty tasks with permuted image patches:
 
-## Negative results that closed directions
+| Backbone | Every permuted layout | Original (pretraining) layout |
+|---|---|---|
+| ResNet-50 | +4.7 to +5.1 pp | **−17.2 pp** |
+| ViT-B/16 | +3.8 to +4.9 pp | **−19.3 pp** |
 
-These are recorded because each one shut a door that looked open.
+The frozen trunk reads best in its original layout in every one of 108
+measurements. Fine-tuning gains a little on every permuted layout and loses
+about four times as much on the original.
 
-- **No rolling per-step repair.** Per-step drift is as non-linear as endpoint
-  drift; no arm clears the 15% bar, and splitting the boundary buys nothing.
-- **Encoders drift *away* from equivariance.** Every arm is less equivariant
-  than its own random initialisation — LSTM arms 1.85, MLP arms 1.25.
-- **Training for equivariance did not produce it.** Plain permutation
-  augmentation achieves *invariance* on a finite family and cuts readout-repair
-  cost 11×; adding an auxiliary equivariance loss preserved channel identity
-  (0.836 vs 0.549 readable) and made repair **more** expensive, not less. Where
-  the symmetry family is small enough to absorb, invariance suffices and the
-  method is not needed.
-- **Class means are too weak a reader to carry drift compensation.** Perfect
-  prototypes reach 0.502 / 0.548 where a linear refit reads 0.745 / 0.769 —
-  capping the whole family ~25 pp below the refit before any compensation runs.
-- **No label-free readout repair has met the bar.** Label-free objectives cannot
-  distinguish a correct readout from one with the classes relabelled, and every
-  attempt has failed on that symmetry.
+### 4.5 Reproduction noise depends on the quantity
+
+In one replicate pair, average accuracy differed by 3.68 points while readout
+share differed by 0.01. A noise estimate for one reported quantity does not
+transfer to another.
+
+### 4.6 Labelled data needed for readout repair
+
+Refitting the readout with ten labelled examples per class recovers 65–77% of
+the gap between the deployed readout and a fully refitted one. A fully labelled
+but orthogonally constrained alignment recovers 61–81%.
 
 ---
 
-## The most recent result: recovering the map without labels
+## 5. Results that carry caveats
 
-If correcting the input path is what works, the open question is whether the map
-can be recovered when it is *unknown*. It can, with a stated requirement.
-
-**Channel permutations** (exhaustive search over all 9! relabellings, scored
-against stored input statistics, subject-disjoint):
-
-| query pool, n = 256 | targets recovered |
+| Result | Caveat |
 |---|---|
-| all six activities | 22/22 |
-| **one static + one dynamic** | **22/22** |
-| two dynamic activities | **0/22** |
-| three static activities | **0/22** |
-
-The requirement is **contrast, not count** — a calibration window must contain
-at least one still activity and one moving one; more activities of one kind do
-not help.
-
-**Sensor rotations** are identifiable from covariance alone (0.00° on matched
-subjects), with the estimator provably equivariant, so its error is a pure
-subject-transfer bias: median **12.2°**, inside the model's ~15° tolerance,
-with an upper quartile of 21.7° outside it. The method works for a typical
-deployment and fails for a minority.
-
-Storage: **171 floats per task, 684 bytes** — three orders of magnitude below
-the per-task snapshot anchor, with no labels needed at repair time.
+| **Drift is not linear.** The best affine map leaves 41–45% of drift unexplained; per-step maps leave as much as a single end-to-end map; composing twenty per-step corrections scores 0.830 against 0.882 for one fit | Singular-value statistics were computed on unwhitened features. The residual stands; claims about orthogonality need whitening |
+| **Drift concentrates in the readout subspace:** 32–42% of drift energy against a 3.9% chance baseline | Unwhitened; and the associated subspace condition fails empirically on every configuration ($R^2 \le 0.06$) |
+| **Training makes encoders less equivariant than at initialisation:** ratio 1.51–2.19 for LSTMs, 1.18–1.34 for MLPs | A whitening control was not run. Trained features concentrate variance in fewer directions, which alone could produce this |
+| **The equivariance defect tracks readout-repair loss:** Spearman $\rho = 0.72$ (raw defect), $0.596$ (normalised) | The normalised version missed its pre-registered threshold of 0.6, and measurements within a configuration are not independent |
 
 ---
 
-## Layout
+## 6. Approaches that did not work
 
-| Layer | Where |
+Recorded because each closes a direction that appears promising.
+
+| Approach | Outcome | Cause (§8) |
+|---|---|---|
+| **External memory of cell states** (the original PLCM architecture) | Stored states became unreadable as the model reading them continued to change | Information bound |
+| **Bridging** | Final forgetting 0.095, close to refitting with retained data (0.081) — but applying the known map directly gives −0.038, and deploying the stored checkpoint gives 0.000 | Dominated by simpler uses of the same resources |
+| **Per-task input adapters** | Permuted MNIST accuracy 0.430 → 0.918, at roughly ten times the storage of the replay buffer they outperform. Similar methods exist (AdapterNet, CLR) | Not novel |
+| **Label-free readout repair** — entropy minimisation, diversity objectives, a stored checkpoint as teacher, shared or orthogonal realignment (seven variants) | None met the pre-registered bar | Identifiability |
+| **Per-step drift correction** | Drift across one task boundary is no more linear than across the whole sequence | Wrong drift model |
+| **Training for equivariance with an auxiliary loss** | Preserved channel identity (0.836 against 0.549) but made readout repair costlier than plain augmentation. All augmented configurations failed their accuracy precondition, so none is formally compared | Targets the wrong property |
+
+**Learning without Forgetting acts on the smaller component.** On UCI HAR it
+reduced the encoder term from 0.087 to 0.0015, but total forgetting only from
+0.386 to 0.226. See the open question in §3.
+
+---
+
+## 7. Recovering an unknown input change
+
+If transforming the input repairs forgetting when the transformation is known,
+can the transformation be recovered when it is not? Estimating sensor
+orientation or channel order from signal statistics is established calibration
+practice; these results are a baseline, not a new method.
+
+### 7.1 Channel permutations
+
+Every permutation $P$ of the nine UCI HAR channels is scored against stored
+reference statistics — mean $\mu$, covariance $\Sigma$, and lag-1
+cross-covariance $C_1$:
+
+$$
+\hat P = \arg\min_{P \in S_9}\;
+\frac{\|\Sigma' - P\Sigma P^\top\|_F^2}{\|\Sigma\|_F^2}
++ \frac{\|C_1' - P C_1 P^\top\|_F^2}{\|C_1\|_F^2}
++ \frac{\|\mu' - P\mu\|_2^2}{\|\mu\|_2^2 + \epsilon}.
+$$
+
+Reference and query drawn from different subjects, 256 query windows,
+22 target permutations:
+
+| Activities in the query | Targets recovered |
+|---|---|
+| All six | 22/22 |
+| **One static + one dynamic** | **22/22** |
+| Two dynamic | 0/22 |
+| Three static | 0/22 |
+
+Recovery depends on the query containing **contrasting** activities, not on
+how many it contains.
+
+### 7.2 Sensor rotations
+
+A rotation shared across the three sensor triples is identifiable from
+covariance alone (0.00° error when reference and query come from the same
+subjects). The estimator is exactly equivariant, so its error reflects only
+the difference between subjects. Across 20 subject pairings the median error is
+**12.2°**, the upper quartile 21.7°, and the worst 33.9°, against a model
+tolerance of roughly 15°.
+
+The stored reference is 171 numbers per task, and no labels are needed.
+
+---
+
+## 8. Why readout repair is hard: three causes
+
+**A — Identifiability.** A label-free objective depends only on the distribution
+of the current features, so it cannot distinguish a correct readout from one
+with the classes relabelled:
+
+$$
+\mathcal{L}(\sigma \circ \hat h) = \mathcal{L}(\hat h) \quad \text{for all } \sigma \in S_c .
+$$
+
+With $c$ classes there are $c! - 1$ equally scored incorrect readouts for each
+correct one. Resolving this requires information that is not a function of the
+current features — for example, at least one label per class.
+
+**B — An information bound.** If $M$ is the input change, any repair that acts
+only on the readout is bounded by what the encoder retains of the changed input:
+
+$$
+\mathrm{acc}(\hat h \circ f \circ M) \;\le\; \max_h \mathrm{acc}(h \circ f \circ M).
+$$
+
+The bound is tight when the encoder is equivariant to the change:
+
+$$
+f(Mx) = A\,f(x),\; A \text{ invertible} \;\Longrightarrow\; \hat h = h A^{-1}.
+$$
+
+**C — Misspecified drift models.** Compensation methods assume drift is a
+translation (SDC), a linear map (LDC), or a composition of small linear steps.
+The measured drift fits none of these. What training preserves is the linear
+separability of the classes, not the geometry of the features.
+
+Every repair that worked drew on at least one of three resources: **stored
+data or models**, **knowledge of the input change**, or **restricted
+plasticity** (a frozen encoder). None worked without one of them.
+
+---
+
+## 9. Open problems
+
+### 9.1 When does low encoder damage indicate retention?
+
+Probe-based analyses report low encoder damage, but §3 shows this can occur
+when nothing task-specific was retained. Settling this needs:
+
+- **an exclusion control** — a model trained on every task except $k$,
+  evaluated on task $k$'s re-laid inputs. On the benchmarks here, the analysis
+  in `docs/E31_section0.md` predicts no difference;
+- **raw-input and random-encoder probes**, compared against the same gap on
+  the current task, where forgetting cannot explain it;
+- sensitivity to the probe's regularisation strength, and label-budget curves.
+
+### 9.2 Breaking the relabelling symmetry without labels
+
+If the *ranking* of distances between class means survives drift, a stored
+$c \times c$ distance matrix could identify which current cluster corresponds
+to which class, enabling label-free readout repair on pretrained features. A
+design for this test, including a check that each task's geometry is
+distinctive enough to begin with, has been pre-registered (see §12) but not
+run.
+
+### 9.3 Equivariance by construction
+
+For small finite families of input changes, such as channel permutations, a
+model can learn to ignore the change entirely. Continuous families such as
+sensor rotations carry task information — in activity recognition, the
+direction of gravity distinguishes lying from standing — so ignoring them
+costs accuracy. Whether an encoder that is equivariant by construction (for
+example, vector-neuron layers) makes readout-only repair sufficient in that
+setting is open. Related work: rotation-equivariant activity recognition
+(TRI-HAR).
+
+### 9.4 One label per class plus unlabelled data
+
+Communications systems resolve the same ambiguity with a few known pilot
+symbols. One label per class breaks the symmetry in §8; whether unlabelled data
+can then refine the readout to the accuracy of ten labels per class has not
+been tested.
+
+### 9.5 Benchmarks whose outcome is not fixed in advance
+
+Future studies of where forgetting occurs would benefit from:
+
+- real, recorded input changes rather than synthetic ones;
+- shared-label and class-disjoint versions of the same construction;
+- scratch-trained and pretrained versions of the same architecture.
+
+### 9.6 Composition in hyperbolic space
+
+A second phase, composing representations in hyperbolic space with Möbius
+operations, is scaffolded in `src/models/composition.py` but was not run.
+
+---
+
+## 10. Methodology
+
+Each experiment followed the same sequence:
+
+1. **Verify assumptions from the code.** Every mechanism, configuration value
+   and cost a design relies on is checked in the implementing source before the
+   design is written. Several experiments were redesigned at this step.
+2. **Pre-register.** Arms, measurements, controls, aggregation, and predictions
+   with probabilities are fixed before any compute.
+3. **Audit checkpoints** by loading them, not by checking that files exist.
+4. **Run, then score** each prediction from the output artifacts.
+5. **Report**, including errors and failed controls.
+
+`CLAUDE.md` records the working rules and the specific errors that motivated
+each — including a control that could not fail, a gate passed on the wrong
+configuration, a fingerprint blind to the property it was meant to guard, and
+a statistic fixed by the design rather than measured.
+
+**Calibration.** 112 predictions were scored: 31 were misses (predicted at
+above even odds, did not occur). Misses clustered in three places: expectations
+formed on scratch-trained models that failed on pretrained ones; drift repairs
+that proved less linear and less composable than expected; and augmentation
+that cost more accuracy than expected.
+
+---
+
+## 11. Using this repository
+
+| Contents | Location |
 |---|---|
 | Model, training, benchmarks | `src/models/`, `src/training/`, `src/data/` |
-| Contracts (pre-registrations) | `docs/*_prereg.md` |
+| Pre-registrations | `docs/*_prereg.md` |
 | Prediction ledger | `docs/appendix.tex` |
-| Claim ledger (authoritative) | `docs/CLAIM_LEDGER.md` |
-| Experiment index | `docs/INDEX.md` (generated — `scripts/make_index.py`) |
-| Write-ups | `runs/MEMO_*.md` |
-| Evidence those memos cite | `runs/` |
-| Analysis and row scripts | `scripts/` |
-| Compute | `modal_runner.py` |
+| Claim ledger | `docs/CLAIM_LEDGER.md` |
+| Experiment index | `docs/INDEX.md` (generated by `scripts/make_index.py`) |
+| Experiment reports | `runs/MEMO_*.md` |
+| Output artifacts | `runs/` |
+| Analysis scripts | `scripts/` |
+| Cloud compute entry point | `modal_runner.py` |
 
-`runs/` is version-controlled on purpose: a ledger row whose evidence lives
-outside the repository is a citation nobody can check out. Model weights are the
-exception — reproducible from the recorded configs, and excluded.
+Output artifacts are version-controlled so that every reported number can be
+traced to the file that produced it. Model weights are excluded and can be
+regenerated from the recorded configurations.
 
-Benchmarks: permuted and rotated MNIST (shared- and disjoint-content), split
-CIFAR-10/100, CIFAR-100 with a patch-consistent permutation, and UCI HAR with
-simulated hardware-revision shifts in both shared-window and subject-disjoint
-constructions.
+**Benchmarks.** Permuted and rotated MNIST (shared- and disjoint-content
+variants), Split CIFAR-10 and CIFAR-100, CIFAR-100 with patch permutations, and
+UCI HAR with simulated sensor changes in shared-window and subject-disjoint
+variants. All input changes are synthetic.
 
 ```bash
 pip install -r requirements.txt
 python scripts/train.py --config configs/default.yaml --model plcm
 pytest tests/ -v
 
-# at scale, server-side, so a detached run survives the launching shell
+# larger runs, executed remotely
 modal run --detach modal_runner.py::spawn_analysis --experiment <name>
 ```
 
----
-
-## How an experiment goes
-
-1. **§0 is filled from the code first.** The mechanisms, config values and costs
-   a contract is about to assume are pasted in from the files that implement
-   them, *before* the contract is drafted. Several experiments were redesigned
-   at this step because the premise turned out to be false — and one was
-   answered outright, which is cheaper than running it.
-2. **The contract is signed**: arms, measurements, controls, aggregation stated
-   where the bar is, and predictions with odds.
-3. **Checkpoints are audited** — criterion *loads*, not *exists*.
-4. **It runs**, and a row script scores the registered predictions from the
-   artifacts, never from prose.
-5. **A memo reports it**, including what went wrong.
-
-`CLAUDE.md` holds the standing rules and a numbered log of the errors that
-produced each one. It is worth reading before trusting any number here: most
-rules were written the day a plausible-looking result turned out to be an
-artifact. Representative entries — a control that could not fail; a gate passed
-emphatically on the wrong arm; a fingerprint blind to the axis it was guarding;
-a statistic pinned by the design rather than measured.
-
-### Prediction ledger
-
-**112 scored entries, 31 misses**, plus one not comparable and one unmeasurable.
-A miss is a prediction given above even odds that did not occur; below even odds
-it is recorded as "did not fire" and not counted against the series.
-
-The misses cluster, and the clusters are the useful part: priors formed on
-scratch models transferred to pretrained ones and failed; drift repair proved
-less linear and less composable than predicted on every arm measured; and
-augmentation cost more within-task accuracy than predicted at every strength
-tried.
+**Platform.** Exact reproduction requires x86. The UCI HAR subject partition
+built on ARM differs from the one used in the reported runs.
 
 ---
 
-## What this sets up
+## 12. Provenance and limitations
 
-**Immediately open.**
+- **Missing pre-registrations.** The pre-registrations for experiments E25–E30
+  were written outside this repository and are not yet included; they will be
+  added unedited. The document `docs/E21_mummadi.md`, cited in the E21 report,
+  was never written.
+- **Experiments not completed.** The class-geometry test (§9.2), the exclusion
+  control (§9.1), a whitening control for the equivariance results (§5), and an
+  ablation of the external memory were designed but not run.
+- **Scope.** Models of up to 86M parameters; sequences of up to 20 tasks;
+  synthetic input changes only.
+- **Unresolved number.** The Learning-without-Forgetting decomposition may
+  exceed the study's own admissibility threshold (§3).
 
-- **E30 — does class geometry survive drift in order?** Signed; checkpoint audit
-  green at 30/30 directories and 330 era checkpoints. A stored *c × c* matrix of
-  distances between class means is side information that is not a function of
-  the current feature distribution, so it could break the relabelling symmetry
-  that has defeated every label-free repair. It is the only open item aimed at
-  the pretrained regime — which is where a method contribution now has to come
-  from, since input-path correction is dominated by trivially applying the map.
-- **E31 — the exclusion control.** Does re-laid accuracy reflect *retention*, or
-  is it current-task generalisation by construction? §0 (`docs/E31_section0.md`)
-  already shows the premise holds structurally for permuted MNIST: re-laid
-  old-task content is distributionally identical to current-task content. The
-  control trains a model that never saw task *k* and compares.
-- **Phase 2** — hyperbolic thought space and Möbius composition, scaffolded in
-  `src/models/composition.py`, not yet run.
+### References
 
-**Known gaps, recorded rather than left to be discovered** (`docs/INDEX.md`
-lists them per experiment):
-
-- Contracts for **E25–E28** are cited by their own memos and by scripts, and are
-  not in `docs/`. They were signed in a working session and never committed, so
-  ledger rows scoring their predictions currently cite a document this
-  repository does not contain. They are **not** reconstructed here: a
-  pre-registration written after the fact is the one document in this program
-  that must never be back-filled.
-- `docs/E21_mummadi.md` is cited by `runs/MEMO_e21.md` and is likewise absent.
-
-These are provenance gaps, not disputed results.
+- Anthes, D. et al. (2023). *Diagnosing catastrophic forgetting in continual learning.*
+- Davari, M. et al. (2022). *Probing representation forgetting in supervised and unsupervised continual learning.* CVPR.
+- Gomez-Villa, A. et al. (2024). *Exemplar-free continual representation learning via learnable drift compensation.* ECCV.
+- Kirichenko, P., Izmailov, P., Wilson, A. G. (2023). *Last layer re-training is sufficient for robustness to spurious correlations.* ICLR.
+- Yu, L. et al. (2020). *Semantic drift compensation for class-incremental learning.* CVPR.
