@@ -1,0 +1,25 @@
+================================================================================================
+HEAD DRIFT  arm=s72_off  kind=har_subject  probe seed 20260916
+================================================================================================
+  arm identity: shared head, adapters off, era checkpoints -- 3/3 seeds
+  har_subject partition 1104af185c87 -> AS-EXECUTED
+  joining against /runs/e20/seeded/har_s72_off_linear.json (12 cells)
+  s42/t0: ceiling 0.8460  W_T·Z_T 0.5037  h_k·Z_T 0.4841  W_T·Z_k 0.7946  | F_read +0.1443 = frozen +0.1638 + dH -0.0196
+  s42/t1: ceiling 0.7849  W_T·Z_T 0.4506  h_k·Z_T 0.4738  W_T·Z_k 0.7849  | F_read +0.2994 = frozen +0.2762 + dH +0.0233
+  s42/t2: ceiling 0.9872  W_T·Z_T 0.4796  h_k·Z_T 0.4719  W_T·Z_k 0.9872  | F_read +0.2985 = frozen +0.3061 + dH -0.0077
+  s42/t3: ceiling 0.9843  W_T·Z_T 0.7728  h_k·Z_T 0.7128  W_T·Z_k 0.9869  | F_read +0.0862 = frozen +0.1462 + dH -0.0601
+  s1337/t0: ceiling 0.7335  W_T·Z_T 0.3667  h_k·Z_T 0.3545  W_T·Z_k 0.6626  | F_read +0.2714 = frozen +0.2836 + dH -0.0122
+  s1337/t1: ceiling 0.9012  W_T·Z_T 0.2791  h_k·Z_T 0.2820  W_T·Z_k 0.9099  | F_read +0.4942 = frozen +0.4913 + dH +0.0029
+  s1337/t2: ceiling 0.8342  W_T·Z_T 0.4133  h_k·Z_T 0.4107  W_T·Z_k 0.8342  | F_read +0.4388 = frozen +0.4413 + dH -0.0026
+  s1337/t3: ceiling 0.8512  W_T·Z_T 0.7023  h_k·Z_T 0.7023  W_T·Z_k 0.8512  | F_read +0.1567 = frozen +0.1567 + dH +0.0000
+  s2024/t0: ceiling 0.6944  W_T·Z_T 0.3203  h_k·Z_T 0.3350  W_T·Z_k 0.6748  | F_read +0.3594 = frozen +0.3447 + dH +0.0147
+  s2024/t1: ceiling 0.8459  W_T·Z_T 0.2326  h_k·Z_T 0.2500  W_T·Z_k 0.8430  | F_read +0.5872 = frozen +0.5698 + dH +0.0174
+  s2024/t2: ceiling 0.9209  W_T·Z_T 0.2704  h_k·Z_T 0.2730  W_T·Z_k 0.8954  | F_read +0.5077 = frozen +0.5051 + dH +0.0026
+  s2024/t3: ceiling 0.8512  W_T·Z_T 0.8068  h_k·Z_T 0.8068  W_T·Z_k 0.8512  | F_read +0.0261 = frozen +0.0261 + dH +0.0000
+
+  C-ID vs har_s72_off_linear.json: acc_orig / acc_ceiling reproduce to 1e-6 in 12/12 cells -> PASS
+  identity F_read = F_read_frozen + dH: max residual 0.0e+00
+  pooled: F_enc 0.0872  F_read 0.3058 = frozen 0.3092 + dH -0.0034   share 77.8 -> frozen-head share 78.0   F_total 0.3864 -> frozen-head F_total 0.3898
+  dH per seed: s42 -0.0160  s1337 -0.0030  s2024 +0.0087
+
+  wrote /runs/head_drift/s72_off.json

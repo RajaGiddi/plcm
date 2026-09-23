@@ -1,0 +1,184 @@
+{
+  "arm": "e23_har_mlp",
+  "family": "MLP",
+  "seed": 2024,
+  "num_tasks": 5,
+  "construction": "har_subject",
+  "lossy_relay": false,
+  "lam_grid": [
+    0.001,
+    0.0001,
+    1e-05,
+    1e-06
+  ],
+  "val_frac": 0.2,
+  "ref_inits": [
+    0,
+    1,
+    2
+  ],
+  "controls": {
+    "positive_square_invertible": {
+      "lam": 0.0,
+      "bar": 0.01,
+      "draws": 10,
+      "delta_per_draw": {
+        "784": [
+          9.190061786618006e-12,
+          2.422387023343526e-10,
+          1.1662431600399464e-12,
+          3.345118730060702e-12,
+          6.625234542205773e-11,
+          1.2251898631956632e-12,
+          3.167111084279898e-12,
+          1.2004205604342014e-12,
+          1.1494083637039338e-12,
+          3.565694841262052e-12
+        ],
+        "1152": [
+          2.963192688430176e-09,
+          2.7165376017843114e-11,
+          3.0993574845315925e-12,
+          2.6330583975826298e-11,
+          1.6211388849451778e-12,
+          1.6197623357118257e-11,
+          5.197455061373186e-10,
+          6.208038423671441e-11,
+          1.0429423621624437e-11,
+          1.5158430952431261e-12
+        ]
+      },
+      "delta_max": {
+        "784": 2.422387023343526e-10,
+        "1152": 2.963192688430176e-09
+      },
+      "pass": true,
+      "pricing": "lambda chosen so that ALL draws clear the bar with margin. 1e-6 leaves delta at 0.037 (784) and 0.036 (1152) -- priced at d=256 in the contract. 1e-8 clears at 784 (max 0.0013) but FAILS at 1152 on some draws (max 0.0258); 1e-10 still fails a bad draw (0.0151). The residual of a ridge fit to an EXACT linear map scales with lambda and with cond(W), which ranges 1200-69307 here -- so no lambda > 0 is safe against the draw. An exact map needs no ridge: at lambda = 0 the worst of 10 draws reads 3.4e-9 (784) and 5.5e-9 (1152), six orders under the bar. Fourth pricing; the first three each fixed a real defect (wrong shape, then wrong lambda, then shared rng) and the fourth removes the knob instead of tuning it."
+    },
+    "floor_random_784_256": {
+      "delta": 0.8490847206666691,
+      "target": 0.85,
+      "pass": true
+    },
+    "must_fail_shape_synthetic": {
+      "unshuffled": 0.8488442502904193,
+      "shuffled": 1.0340946972289433,
+      "pass": true
+    }
+  },
+  "pooled": {
+    "delta": 4.21923634413156,
+    "delta_rand": 0.4830697574115446,
+    "delta_tilde": 8.288291339311701,
+    "delta_shuffled": 3.8107056169898827
+  },
+  "must_fail_cells": 3,
+  "cells": 4,
+  "rows": [
+    {
+      "arm": "e23_har_mlp",
+      "family": "MLP",
+      "seed": 2024,
+      "task": 0,
+      "n_train": 1658,
+      "n_test": 409,
+      "dim": 256,
+      "delta": 15.103724746587904,
+      "delta_train": 0.386084849671761,
+      "lam": 0.001,
+      "delta_val": 0.524555279188888,
+      "delta_shuffled": 12.270568663686575,
+      "must_fail_ok": false,
+      "delta_rand_per_init": [
+        0.30037120480084345,
+        0.6379919854473424,
+        0.602716946396537
+      ],
+      "delta_rand": 0.5136933788815742,
+      "delta_tilde": 29.402218069214953,
+      "plumb_max_abs": 0.0,
+      "relay_rel_err": null,
+      "input_sha": "932a1fab10a6",
+      "seconds": 1.2
+    },
+    {
+      "arm": "e23_har_mlp",
+      "family": "MLP",
+      "seed": 2024,
+      "task": 1,
+      "n_train": 1705,
+      "n_test": 344,
+      "dim": 256,
+      "delta": 0.5956607457135275,
+      "delta_train": 0.36776247673159657,
+      "lam": 0.001,
+      "delta_val": 0.5277571766146654,
+      "delta_shuffled": 1.0032043585989407,
+      "must_fail_ok": true,
+      "delta_rand_per_init": [
+        0.28890710656292173,
+        0.6191918633390253,
+        0.5620368972260209
+      ],
+      "delta_rand": 0.49004528904265604,
+      "delta_tilde": 1.215521828354273,
+      "plumb_max_abs": 0.0,
+      "relay_rel_err": null,
+      "input_sha": "bc46e7c8b18a",
+      "seconds": 1.1
+    },
+    {
+      "arm": "e23_har_mlp",
+      "family": "MLP",
+      "seed": 2024,
+      "task": 2,
+      "n_train": 1669,
+      "n_test": 392,
+      "dim": 256,
+      "delta": 0.5634422058409188,
+      "delta_train": 0.3962862117624349,
+      "lam": 0.001,
+      "delta_val": 0.5470250488117632,
+      "delta_shuffled": 0.9709669411989877,
+      "must_fail_ok": true,
+      "delta_rand_per_init": [
+        0.28030884620904384,
+        0.5909909045781281,
+        0.5048684585437998
+      ],
+      "delta_rand": 0.45872273644365724,
+      "delta_tilde": 1.2282848899296355,
+      "plumb_max_abs": 0.0,
+      "relay_rel_err": null,
+      "input_sha": "62c1db470cbc",
+      "seconds": 1.1
+    },
+    {
+      "arm": "e23_har_mlp",
+      "family": "MLP",
+      "seed": 2024,
+      "task": 3,
+      "n_train": 1684,
+      "n_test": 383,
+      "dim": 256,
+      "delta": 0.6141176783838926,
+      "delta_train": 0.30758970063563645,
+      "lam": 0.001,
+      "delta_val": 0.4350273235859663,
+      "delta_shuffled": 0.9980825044750266,
+      "must_fail_ok": true,
+      "delta_rand_per_init": [
+        0.2725358162167326,
+        0.6027284228069699,
+        0.5341886368111707
+      ],
+      "delta_rand": 0.4698176252782911,
+      "delta_tilde": 1.3071405697479466,
+      "plumb_max_abs": 0.0,
+      "relay_rel_err": null,
+      "input_sha": "fe095d5052f0",
+      "seconds": 1.1
+    }
+  ],
+  "seconds_total": 4.5
+}

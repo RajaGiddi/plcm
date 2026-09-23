@@ -1,0 +1,134 @@
+{
+  "average_accuracy": 0.44499999999999995,
+  "forgetting": 0.366,
+  "backward_transfer": -0.366,
+  "forward_transfer": 0.1,
+  "accuracy_matrix": [
+    [
+      0.838,
+      0.2
+    ],
+    [
+      0.472,
+      0.418
+    ]
+  ],
+  "model_type": "mafc",
+  "training_time": 170.22965812683105,
+  "arm": {
+    "model_type": "mafc",
+    "backbone": "vit",
+    "use_task_heads": true,
+    "head_routing_by_hint": true,
+    "use_input_adapters": false,
+    "adapter_mode": "per_step",
+    "use_memory": false,
+    "num_classes": 5,
+    "torch_num_threads": 4,
+    "omp_num_threads": "4",
+    "mkl_num_threads": "4",
+    "lwf_enabled": false,
+    "lwf_lambda": null,
+    "lwf_temperature": null,
+    "lwf_warmup_epochs": null,
+    "ewc_lambda": null,
+    "ewc_param_filter": null,
+    "mafc_lambda": 0.0,
+    "warmup_epochs": 0,
+    "warmup_mode": null,
+    "n_task_heads": 2,
+    "n_task_adapters": 0,
+    "num_tasks": 2,
+    "epochs_per_task": 1,
+    "learning_rate": 0.0001,
+    "seed": 42,
+    "benchmark": "cifar100_permuted",
+    "disjoint_content": false,
+    "content_fingerprint": null,
+    "angles": null,
+    "remap_labels": true,
+    "era_checkpoints": true,
+    "checkpoint_fp16": true
+  },
+  "task_history": [
+    {
+      "task_id": 0,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.39684988267254084,
+          "eval": {
+            "task_0": 0.838
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.2787667512893677,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 0,
+        "path": "/runs/ckpt_e23_vit_smoke/mafc_seed42/task0_epoch0.pt",
+        "fp16": true,
+        "bytes": 190141353,
+        "acc_boundary": 0.838,
+        "acc_refit_ceiling_boundary": 0.972,
+        "p3_live": {
+          "p3a_delta": 0.0,
+          "p3b_module": "head[0]"
+        },
+        "loads": true,
+        "acc_reload": 0.838,
+        "acc_refit_ceiling_reload": 0.972,
+        "delta": 0.0,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "p3a_delta": 0.0,
+          "p3b_module": "head[0]"
+        }
+      }
+    },
+    {
+      "task_id": 1,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 1.4111240983009339,
+          "eval": {
+            "task_0": 0.472,
+            "task_1": 0.418
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.2738591432571411,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 1,
+        "path": "/runs/ckpt_e23_vit_smoke/mafc_seed42/task1_epoch0.pt",
+        "fp16": true,
+        "bytes": 190149679,
+        "acc_boundary": 0.418,
+        "acc_refit_ceiling_boundary": 0.722,
+        "p3_live": {
+          "p3a_delta": 0.0,
+          "p3b_module": "head[1]"
+        },
+        "loads": true,
+        "acc_reload": 0.418,
+        "acc_refit_ceiling_reload": 0.724,
+        "delta": 0.0,
+        "delta_refit": 0.0020000000000000018,
+        "p3_reload": {
+          "p3a_delta": 0.0,
+          "p3b_module": "head[1]"
+        }
+      }
+    }
+  ]
+}

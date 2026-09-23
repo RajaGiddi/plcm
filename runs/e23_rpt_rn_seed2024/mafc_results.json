@@ -1,0 +1,577 @@
+{
+  "average_accuracy": 0.7288,
+  "forgetting": 0.0050000000000000044,
+  "backward_transfer": 0.0305,
+  "forward_transfer": 0.591,
+  "accuracy_matrix": [
+    [
+      0.622,
+      0.608,
+      0.608,
+      0.608,
+      0.608
+    ],
+    [
+      0.726,
+      0.72,
+      0.718,
+      0.718,
+      0.718
+    ],
+    [
+      0.716,
+      0.726,
+      0.712,
+      0.71,
+      0.71
+    ],
+    [
+      0.73,
+      0.73,
+      0.734,
+      0.74,
+      0.728
+    ],
+    [
+      0.726,
+      0.732,
+      0.728,
+      0.73,
+      0.728
+    ]
+  ],
+  "model_type": "mafc",
+  "training_time": 676.9244456291199,
+  "arm": {
+    "model_type": "mafc",
+    "backbone": "resnet",
+    "use_task_heads": true,
+    "head_routing_by_hint": true,
+    "use_input_adapters": false,
+    "adapter_mode": "per_step",
+    "use_memory": false,
+    "num_classes": 5,
+    "torch_num_threads": 4,
+    "omp_num_threads": "4",
+    "mkl_num_threads": "4",
+    "lwf_enabled": false,
+    "lwf_lambda": null,
+    "lwf_temperature": null,
+    "lwf_warmup_epochs": null,
+    "ewc_lambda": null,
+    "ewc_param_filter": null,
+    "mafc_lambda": 0.0,
+    "warmup_epochs": 0,
+    "warmup_mode": null,
+    "n_task_heads": 5,
+    "n_task_adapters": 0,
+    "num_tasks": 5,
+    "epochs_per_task": 5,
+    "learning_rate": 0.0001,
+    "seed": 2024,
+    "benchmark": "cifar100_permuted",
+    "disjoint_content": false,
+    "content_fingerprint": null,
+    "angles": null,
+    "remap_labels": true,
+    "era_checkpoints": true,
+    "checkpoint_fp16": true
+  },
+  "task_history": [
+    {
+      "task_id": 0,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 1.5914079785346984,
+          "eval": {
+            "task_0": 0.43
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.3027573823928833,
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 1.5171155601739883,
+          "eval": {
+            "task_0": 0.526
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.3358327150344849,
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.377485853433609,
+          "eval": {
+            "task_0": 0.57
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4007580280303955,
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 1.1834914803504943,
+          "eval": {
+            "task_0": 0.574
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4814964532852173,
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 1.0172727659344674,
+          "eval": {
+            "task_0": 0.622
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.569311499595642,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 0,
+        "path": "checkpoints/mafc_seed2024/task0_epoch4.pt",
+        "fp16": true,
+        "bytes": 169679201,
+        "acc_boundary": 0.622,
+        "acc_refit_ceiling_boundary": 0.662,
+        "p3_live": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.62,
+        "acc_refit_ceiling_reload": 0.652,
+        "delta": -0.0020000000000000018,
+        "delta_refit": -0.010000000000000009,
+        "p3_reload": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        }
+      }
+    },
+    {
+      "task_id": 1,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 1.070456576347351,
+          "eval": {
+            "task_0": 0.62,
+            "task_1": 0.612
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.374915361404419,
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.8187083840370178,
+          "eval": {
+            "task_0": 0.646,
+            "task_1": 0.65
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4726849794387817,
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.6026839107275009,
+          "eval": {
+            "task_0": 0.688,
+            "task_1": 0.682
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.5676400661468506,
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.43021333068609235,
+          "eval": {
+            "task_0": 0.71,
+            "task_1": 0.692
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.6564974784851074,
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.29515556134283544,
+          "eval": {
+            "task_0": 0.726,
+            "task_1": 0.72
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.7363841533660889,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 1,
+        "path": "checkpoints/mafc_seed2024/task1_epoch4.pt",
+        "fp16": true,
+        "bytes": 169700327,
+        "acc_boundary": 0.72,
+        "acc_refit_ceiling_boundary": 0.73,
+        "p3_live": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.72,
+        "acc_refit_ceiling_reload": 0.738,
+        "delta": 0.0,
+        "delta_refit": 0.008000000000000007,
+        "p3_reload": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        }
+      }
+    },
+    {
+      "task_id": 2,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.3928229041397572,
+          "eval": {
+            "task_0": 0.71,
+            "task_1": 0.72,
+            "task_2": 0.722
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4238749742507935,
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.18301820438355207,
+          "eval": {
+            "task_0": 0.716,
+            "task_1": 0.712,
+            "task_2": 0.712
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.5440332889556885,
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.11686321422457695,
+          "eval": {
+            "task_0": 0.724,
+            "task_1": 0.71,
+            "task_2": 0.722
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.6288695335388184,
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.09490773472934962,
+          "eval": {
+            "task_0": 0.716,
+            "task_1": 0.722,
+            "task_2": 0.718
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.702054738998413,
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.04016812837217003,
+          "eval": {
+            "task_0": 0.716,
+            "task_1": 0.726,
+            "task_2": 0.712
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.759024977684021,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 2,
+        "path": "checkpoints/mafc_seed2024/task2_epoch4.pt",
+        "fp16": true,
+        "bytes": 169721453,
+        "acc_boundary": 0.712,
+        "acc_refit_ceiling_boundary": 0.724,
+        "p3_live": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.708,
+        "acc_refit_ceiling_reload": 0.724,
+        "delta": -0.0040000000000000036,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        }
+      }
+    },
+    {
+      "task_id": 3,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.1619007528759539,
+          "eval": {
+            "task_0": 0.734,
+            "task_1": 0.732,
+            "task_2": 0.724,
+            "task_3": 0.728
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4264612197875977,
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.04883018932305276,
+          "eval": {
+            "task_0": 0.72,
+            "task_1": 0.718,
+            "task_2": 0.718,
+            "task_3": 0.72
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.516931176185608,
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.058285827236250046,
+          "eval": {
+            "task_0": 0.722,
+            "task_1": 0.718,
+            "task_2": 0.718,
+            "task_3": 0.722
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.582291603088379,
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.057412003097124395,
+          "eval": {
+            "task_0": 0.724,
+            "task_1": 0.722,
+            "task_2": 0.718,
+            "task_3": 0.728
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.6301143169403076,
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.04854698764975183,
+          "eval": {
+            "task_0": 0.73,
+            "task_1": 0.73,
+            "task_2": 0.734,
+            "task_3": 0.74
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.667805552482605,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 3,
+        "path": "checkpoints/mafc_seed2024/task3_epoch4.pt",
+        "fp16": true,
+        "bytes": 169742579,
+        "acc_boundary": 0.74,
+        "acc_refit_ceiling_boundary": 0.734,
+        "p3_live": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.736,
+        "acc_refit_ceiling_reload": 0.734,
+        "delta": -0.0040000000000000036,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        }
+      }
+    },
+    {
+      "task_id": 4,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.06344200526364148,
+          "eval": {
+            "task_0": 0.71,
+            "task_1": 0.722,
+            "task_2": 0.716,
+            "task_3": 0.716,
+            "task_4": 0.716
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.4281082153320312,
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.03162650422891602,
+          "eval": {
+            "task_0": 0.716,
+            "task_1": 0.724,
+            "task_2": 0.712,
+            "task_3": 0.712,
+            "task_4": 0.712
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.514061450958252,
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.023657079658005387,
+          "eval": {
+            "task_0": 0.74,
+            "task_1": 0.742,
+            "task_2": 0.738,
+            "task_3": 0.74,
+            "task_4": 0.74
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.5735479593276978,
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.035804818844189866,
+          "eval": {
+            "task_0": 0.732,
+            "task_1": 0.732,
+            "task_2": 0.728,
+            "task_3": 0.728,
+            "task_4": 0.728
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.619741678237915,
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.009762485203100368,
+          "eval": {
+            "task_0": 0.726,
+            "task_1": 0.732,
+            "task_2": 0.728,
+            "task_3": 0.73,
+            "task_4": 0.728
+          },
+          "memory": {
+            "size": 0,
+            "capacity": 512
+          },
+          "head_weight_norm": 1.659236192703247,
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 4,
+        "path": "checkpoints/mafc_seed2024/task4_epoch4.pt",
+        "fp16": true,
+        "bytes": 169763705,
+        "acc_boundary": 0.728,
+        "acc_refit_ceiling_boundary": 0.72,
+        "p3_live": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.724,
+        "acc_refit_ceiling_reload": 0.72,
+        "delta": -0.0040000000000000036,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=resnet \u2014 P3 is the ViT readout's gate"
+        }
+      }
+    }
+  ]
+}

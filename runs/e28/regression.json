@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "rng_neutral_when_off": {
+      "baseline": [
+        0.028979241847991943,
+        0.4018985629081726,
+        0.25984418392181396,
+        0.3666413426399231,
+        0.05830073356628418
+      ],
+      "after": [
+        0.028979241847991943,
+        0.4018985629081726,
+        0.25984418392181396,
+        0.3666413426399231,
+        0.05830073356628418
+      ],
+      "pass": true
+    },
+    "forward_identity": {
+      "har_lstm": {
+        "logits_sha": "50a2f2de57af0583",
+        "feature_sha": "040bbf50b32d3bb1",
+        "shape": [
+          8,
+          128,
+          9
+        ],
+        "pre_edit_sha": "50a2f2de57af0583",
+        "source": "runs/e23/mlp_regression.json (2026-09-19, before this edit)",
+        "pass": true
+      },
+      "mnist_mlp": {
+        "logits_sha": "e6d2956cd83da912",
+        "feature_sha": "c79e57eef811edcc",
+        "shape": [
+          8,
+          28,
+          28
+        ]
+      }
+    },
+    "on_path": {
+      "augmented_fraction": 0.5234375,
+      "expected_p": 0.5,
+      "p_within_0.06": true,
+      "gather_matches_target_every_sample": true,
+      "drew_a_heldout_permutation": false,
+      "reproducible_from_seed": true,
+      "heldout_fingerprint": "ccbeb4f4ecf1",
+      "pass": true
+    },
+    "rejection": {
+      "forced_heldout": 8,
+      "rows_that_moved": 8,
+      "no_row_in_heldout_after": true,
+      "pass": true
+    },
+    "provenance_contract": {
+      "off": {
+        "aug_family": null,
+        "aug_p": 0.0,
+        "aux_perm_weight": 0.0
+      },
+      "on_expected": {
+        "aug_family": "channel_permutation",
+        "aug_space": "standardized",
+        "aug_heldout_fingerprint": "ccbeb4f4ecf1"
+      }
+    }
+  },
+  "pass": true
+}

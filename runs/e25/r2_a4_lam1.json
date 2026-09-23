@@ -1,0 +1,222 @@
+{
+  "kind": "R2",
+  "arms": [
+    "A1",
+    "A3",
+    "A4"
+  ],
+  "levels": {
+    "0": {
+      "A1": {
+        "mean": 0.8908111602067947,
+        "floor": null,
+        "floor_real": null,
+        "floor_jitter": 0.0,
+        "n_realizations": 1,
+        "readable": false,
+        "per_real": [
+          0.8908111602067947
+        ]
+      },
+      "A3": {
+        "mean": 0.881618415315946,
+        "floor": null,
+        "floor_real": null,
+        "floor_jitter": 0.0,
+        "n_realizations": 1,
+        "readable": false,
+        "per_real": [
+          0.881618415315946
+        ]
+      },
+      "A4": {
+        "mean": 0.8924441337585449,
+        "floor": null,
+        "floor_real": null,
+        "floor_jitter": 0.0,
+        "n_realizations": 1,
+        "readable": false,
+        "per_real": [
+          0.8924441337585449
+        ]
+      }
+    },
+    "1": {
+      "A1": {
+        "mean": 0.7453802675008774,
+        "floor": 0.08082231879234314,
+        "floor_real": 0.08082231879234314,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.7016391853491465,
+          0.7520401130119959,
+          0.7824615041414896
+        ]
+      },
+      "A3": {
+        "mean": 0.8445116223560438,
+        "floor": 0.049166279534498813,
+        "floor_real": 0.049166279534498813,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.842156986395518,
+          0.8211058005690575,
+          0.8702720801035563
+        ]
+      },
+      "A4": {
+        "mean": 0.8769330133994421,
+        "floor": 0.01833740870157874,
+        "floor_real": 0.01833740870157874,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.8655462861061096,
+          0.8838836948076884,
+          0.8813690592845281
+        ]
+      }
+    },
+    "2": {
+      "A1": {
+        "mean": 0.5434891738825375,
+        "floor": 0.1278437127669652,
+        "floor_real": 0.1278437127669652,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.503666378557682,
+          0.4994787151614825,
+          0.6273224279284477
+        ]
+      },
+      "A3": {
+        "mean": 0.7520783502194618,
+        "floor": 0.17518825083971024,
+        "floor_real": 0.17518825083971024,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.6611366917689642,
+          0.7587734162807465,
+          0.8363249426086744
+        ]
+      },
+      "A4": {
+        "mean": 0.8304174269239107,
+        "floor": 0.16120455414056778,
+        "floor_real": 0.16120455414056778,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.7239141638080279,
+          0.8822193990151087,
+          0.8851187179485956
+        ]
+      }
+    },
+    "3": {
+      "A1": {
+        "mean": 0.44646187457773423,
+        "floor": 0.22159950931866962,
+        "floor_real": 0.22159950931866962,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.5240500271320343,
+          0.5128850787878036,
+          0.3024505178133647
+        ]
+      },
+      "A3": {
+        "mean": 0.6342495183149973,
+        "floor": 0.1580811167756716,
+        "floor_real": 0.1580811167756716,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.6726343507568041,
+          0.6940976604819298,
+          0.5360165437062582
+        ]
+      },
+      "A4": {
+        "mean": 0.7236257820493645,
+        "floor": 0.16663776958982146,
+        "floor_real": 0.16663776958982146,
+        "floor_jitter": 0.0,
+        "n_realizations": 3,
+        "readable": true,
+        "per_real": [
+          0.7685109252731005,
+          0.7845020952324072,
+          0.6178643256425858
+        ]
+      }
+    }
+  },
+  "mummadi_form_recorded": "INTENT -- transcription pending (docs/E21_mummadi.md); A4 not read",
+  "floor_provenance": "scripts/e21_row.py:139-141, max(realization spread, mean per-cell jitter spread)",
+  "verdicts": {
+    "0": {
+      "A4_minus_A3": 0.010825718442598942,
+      "A4_minus_A1": 0.001632973551750183,
+      "floor_43": null,
+      "floor_41": null,
+      "A4_beats_A3": null,
+      "A4_beats_A1": null,
+      "why": "single realization at eps = 0; the realization spread is 0 by construction and the swap search is deterministic, so no floor exists"
+    },
+    "1": {
+      "A4_minus_A3": 0.03242139104339825,
+      "floor_43": 0.049166279534498813,
+      "A4_beats_A3": false,
+      "A4_minus_A1": 0.1315527458985647,
+      "floor_41": 0.08082231879234314,
+      "A4_beats_A1": true
+    },
+    "2": {
+      "A4_minus_A3": 0.07833907670444895,
+      "floor_43": 0.17518825083971024,
+      "A4_beats_A3": false,
+      "A4_minus_A1": 0.28692825304137326,
+      "floor_41": 0.16120455414056778,
+      "A4_beats_A1": true
+    },
+    "3": {
+      "A4_minus_A3": 0.08937626373436713,
+      "floor_43": 0.16663776958982146,
+      "A4_beats_A3": false,
+      "A4_minus_A1": 0.2771639074716302,
+      "floor_41": 0.22159950931866962,
+      "A4_beats_A1": true
+    }
+  },
+  "sign_pattern_A4_over_A3": {
+    "n_readable_levels": 3,
+    "n_positive": 3,
+    "deltas": [
+      0.03242139104339825,
+      0.07833907670444895,
+      0.08937626373436713
+    ],
+    "note": "Every readable level puts A4 above A3 in point estimate while none clears its floor. Reported as a measurement, not a cleared claim -- the same form E23's (E1) row uses."
+  },
+  "reading": "A4 at lambda = 1 does NOT beat A3 by more than floor at m = 1, so C at lambda = 40 is the only remaining test of whether the diversity term gives entropy direction on the discrete family.",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.11.14"
+  },
+  "note": "Read of existing artifacts. No model is loaded and no device-dependent arithmetic runs, so this is platform-independent; the platform is recorded anyway because every other row in this program carries one."
+}

@@ -1,0 +1,474 @@
+{
+  "arm": "e18_pmd_lstm",
+  "n_cells": 12,
+  "tight_tol": 1e-10,
+  "max_abs_F_enc_delta": 0.0020000000000000018,
+  "mean_F_enc_delta": -0.0005833333333333431,
+  "max_abs_acc_delta": 0.0020000000000000018,
+  "objective_excess_max": 1.8220488389462162,
+  "objective_excess_mean": 0.8054772383176799,
+  "n_iter_default_median": 91,
+  "n_iter_tight_median": 666,
+  "F_enc_inflated_cells": 2,
+  "F_enc_deflated_cells": 9,
+  "F_enc_unchanged_cells": 1,
+  "ruling": "refit_probe is unchanged. This is the floor its default tolerance imposes, so the paper's sentence can carry a number.",
+  "rows": [
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 42,
+      "task": 0,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.966,
+          "objective": 47.25856895354871,
+          "n_iter": 44
+        },
+        "tight": {
+          "acc": 0.9665,
+          "objective": 46.29752276224132,
+          "n_iter": 830
+        },
+        "acc_delta": -0.000500000000000056,
+        "objective_excess": 0.9610461913073891
+      },
+      "final": {
+        "default": {
+          "acc": 0.7325,
+          "objective": 1207.8132198833273,
+          "n_iter": 160
+        },
+        "tight": {
+          "acc": 0.7315,
+          "objective": 1207.2528263909112,
+          "n_iter": 762
+        },
+        "acc_delta": 0.0010000000000000009,
+        "objective_excess": 0.5603934924160967
+      },
+      "F_enc_default": 0.23349999999999993,
+      "F_enc_tight": 0.235,
+      "F_enc_delta": -0.0015000000000000568
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 42,
+      "task": 1,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9155,
+          "objective": 164.48552077757085,
+          "n_iter": 72
+        },
+        "tight": {
+          "acc": 0.916,
+          "objective": 162.66347193862464,
+          "n_iter": 831
+        },
+        "acc_delta": -0.000500000000000056,
+        "objective_excess": 1.8220488389462162
+      },
+      "final": {
+        "default": {
+          "acc": 0.7205,
+          "objective": 1325.785919236323,
+          "n_iter": 164
+        },
+        "tight": {
+          "acc": 0.722,
+          "objective": 1325.4193775183496,
+          "n_iter": 728
+        },
+        "acc_delta": -0.0014999999999999458,
+        "objective_excess": 0.36654171797340496
+      },
+      "F_enc_default": 0.19499999999999995,
+      "F_enc_tight": 0.19400000000000006,
+      "F_enc_delta": 0.0009999999999998899
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 42,
+      "task": 2,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9395,
+          "objective": 80.15699152493829,
+          "n_iter": 45
+        },
+        "tight": {
+          "acc": 0.94,
+          "objective": 79.09357169010865,
+          "n_iter": 599
+        },
+        "acc_delta": -0.0004999999999999449,
+        "objective_excess": 1.063419834829645
+      },
+      "final": {
+        "default": {
+          "acc": 0.7495,
+          "objective": 1138.9099699852225,
+          "n_iter": 163
+        },
+        "tight": {
+          "acc": 0.7495,
+          "objective": 1138.402827064216,
+          "n_iter": 705
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.5071429210065617
+      },
+      "F_enc_default": 0.18999999999999995,
+      "F_enc_tight": 0.1904999999999999,
+      "F_enc_delta": -0.0004999999999999449
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 42,
+      "task": 3,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9365,
+          "objective": 35.09627972997043,
+          "n_iter": 28
+        },
+        "tight": {
+          "acc": 0.9365,
+          "objective": 34.256179101448915,
+          "n_iter": 375
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.8401006285215189
+      },
+      "final": {
+        "default": {
+          "acc": 0.8285,
+          "objective": 679.054371345097,
+          "n_iter": 157
+        },
+        "tight": {
+          "acc": 0.8275,
+          "objective": 678.5320260566198,
+          "n_iter": 735
+        },
+        "acc_delta": 0.0010000000000000009,
+        "objective_excess": 0.5223452884772541
+      },
+      "F_enc_default": 0.10799999999999998,
+      "F_enc_tight": 0.10899999999999999,
+      "F_enc_delta": -0.0010000000000000009
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 1337,
+      "task": 0,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9635,
+          "objective": 73.01051764917437,
+          "n_iter": 51
+        },
+        "tight": {
+          "acc": 0.9635,
+          "objective": 72.33939559449128,
+          "n_iter": 554
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.6711220546830958
+      },
+      "final": {
+        "default": {
+          "acc": 0.763,
+          "objective": 1437.9852680169004,
+          "n_iter": 202
+        },
+        "tight": {
+          "acc": 0.763,
+          "objective": 1437.6419223165487,
+          "n_iter": 894
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.3433457003516196
+      },
+      "F_enc_default": 0.2005,
+      "F_enc_tight": 0.2005,
+      "F_enc_delta": 0.0
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 1337,
+      "task": 1,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9185,
+          "objective": 155.84979398553227,
+          "n_iter": 78
+        },
+        "tight": {
+          "acc": 0.9205,
+          "objective": 154.66094242792485,
+          "n_iter": 979
+        },
+        "acc_delta": -0.0020000000000000018,
+        "objective_excess": 1.1888515576074212
+      },
+      "final": {
+        "default": {
+          "acc": 0.7875,
+          "objective": 983.3574926535882,
+          "n_iter": 130
+        },
+        "tight": {
+          "acc": 0.7875,
+          "objective": 982.8573739538722,
+          "n_iter": 562
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.5001186997160403
+      },
+      "F_enc_default": 0.131,
+      "F_enc_tight": 0.133,
+      "F_enc_delta": -0.0020000000000000018
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 1337,
+      "task": 2,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.928,
+          "objective": 59.122437536796824,
+          "n_iter": 35
+        },
+        "tight": {
+          "acc": 0.9285,
+          "objective": 57.892644719024645,
+          "n_iter": 601
+        },
+        "acc_delta": -0.0004999999999999449,
+        "objective_excess": 1.2297928177721786
+      },
+      "final": {
+        "default": {
+          "acc": 0.761,
+          "objective": 1038.335351968612,
+          "n_iter": 159
+        },
+        "tight": {
+          "acc": 0.7605,
+          "objective": 1037.6464219311715,
+          "n_iter": 821
+        },
+        "acc_delta": 0.000500000000000056,
+        "objective_excess": 0.6889300374405138
+      },
+      "F_enc_default": 0.16700000000000004,
+      "F_enc_tight": 0.16800000000000004,
+      "F_enc_delta": -0.0010000000000000009
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 1337,
+      "task": 3,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.944,
+          "objective": 40.103932689899416,
+          "n_iter": 29
+        },
+        "tight": {
+          "acc": 0.944,
+          "objective": 39.22840272795932,
+          "n_iter": 587
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.8755299619400958
+      },
+      "final": {
+        "default": {
+          "acc": 0.831,
+          "objective": 560.9247398586932,
+          "n_iter": 104
+        },
+        "tight": {
+          "acc": 0.83,
+          "objective": 560.2075180175699,
+          "n_iter": 561
+        },
+        "acc_delta": 0.0010000000000000009,
+        "objective_excess": 0.7172218411233189
+      },
+      "F_enc_default": 0.11299999999999999,
+      "F_enc_tight": 0.11399999999999999,
+      "F_enc_delta": -0.0010000000000000009
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 2024,
+      "task": 0,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9615,
+          "objective": 63.17934160125134,
+          "n_iter": 49
+        },
+        "tight": {
+          "acc": 0.9615,
+          "objective": 62.139406370254015,
+          "n_iter": 782
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 1.0399352309973224
+      },
+      "final": {
+        "default": {
+          "acc": 0.726,
+          "objective": 1352.4980755432498,
+          "n_iter": 140
+        },
+        "tight": {
+          "acc": 0.7255,
+          "objective": 1352.0665519166557,
+          "n_iter": 653
+        },
+        "acc_delta": 0.0004999999999999449,
+        "objective_excess": 0.4315236265940712
+      },
+      "F_enc_default": 0.23550000000000004,
+      "F_enc_tight": 0.236,
+      "F_enc_delta": -0.0004999999999999449
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 2024,
+      "task": 1,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9265,
+          "objective": 164.6689501941133,
+          "n_iter": 74
+        },
+        "tight": {
+          "acc": 0.928,
+          "objective": 163.6045439735275,
+          "n_iter": 914
+        },
+        "acc_delta": -0.0015000000000000568,
+        "objective_excess": 1.064406220585795
+      },
+      "final": {
+        "default": {
+          "acc": 0.759,
+          "objective": 1087.8508701582314,
+          "n_iter": 146
+        },
+        "tight": {
+          "acc": 0.759,
+          "objective": 1087.3670455360334,
+          "n_iter": 679
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.4838246221979716
+      },
+      "F_enc_default": 0.16749999999999998,
+      "F_enc_tight": 0.16900000000000004,
+      "F_enc_delta": -0.0015000000000000568
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 2024,
+      "task": 2,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9345,
+          "objective": 60.504726592148174,
+          "n_iter": 37
+        },
+        "tight": {
+          "acc": 0.9325,
+          "objective": 59.30981172140109,
+          "n_iter": 530
+        },
+        "acc_delta": 0.0020000000000000018,
+        "objective_excess": 1.194914870747084
+      },
+      "final": {
+        "default": {
+          "acc": 0.744,
+          "objective": 1105.9825979121438,
+          "n_iter": 137
+        },
+        "tight": {
+          "acc": 0.7435,
+          "objective": 1105.3875191142333,
+          "n_iter": 625
+        },
+        "acc_delta": 0.0004999999999999449,
+        "objective_excess": 0.5950787979104462
+      },
+      "F_enc_default": 0.1905,
+      "F_enc_tight": 0.18899999999999995,
+      "F_enc_delta": 0.0015000000000000568
+    },
+    {
+      "arm": "e18_pmd_lstm",
+      "seed": 2024,
+      "task": 3,
+      "n_test": 2000,
+      "dim": 256,
+      "ceiling": {
+        "default": {
+          "acc": 0.9355,
+          "objective": 28.745021049803547,
+          "n_iter": 22
+        },
+        "tight": {
+          "acc": 0.9355,
+          "objective": 27.795954475423986,
+          "n_iter": 286
+        },
+        "acc_delta": 0.0,
+        "objective_excess": 0.949066574379561
+      },
+      "final": {
+        "default": {
+          "acc": 0.807,
+          "objective": 646.5481715460392,
+          "n_iter": 107
+        },
+        "tight": {
+          "acc": 0.8065,
+          "objective": 645.8334193539395,
+          "n_iter": 579
+        },
+        "acc_delta": 0.000500000000000056,
+        "objective_excess": 0.7147521920996951
+      },
+      "F_enc_default": 0.12849999999999995,
+      "F_enc_tight": 0.129,
+      "F_enc_delta": -0.000500000000000056
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+====================================================================================================
+E14 DECOMPOSITION — arm=base seed=2024 device=cuda
+====================================================================================================
+  checkpoints: runs/ckpt_e14_base_seed2024/mafc_seed2024
+  class order fingerprint 4019d151cd42
+
+----------------------------------------------------------------------------------------------------
+P3 GATES (re-fired on the trained ViT checkpoints, not inherited)
+----------------------------------------------------------------------------------------------------
+    P3a control fired: P3a FAILED CONTROL: head(captured_feature) != deployed_logits (max |delta| = 3.269e+01)...
+    P3b control fired: P3b FAILED CONTROL: task 0 was scored by a different module (id 47131006428752 vs head 0 id 4713...
+  both positive controls FIRED on the ViT path
+  catch-32 label alignment: loader order == dataset indexing, bitwise on 64 samples -> PASS
+  T0  ceil 0.9460 orig 0.4300 refit 0.9480 refit_ceil 0.9500 | R +0.0040 F_enc +0.0020 F_read +0.5180 share  99.6% | id 0.0e+00 | fp16 d -0.0000  (25s)
+  T1  ceil 0.9760 orig 0.2940 refit 0.9500 refit_ceil 0.9760 | R -0.0000 F_enc +0.0260 F_read +0.6560 share  96.2% | id 0.0e+00 | fp16 d +0.0000  (47s)
+  T2  ceil 0.9660 orig 0.1620 refit 0.9520 refit_ceil 0.9660 | R -0.0000 F_enc +0.0140 F_read +0.7900 share  98.3% | id 0.0e+00 | fp16 d +0.0000  (74s)
+  T3  ceil 0.9600 orig 0.2720 refit 0.9660 refit_ceil 0.9660 | R +0.0060 F_enc +0.0000 F_read +0.6940 share 100.0% | id 0.0e+00 | fp16 d -0.0000  (97s)
+  T4  ceil 0.9620 orig 0.2440 refit 0.9580 refit_ceil 0.9580 | R -0.0040 F_enc +0.0000 F_read +0.7140 share 100.0% | id 0.0e+00 | fp16 d +0.0000  (126s)
+  T5  ceil 0.9600 orig 0.4260 refit 0.9360 refit_ceil 0.9660 | R +0.0060 F_enc +0.0300 F_read +0.5100 share  94.4% | id 0.0e+00 | fp16 d -0.0000  (149s)
+  T6  ceil 0.9620 orig 0.0820 refit 0.9360 refit_ceil 0.9560 | R -0.0060 F_enc +0.0200 F_read +0.8540 share  97.7% | id 0.0e+00 | fp16 d +0.0000  (174s)
+  T7  ceil 0.9460 orig 0.4140 refit 0.9380 refit_ceil 0.9460 | R +0.0000 F_enc +0.0080 F_read +0.5240 share  98.5% | id 0.0e+00 | fp16 d -0.0000  (199s)
+  T8  ceil 0.9780 orig 0.5340 refit 0.9580 refit_ceil 0.9800 | R +0.0020 F_enc +0.0220 F_read +0.4240 share  95.1% | id 0.0e+00 | fp16 d -0.0000  (220s)
+  T9  ceil 0.8920 orig 0.4580 refit 0.8680 refit_ceil 0.8740 | R -0.0180 F_enc +0.0060 F_read +0.4100 share  98.6% | id 0.0e+00 | fp16 d +0.0000  (245s)
+  T10 ceil 0.9520 orig 0.2400 refit 0.9440 refit_ceil 0.9480 | R -0.0040 F_enc +0.0040 F_read +0.7040 share  99.4% | id 0.0e+00 | fp16 d +0.0000  (270s)
+  T11 ceil 0.9140 orig 0.4440 refit 0.9280 refit_ceil 0.9040 | R -0.0100 F_enc -0.0240 F_read +0.4840 share 105.2% | id 0.0e+00 | fp16 d +0.0040  (296s)
+  T12 ceil 0.9620 orig 0.2040 refit 0.9480 refit_ceil 0.9600 | R -0.0020 F_enc +0.0120 F_read +0.7440 share  98.4% | id 0.0e+00 | fp16 d +0.0000  (323s)
+  T13 ceil 0.9640 orig 0.3920 refit 0.9720 refit_ceil 0.9680 | R +0.0040 F_enc -0.0040 F_read +0.5800 share 100.7% | id 0.0e+00 | fp16 d -0.0000  (344s)
+  T14 ceil 0.9640 orig 0.4200 refit 0.9500 refit_ceil 0.9640 | R +0.0000 F_enc +0.0140 F_read +0.5300 share  97.4% | id 0.0e+00 | fp16 d -0.0000  (365s)
+  T15 ceil 0.9440 orig 0.2840 refit 0.9560 refit_ceil 0.9520 | R +0.0080 F_enc -0.0040 F_read +0.6720 share 100.6% | id 0.0e+00 | fp16 d +0.0000  (387s)
+  T16 ceil 0.9780 orig 0.5000 refit 0.9720 refit_ceil 0.9680 | R -0.0100 F_enc -0.0040 F_read +0.4720 share 100.9% | id 0.0e+00 | fp16 d -0.0000  (413s)
+  T17 ceil 0.9420 orig 0.4840 refit 0.9340 refit_ceil 0.9460 | R +0.0040 F_enc +0.0120 F_read +0.4500 share  97.4% | id 0.0e+00 | fp16 d -0.0000  (438s)
+  T18 ceil 0.9480 orig 0.4780 refit 0.9320 refit_ceil 0.9520 | R +0.0040 F_enc +0.0200 F_read +0.4540 share  95.8% | id 0.0e+00 | fp16 d -0.0020  (459s)
+
+====================================================================================================
+  identity   max |F_enc + F_read - R - F_total| = 0.00e+00 -> OK
+  P3a        max |head(feature) - logits| = 0.00e+00
+  fp16 reload delta vs stored boundary: mean +0.00011  max |d| 0.00400  (boundary-time value is authoritative)
+  R (pooled) -0.0008 vs bar 0.05 -> PASS
+  F_total 0.5976  F_enc 0.0081  F_read 0.5886  reader share 98.6%
+
+  H-R4 span diagnostic (descriptive, no bar), rank 5/2048:
+    era control  mean (ceiling - proj@era) +0.0003 (max +0.0040) vs 0.05 -> PASS - readable
+    theta_T span-projection 0.3995 vs deployed 0.3559 vs refit 0.9445
+  task-0: ceiling 0.9460 -> deployed 0.4300 -> REFIT 0.9480
+  wrote /runs/e14_decomp/base_2024.json

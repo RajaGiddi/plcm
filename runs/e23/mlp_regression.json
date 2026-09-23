@@ -1,0 +1,13 @@
+{
+  "date": "2026-09-19",
+  "change": "opt-in `mlp_input_dim` (src/models/plcm.py __init__/from_config; MLP branch input_dim = mlp_input_dim or adapter_dim); scripts/train.py HAR branch sets model.mlp_input_dim = N_STEPS * input_size = 1152 only when model.backbone == 'mlp'",
+  "rule": "an amendment must not spend a proof an earlier pass bought: flag-off path bit-identical on an MNIST-MLP checkpoint (784 = adapter_dim, the key is absent) and on an S72 LSTM checkpoint (backbone lstm, untouched)",
+  "method": "PLCM.load_era via channel_decomp.load, task-4 checkpoint, deterministic batch torch.randn(generator seed 0), sha1 of the deployed logits before and after the edit",
+  "checks": [
+    {"checkpoint": "runs/ckpt_e17_mlp_floor_a/mafc_seed42/task4_epoch9.pt", "arm": "e17 MLP on Permuted MNIST (seed-42 floor replicate)", "batch": [8, 28, 28], "encoder_input_dim": 784, "logits_sha1_pre": "ca074a46f1805580", "logits_sha1_post": "ca074a46f1805580", "identical": true},
+    {"checkpoint": "runs/ckpt_e10off_ec_seed42/mafc_seed42_fp32/task4_epoch9.pt", "arm": "S72 HAR OFF LSTM (fp32 shadow)", "batch": [8, 128, 9], "encoder_input_dim": 9, "logits_sha1_pre": "50a2f2de57af0583", "logits_sha1_post": "50a2f2de57af0583", "identical": true}
+  ],
+  "construction": {"config": "S72 OFF checkpoint config with model.backbone='mlp', model.mlp_input_dim=1152", "mlp_input_dim": 1152, "adapter_dim": 9, "forward_on": [4, 128, 9], "logits_shape": [4, 6], "ok": true,
+                   "without_opt_in": "RuntimeError at the first forward (a 9-input MLP fed 1152-wide windows), as docs/E23_prereg.md sec 2 stated"},
+  "verdict": "PASS"
+}

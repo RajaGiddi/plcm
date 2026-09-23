@@ -1,0 +1,41 @@
+HAR shift fingerprint 3de66e205eb7 -> MATCHES frozen config
+E10 subject partition fingerprint 1104af185c87
+  groups (train|test): [1, 2, 11, 13, 16]|[25]  [8, 12, 15, 17, 21]|[29]  [3, 7, 10, 20, 23]|[26]  [4, 5, 6, 18, 27]|[30]  [9, 14, 19, 22, 24]|[28]
+probe subset draw: seeded 20260916 (recorded per row)
+
+==============================================================================
+0. GENERATOR GATE -- round-trip identity
+   (E8's reconstruction pre-gate is UNDEFINED here: disjoint subject
+    groups have no row correspondence to compare against.)
+==============================================================================
+  task 4 -> 0 -> 4:  round-trip rel err 2.714e-08
+  task 4 -> 1 -> 4:  round-trip rel err 4.825e-08
+  task 4 -> 2 -> 4:  round-trip rel err 4.825e-08
+  task 4 -> 3 -> 4:  round-trip rel err 2.714e-08
+
+  worst 4.825e-08 <= 1e-04 -> GATE PASSED  (honesty NOT asserted here; P3 decides)
+
+==============================================================================
+1. REFERENCES (floor / ceiling / instrument bias)
+==============================================================================
+  arm               floor  ceiling        R   adj denom
+  HAR/OFF          0.4082   0.7808  -0.0200      0.3926
+
+==============================================================================
+2. CURES — accuracy, then rho vs BIAS-ADJUSTED ceiling (raw in parens)
+==============================================================================
+
+  HAR/OFF   floor 0.4082   adj denom 0.3926
+    C0     acc 0.4140   rho  +0.015  (+0.016 raw)
+    C1     acc 0.5315   rho  +0.314  (+0.331 raw)
+    C0C1   acc 0.5163   rho  +0.275  (+0.290 raw)
+    C2     acc 0.7293   rho  +0.818  (+0.862 raw)
+    C3     acc 0.7387   rho  +0.842  (+0.887 raw)
+    C0deg  acc 0.8262   [storage-honest METHOD on subject-disjoint HAR; runs/MEMO_c0deg.md]
+
+==============================================================================
+3. HYPOTHESES -- DEFERRED
+==============================================================================
+  E10 evaluates H-X1..H-X4 against docs/E10_prereg.md (v2).
+  E8's H-R thresholds are NOT applicable and are not printed.
+  Per-cell rows written to /runs/e23_mlp_screen/cures_e10.json

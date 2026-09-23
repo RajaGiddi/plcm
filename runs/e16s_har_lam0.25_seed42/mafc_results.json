@@ -1,0 +1,1437 @@
+{
+  "average_accuracy": 0.5099968177828554,
+  "forgetting": 0.501317780497124,
+  "backward_transfer": -0.4434856459659362,
+  "forward_transfer": 0.5459377042528967,
+  "accuracy_matrix": [
+    [
+      0.8459657701711492,
+      0.8633720930232558,
+      0.6556122448979592,
+      0.33159268929503916,
+      0.4397905759162304
+    ],
+    [
+      0.9755501222493888,
+      0.8924418604651163,
+      0.7525510204081632,
+      0.3472584856396867,
+      0.24607329842931938
+    ],
+    [
+      0.8606356968215159,
+      0.9941860465116279,
+      0.9438775510204082,
+      0.2898172323759791,
+      0.38481675392670156
+    ],
+    [
+      0.2616136919315403,
+      0.311046511627907,
+      0.22704081632653061,
+      0.8929503916449086,
+      0.6780104712041884
+    ],
+    [
+      0.42053789731051344,
+      0.4476744186046512,
+      0.18112244897959184,
+      0.7519582245430809,
+      0.7486910994764397
+    ]
+  ],
+  "model_type": "mafc",
+  "training_time": 283.5390202999115,
+  "arm": {
+    "model_type": "mafc",
+    "backbone": "lstm",
+    "use_task_heads": false,
+    "head_routing_by_hint": false,
+    "use_input_adapters": false,
+    "adapter_mode": "per_step",
+    "use_memory": true,
+    "num_classes": 6,
+    "torch_num_threads": 4,
+    "omp_num_threads": "4",
+    "mkl_num_threads": "4",
+    "lwf_enabled": true,
+    "lwf_lambda": 0.25,
+    "lwf_temperature": 2.0,
+    "lwf_warmup_epochs": 1,
+    "ewc_lambda": null,
+    "ewc_param_filter": null,
+    "mafc_lambda": 0.0,
+    "n_task_heads": 0,
+    "n_task_adapters": 0,
+    "num_tasks": 5,
+    "epochs_per_task": 10,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "benchmark": "har_subject",
+    "remap_labels": true,
+    "era_checkpoints": true,
+    "checkpoint_fp16": true
+  },
+  "task_history": [
+    {
+      "task_id": 0,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 1.5245547569715059,
+          "eval": {
+            "task_0": 0.2885085574572127
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 464,
+            "capacity": 512,
+            "utilization": 0.90625,
+            "mean_importance": 0.4164799749851227,
+            "min_importance": 0.18946991860866547,
+            "max_importance": 0.6724017262458801,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 464,
+            "mean_usage": 0.7198275923728943,
+            "mean_age": 10.588361740112305
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 1,
+          "train_loss": 1.07038885813493,
+          "eval": {
+            "task_0": 0.5158924205378973
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 502,
+            "capacity": 512,
+            "utilization": 0.98046875,
+            "mean_importance": 0.3771642744541168,
+            "min_importance": 0.17751717567443848,
+            "max_importance": 0.6334860920906067,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 502,
+            "mean_usage": 0.6015936136245728,
+            "mean_age": 21.34063720703125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.7970810349170978,
+          "eval": {
+            "task_0": 0.5403422982885085
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3532874882221222,
+            "min_importance": 0.17237693071365356,
+            "max_importance": 0.5946077704429626,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.595703125,
+            "mean_age": 31.580078125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.6844892272582421,
+          "eval": {
+            "task_0": 0.4621026894865526
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3344224989414215,
+            "min_importance": 0.16608810424804688,
+            "max_importance": 0.5593172311782837,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.623046875,
+            "mean_age": 40.015625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5836169742620908,
+          "eval": {
+            "task_0": 0.60880195599022
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31746867299079895,
+            "min_importance": 0.1606394350528717,
+            "max_importance": 0.5273132920265198,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.603515625,
+            "mean_age": 48.2265625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.4804799327483544,
+          "eval": {
+            "task_0": 0.5623471882640587
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3007408380508423,
+            "min_importance": 0.15291473269462585,
+            "max_importance": 0.49714064598083496,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.578125,
+            "mean_age": 54.091796875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.4258367740190946,
+          "eval": {
+            "task_0": 0.7139364303178484
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.28871139883995056,
+            "min_importance": 0.15262147784233093,
+            "max_importance": 0.46815454959869385,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.619140625,
+            "mean_age": 58.58984375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.29621720428650195,
+          "eval": {
+            "task_0": 0.7628361858190709
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.2747400999069214,
+            "min_importance": 0.14854784309864044,
+            "max_importance": 0.4414040148258209,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.595703125,
+            "mean_age": 67.5
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.21899605370484865,
+          "eval": {
+            "task_0": 0.7579462102689487
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.2616197168827057,
+            "min_importance": 0.1420697420835495,
+            "max_importance": 0.41611167788505554,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.775390625,
+            "mean_age": 73.591796875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.2730073550572762,
+          "eval": {
+            "task_0": 0.8459657701711492
+          },
+          "lwf_distill_loss": 0.0,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.24821624159812927,
+            "min_importance": 0.1361878663301468,
+            "max_importance": 0.39256659150123596,
+            "num_tasks_stored": 1,
+            "num_consolidated": 0,
+            "num_active": 512,
+            "mean_usage": 0.748046875,
+            "mean_age": 79.703125
+          },
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 0,
+        "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42/task0_epoch9.pt",
+        "fp16": true,
+        "bytes": 3153761,
+        "acc_boundary": 0.8459657701711492,
+        "acc_refit_ceiling_boundary": 0.80440097799511,
+        "p3_live": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.8459657701711492,
+        "acc_refit_ceiling_reload": 0.80440097799511,
+        "delta": 0.0,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "fp32_shadow": {
+          "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42_fp32/task0_epoch9.pt",
+          "bytes": 6278881,
+          "acc_reload": 0.8459657701711492,
+          "delta": 0.0,
+          "acc_refit_ceiling_reload": 0.80440097799511,
+          "delta_refit": 0.0
+        }
+      }
+    },
+    {
+      "task_id": 1,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.5827981765781131,
+          "eval": {
+            "task_0": 0.7995110024449877,
+            "task_1": 0.8459302325581395
+          },
+          "lwf_distill_loss": 0.3497292288312955,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.35023656487464905,
+            "min_importance": 0.22406812012195587,
+            "max_importance": 0.5965510010719299,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 5.3671875,
+            "mean_age": 68.197265625
+          },
+          "warmup": true
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.46116784853594645,
+          "eval": {
+            "task_0": 0.7334963325183375,
+            "task_1": 0.8662790697674418
+          },
+          "lwf_distill_loss": 0.3676242540989603,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3431289792060852,
+            "min_importance": 0.2348947525024414,
+            "max_importance": 0.559465765953064,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 7.12109375,
+            "mean_age": 80.4765625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5754978699343545,
+          "eval": {
+            "task_0": 0.6674816625916871,
+            "task_1": 0.8546511627906976
+          },
+          "lwf_distill_loss": 0.6654825934341976,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3378283679485321,
+            "min_importance": 0.24539631605148315,
+            "max_importance": 0.5238984823226929,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 9.01953125,
+            "mean_age": 90.763671875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.4415110456092017,
+          "eval": {
+            "task_0": 0.8850855745721271,
+            "task_1": 0.8924418604651163
+          },
+          "lwf_distill_loss": 0.5347252573285785,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3325035274028778,
+            "min_importance": 0.25128287076950073,
+            "max_importance": 0.5348963737487793,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 10.865234375,
+            "mean_age": 101.798828125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.38479053122656687,
+          "eval": {
+            "task_0": 0.8948655256723717,
+            "task_1": 0.9040697674418605
+          },
+          "lwf_distill_loss": 0.5627263826983315,
+          "memory": {
+            "size": 450,
+            "capacity": 512,
+            "utilization": 0.87890625,
+            "mean_importance": 0.3224101960659027,
+            "min_importance": 0.25238341093063354,
+            "max_importance": 0.49864646792411804,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 194,
+            "mean_usage": 14.177778244018555,
+            "mean_age": 119.52889251708984
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.38309651826109203,
+          "eval": {
+            "task_0": 0.9168704156479217,
+            "task_1": 0.9098837209302325
+          },
+          "lwf_distill_loss": 0.5277836322784424,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3047151565551758,
+            "min_importance": 0.2093537151813507,
+            "max_importance": 0.46485331654548645,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 14.259765625,
+            "mean_age": 118.26953125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.29920346289873123,
+          "eval": {
+            "task_0": 0.9290953545232273,
+            "task_1": 0.9127906976744186
+          },
+          "lwf_distill_loss": 0.4289680080754416,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3027048110961914,
+            "min_importance": 0.23066623508930206,
+            "max_importance": 0.4333503544330597,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 16.1015625,
+            "mean_age": 128.267578125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.25334578858954565,
+          "eval": {
+            "task_0": 0.921760391198044,
+            "task_1": 0.8895348837209303
+          },
+          "lwf_distill_loss": 0.45978193836552755,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.29817062616348267,
+            "min_importance": 0.23125186562538147,
+            "max_importance": 0.4039822518825531,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 17.98828125,
+            "mean_age": 137.556640625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.2953358526740755,
+          "eval": {
+            "task_0": 0.9242053789731052,
+            "task_1": 0.9098837209302325
+          },
+          "lwf_distill_loss": 0.4561640535082136,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.29260700941085815,
+            "min_importance": 0.22306524217128754,
+            "max_importance": 0.39256659150123596,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 19.873046875,
+            "mean_age": 146.62109375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.27098740530865534,
+          "eval": {
+            "task_0": 0.9755501222493888,
+            "task_1": 0.8924418604651163
+          },
+          "lwf_distill_loss": 0.4391313429389681,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.2896026372909546,
+            "min_importance": 0.22106331586837769,
+            "max_importance": 0.39256659150123596,
+            "num_tasks_stored": 2,
+            "num_consolidated": 256,
+            "num_active": 256,
+            "mean_usage": 21.68359375,
+            "mean_age": 151.1796875
+          },
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 1,
+        "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42/task1_epoch9.pt",
+        "fp16": true,
+        "bytes": 3156389,
+        "acc_boundary": 0.8924418604651163,
+        "acc_refit_ceiling_boundary": 0.8924418604651163,
+        "p3_live": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.8924418604651163,
+        "acc_refit_ceiling_reload": 0.8895348837209303,
+        "delta": 0.0,
+        "delta_refit": -0.0029069767441860517,
+        "p3_reload": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "fp32_shadow": {
+          "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42_fp32/task1_epoch9.pt",
+          "bytes": 6281509,
+          "acc_reload": 0.8924418604651163,
+          "delta": 0.0,
+          "acc_refit_ceiling_reload": 0.8924418604651163,
+          "delta_refit": 0.0
+        }
+      }
+    },
+    {
+      "task_id": 2,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.9363755413464138,
+          "eval": {
+            "task_0": 0.9706601466992665,
+            "task_1": 0.9883720930232558,
+            "task_2": 0.9005102040816326
+          },
+          "lwf_distill_loss": 0.16352088802627154,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.29366639256477356,
+            "min_importance": 0.2182062715291977,
+            "max_importance": 0.4291194975376129,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 31.013671875,
+            "mean_age": 116.11328125
+          },
+          "warmup": true
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.7593667720045362,
+          "eval": {
+            "task_0": 0.9657701711491442,
+            "task_1": 0.8895348837209303,
+            "task_2": 0.7551020408163265
+          },
+          "lwf_distill_loss": 0.5760439527886254,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.299152135848999,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.46286454796791077,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 33.994140625,
+            "mean_age": 126.607421875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.6033229827880859,
+          "eval": {
+            "task_0": 0.8264058679706602,
+            "task_1": 1.0,
+            "task_2": 0.9872448979591837
+          },
+          "lwf_distill_loss": 0.657882751098701,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.30432626605033875,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.4340939223766327,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 36.455078125,
+            "mean_age": 136.90234375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5003249975187438,
+          "eval": {
+            "task_0": 0.7897310513447433,
+            "task_1": 0.9069767441860465,
+            "task_2": 0.7602040816326531
+          },
+          "lwf_distill_loss": 0.6407558875424522,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3110406994819641,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.5869976282119751,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 38.61328125,
+            "mean_age": 145.466796875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.46157451293298174,
+          "eval": {
+            "task_0": 0.8288508557457213,
+            "task_1": 1.0,
+            "task_2": 0.9464285714285714
+          },
+          "lwf_distill_loss": 0.607414644743715,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3120075464248657,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.5472168922424316,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 41.173828125,
+            "mean_age": 155.796875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.43754006922245026,
+          "eval": {
+            "task_0": 0.9046454767726161,
+            "task_1": 0.938953488372093,
+            "task_2": 0.9336734693877551
+          },
+          "lwf_distill_loss": 0.659468555024692,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31534987688064575,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.5101320743560791,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 43.765625,
+            "mean_age": 165.197265625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5111763966935021,
+          "eval": {
+            "task_0": 0.8679706601466992,
+            "task_1": 0.997093023255814,
+            "task_2": 0.9795918367346939
+          },
+          "lwf_distill_loss": 0.666729958994048,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31529539823532104,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.5458093881607056,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 45.970703125,
+            "mean_age": 175.935546875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.5280094572475978,
+          "eval": {
+            "task_0": 0.8288508557457213,
+            "task_1": 0.9273255813953488,
+            "task_2": 0.9693877551020408
+          },
+          "lwf_distill_loss": 0.7586895844766072,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31544461846351624,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.5090524554252625,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 47.73828125,
+            "mean_age": 184.494140625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.48456095797675,
+          "eval": {
+            "task_0": 0.8484107579462102,
+            "task_1": 0.9098837209302325,
+            "task_2": 0.8469387755102041
+          },
+          "lwf_distill_loss": 0.7268392401082175,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31193307042121887,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.4745541214942932,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 49.537109375,
+            "mean_age": 195.404296875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.48525139902319225,
+          "eval": {
+            "task_0": 0.8606356968215159,
+            "task_1": 0.9941860465116279,
+            "task_2": 0.9438775510204082
+          },
+          "lwf_distill_loss": 0.8360092852796827,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.31044039130210876,
+            "min_importance": 0.2317417860031128,
+            "max_importance": 0.44245320558547974,
+            "num_tasks_stored": 3,
+            "num_consolidated": 340,
+            "num_active": 172,
+            "mean_usage": 47.30078125,
+            "mean_age": 205.0390625
+          },
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 2,
+        "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42/task2_epoch9.pt",
+        "fp16": true,
+        "bytes": 3159017,
+        "acc_boundary": 0.9438775510204082,
+        "acc_refit_ceiling_boundary": 0.8954081632653061,
+        "p3_live": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.9438775510204082,
+        "acc_refit_ceiling_reload": 0.8954081632653061,
+        "delta": 0.0,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "fp32_shadow": {
+          "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42_fp32/task2_epoch9.pt",
+          "bytes": 6284073,
+          "acc_reload": 0.9438775510204082,
+          "delta": 0.0,
+          "acc_refit_ceiling_reload": 0.8954081632653061,
+          "delta_refit": 0.0
+        }
+      }
+    },
+    {
+      "task_id": 3,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 2.4817709241594588,
+          "eval": {
+            "task_0": 0.8777506112469438,
+            "task_1": 0.9825581395348837,
+            "task_2": 0.9285714285714286,
+            "task_3": 0.4490861618798956
+          },
+          "lwf_distill_loss": 0.2945629701550518,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3171062469482422,
+            "min_importance": 0.21802030503749847,
+            "max_importance": 0.4996742904186249,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 51.66796875,
+            "mean_age": 169.275390625
+          },
+          "warmup": true
+        },
+        {
+          "epoch": 1,
+          "train_loss": 1.6514838933944702,
+          "eval": {
+            "task_0": 0.33251833740831294,
+            "task_1": 0.31976744186046513,
+            "task_2": 0.26785714285714285,
+            "task_3": 0.3394255874673629
+          },
+          "lwf_distill_loss": 1.3101933939116341,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.33387407660484314,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5223481059074402,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 54.091796875,
+            "mean_age": 179.625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.585238584450313,
+          "eval": {
+            "task_0": 0.3545232273838631,
+            "task_1": 0.25290697674418605,
+            "task_2": 0.3239795918367347,
+            "task_3": 0.5822454308093995
+          },
+          "lwf_distill_loss": 1.5493390475000655,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3485875427722931,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5399712920188904,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 56.6328125,
+            "mean_age": 189.357421875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 1.398460669176919,
+          "eval": {
+            "task_0": 0.3276283618581907,
+            "task_1": 0.313953488372093,
+            "task_2": 0.42857142857142855,
+            "task_3": 0.5378590078328982
+          },
+          "lwf_distill_loss": 1.508028473172869,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.34186872839927673,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5055723786354065,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 59.36328125,
+            "mean_age": 203.185546875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 1.1775557143347604,
+          "eval": {
+            "task_0": 0.2787286063569682,
+            "task_1": 0.3081395348837209,
+            "task_2": 0.22959183673469388,
+            "task_3": 0.7127937336814621
+          },
+          "lwf_distill_loss": 1.4721700038228716,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.33589041233062744,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.47209930419921875,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 61.505859375,
+            "mean_age": 216.474609375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 5,
+          "train_loss": 1.0076603378568376,
+          "eval": {
+            "task_0": 0.3740831295843521,
+            "task_1": 0.5,
+            "task_2": 0.1377551020408163,
+            "task_3": 0.7571801566579635
+          },
+          "lwf_distill_loss": 1.559600395815713,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3402920365333557,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5880382657051086,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 63.111328125,
+            "mean_age": 225.6796875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 6,
+          "train_loss": 1.0763059215886253,
+          "eval": {
+            "task_0": 0.36185819070904646,
+            "task_1": 0.5058139534883721,
+            "task_2": 0.14795918367346939,
+            "task_3": 0.8067885117493473
+          },
+          "lwf_distill_loss": 1.6593933956963676,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.33420318365097046,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5481870174407959,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 64.75,
+            "mean_age": 238.955078125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.8802199278559003,
+          "eval": {
+            "task_0": 0.30073349633251834,
+            "task_1": 0.311046511627907,
+            "task_2": 0.2423469387755102,
+            "task_3": 0.8694516971279374
+          },
+          "lwf_distill_loss": 1.5722153782844543,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.32932424545288086,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.5110364556312561,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 66.244140625,
+            "mean_age": 250.494140625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.7922727593353817,
+          "eval": {
+            "task_0": 0.293398533007335,
+            "task_1": 0.313953488372093,
+            "task_2": 0.23214285714285715,
+            "task_3": 0.8772845953002611
+          },
+          "lwf_distill_loss": 1.6141912170818873,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3242622911930084,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.4764036238193512,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 67.63671875,
+            "mean_age": 263.365234375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.7800571066992623,
+          "eval": {
+            "task_0": 0.2616136919315403,
+            "task_1": 0.311046511627907,
+            "task_2": 0.22704081632653061,
+            "task_3": 0.8929503916449086
+          },
+          "lwf_distill_loss": 1.6258724246706282,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.32091769576072693,
+            "min_importance": 0.24298207461833954,
+            "max_importance": 0.44411784410476685,
+            "num_tasks_stored": 4,
+            "num_consolidated": 384,
+            "num_active": 128,
+            "mean_usage": 68.9609375,
+            "mean_age": 274.916015625
+          },
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 3,
+        "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42/task3_epoch9.pt",
+        "fp16": true,
+        "bytes": 3161581,
+        "acc_boundary": 0.8929503916449086,
+        "acc_refit_ceiling_boundary": 0.8302872062663186,
+        "p3_live": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.8929503916449086,
+        "acc_refit_ceiling_reload": 0.8276762402088773,
+        "delta": 0.0,
+        "delta_refit": -0.0026109660574412663,
+        "p3_reload": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "fp32_shadow": {
+          "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42_fp32/task3_epoch9.pt",
+          "bytes": 6286701,
+          "acc_reload": 0.8929503916449086,
+          "delta": 0.0,
+          "acc_refit_ceiling_reload": 0.8302872062663186,
+          "delta_refit": 0.0
+        }
+      }
+    },
+    {
+      "task_id": 4,
+      "epochs": [
+        {
+          "epoch": 0,
+          "train_loss": 0.9069569706916809,
+          "eval": {
+            "task_0": 0.33251833740831294,
+            "task_1": 0.12209302325581395,
+            "task_2": 0.11989795918367346,
+            "task_3": 0.8015665796344648,
+            "task_4": 0.756544502617801
+          },
+          "lwf_distill_loss": 0.28779718545930727,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3275882601737976,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.5187416076660156,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 63.515625,
+            "mean_age": 233.61328125
+          },
+          "warmup": true
+        },
+        {
+          "epoch": 1,
+          "train_loss": 0.6896254526717323,
+          "eval": {
+            "task_0": 0.2469437652811736,
+            "task_1": 0.29941860465116277,
+            "task_2": 0.23469387755102042,
+            "task_3": 0.7989556135770235,
+            "task_4": 0.725130890052356
+          },
+          "lwf_distill_loss": 0.5285226394023214,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3286294639110565,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.4835865795612335,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 64.84765625,
+            "mean_age": 245.892578125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5493004215615136,
+          "eval": {
+            "task_0": 0.4278728606356968,
+            "task_1": 0.23546511627906977,
+            "task_2": 0.17857142857142858,
+            "task_3": 0.8433420365535248,
+            "task_4": 0.7670157068062827
+          },
+          "lwf_distill_loss": 0.5828370047467095,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3314487636089325,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.5581535696983337,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 66.54296875,
+            "mean_age": 257.193359375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.40888169194970814,
+          "eval": {
+            "task_0": 0.3960880195599022,
+            "task_1": 0.5058139534883721,
+            "task_2": 0.3877551020408163,
+            "task_3": 0.7728459530026109,
+            "task_4": 0.7931937172774869
+          },
+          "lwf_distill_loss": 0.5837272980383464,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3268547058105469,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.5219475030899048,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 56.03515625,
+            "mean_age": 267.857421875
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.42997374704905916,
+          "eval": {
+            "task_0": 0.45232273838630804,
+            "task_1": 0.3372093023255814,
+            "task_2": 0.41836734693877553,
+            "task_3": 0.7519582245430809,
+            "task_4": 0.7198952879581152
+          },
+          "lwf_distill_loss": 0.5615334936550685,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.32534879446029663,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.48657524585723877,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 58.06640625,
+            "mean_age": 281.158203125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.4236539304256439,
+          "eval": {
+            "task_0": 0.3643031784841076,
+            "task_1": 0.4186046511627907,
+            "task_2": 0.3596938775510204,
+            "task_3": 0.8590078328981723,
+            "task_4": 0.8010471204188482
+          },
+          "lwf_distill_loss": 0.6324736135346549,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3247380554676056,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.45380735397338867,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 60.234375,
+            "mean_age": 291.6640625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.3961482324770519,
+          "eval": {
+            "task_0": 0.4034229828850856,
+            "task_1": 0.27325581395348836,
+            "task_2": 0.17857142857142858,
+            "task_3": 0.856396866840731,
+            "task_4": 0.7696335078534031
+          },
+          "lwf_distill_loss": 0.62373534483569,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.32417285442352295,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.4716215431690216,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 62.439453125,
+            "mean_age": 302.353515625
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.37176624153341564,
+          "eval": {
+            "task_0": 0.33985330073349634,
+            "task_1": 0.18023255813953487,
+            "task_2": 0.14030612244897958,
+            "task_3": 0.8067885117493473,
+            "task_4": 0.7513089005235603
+          },
+          "lwf_distill_loss": 0.578048118523189,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3233931064605713,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.44411784410476685,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 64.59765625,
+            "mean_age": 314.08203125
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.4000799549477441,
+          "eval": {
+            "task_0": 0.36185819070904646,
+            "task_1": 0.5145348837209303,
+            "task_2": 0.18622448979591838,
+            "task_3": 0.8616187989556136,
+            "task_4": 0.7984293193717278
+          },
+          "lwf_distill_loss": 0.6113411124263491,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3211422860622406,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.44411784410476685,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 66.294921875,
+            "mean_age": 326.380859375
+          },
+          "warmup": false
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.35226842548166004,
+          "eval": {
+            "task_0": 0.42053789731051344,
+            "task_1": 0.4476744186046512,
+            "task_2": 0.18112244897959184,
+            "task_3": 0.7519582245430809,
+            "task_4": 0.7486910994764397
+          },
+          "lwf_distill_loss": 0.5837965841804232,
+          "memory": {
+            "size": 512,
+            "capacity": 512,
+            "utilization": 1.0,
+            "mean_importance": 0.3191314935684204,
+            "min_importance": 0.2501949965953827,
+            "max_importance": 0.44411784410476685,
+            "num_tasks_stored": 5,
+            "num_consolidated": 408,
+            "num_active": 104,
+            "mean_usage": 68.08984375,
+            "mean_age": 337.8203125
+          },
+          "warmup": false
+        }
+      ],
+      "era_checkpoint": {
+        "task": 4,
+        "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42/task4_epoch9.pt",
+        "fp16": true,
+        "bytes": 3164209,
+        "acc_boundary": 0.7486910994764397,
+        "acc_refit_ceiling_boundary": 0.7958115183246073,
+        "p3_live": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "loads": true,
+        "acc_reload": 0.7486910994764397,
+        "acc_refit_ceiling_reload": 0.7958115183246073,
+        "delta": 0.0,
+        "delta_refit": 0.0,
+        "p3_reload": {
+          "skipped": "backbone=lstm \u2014 P3 is the ViT readout's gate"
+        },
+        "fp32_shadow": {
+          "path": "/runs/ckpt_e16s_har_lam0.25_seed42/mafc_seed42_fp32/task4_epoch9.pt",
+          "bytes": 6289265,
+          "acc_reload": 0.7486910994764397,
+          "delta": 0.0,
+          "acc_refit_ceiling_reload": 0.7958115183246073,
+          "delta_refit": 0.0
+        }
+      }
+    }
+  ]
+}

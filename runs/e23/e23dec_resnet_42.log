@@ -1,0 +1,29 @@
+====================================================================================================
+E23 DECOMPOSE  e23_rn seed 42  ckpt /runs/ckpt_e23_rn_seed42/mafc_seed42
+====================================================================================================
+  arm identity (artifact): resnet, cifar100_permuted, per-task heads, adapters off, era checkpoints, fp16 True
+  shift fingerprint 24b6131095fd GATED -> MATCH; class order 4da9de3736a6
+  relay C-ID: k->k identity 0.0e+00; algebraic relay vs the dataset's P_T rendering 0.0e+00 -> exact
+  P3 positive controls FIRED on the final checkpoint (raw frame)
+  t 0: ceiling 0.906 | raw: deployed 0.216 refit 0.738 F_enc +0.1700 | re-laid: deployed 0.118 refit 0.676 F_enc +0.2320 | wrong-perm deployed 0.144 | fp16 delta -0.0040
+  t 1: ceiling 0.682 | raw: deployed 0.166 refit 0.720 F_enc -0.0120 | re-laid: deployed 0.168 refit 0.698 F_enc +0.0100 | wrong-perm deployed 0.174 | fp16 delta -0.0000
+  t 2: ceiling 0.666 | raw: deployed 0.162 refit 0.674 F_enc +0.0280 | re-laid: deployed 0.222 refit 0.640 F_enc +0.0620 | wrong-perm deployed 0.196 | fp16 delta +0.0000
+  t 3: ceiling 0.702 | raw: deployed 0.214 refit 0.702 F_enc -0.0120 | re-laid: deployed 0.248 refit 0.662 F_enc +0.0280 | wrong-perm deployed 0.254 | fp16 delta +0.0020
+  t 4: ceiling 0.646 | raw: deployed 0.198 refit 0.610 F_enc +0.0160 | re-laid: deployed 0.140 refit 0.598 F_enc +0.0280 | wrong-perm deployed 0.200 | fp16 delta -0.0020
+  t 5: ceiling 0.712 | raw: deployed 0.172 refit 0.716 F_enc -0.0200 | re-laid: deployed 0.214 refit 0.696 F_enc +0.0000 | wrong-perm deployed 0.256 | fp16 delta +0.0000
+  t 6: ceiling 0.744 | raw: deployed 0.204 refit 0.738 F_enc +0.0220 | re-laid: deployed 0.172 refit 0.776 F_enc -0.0160 | wrong-perm deployed 0.220 | fp16 delta -0.0040
+  t 7: ceiling 0.654 | raw: deployed 0.208 refit 0.600 F_enc +0.0600 | re-laid: deployed 0.236 refit 0.636 F_enc +0.0240 | wrong-perm deployed 0.240 | fp16 delta -0.0000
+  t 8: ceiling 0.766 | raw: deployed 0.370 refit 0.734 F_enc +0.0300 | re-laid: deployed 0.326 refit 0.710 F_enc +0.0540 | wrong-perm deployed 0.322 | fp16 delta +0.0040
+  t 9: ceiling 0.660 | raw: deployed 0.252 refit 0.650 F_enc -0.0040 | re-laid: deployed 0.296 refit 0.630 F_enc +0.0160 | wrong-perm deployed 0.312 | fp16 delta +0.0060
+  t10: ceiling 0.750 | raw: deployed 0.198 refit 0.726 F_enc +0.0300 | re-laid: deployed 0.174 refit 0.716 F_enc +0.0400 | wrong-perm deployed 0.164 | fp16 delta -0.0040
+  t11: ceiling 0.688 | raw: deployed 0.232 refit 0.666 F_enc +0.0120 | re-laid: deployed 0.182 refit 0.618 F_enc +0.0600 | wrong-perm deployed 0.184 | fp16 delta -0.0020
+  t12: ceiling 0.720 | raw: deployed 0.234 refit 0.702 F_enc +0.0120 | re-laid: deployed 0.198 refit 0.718 F_enc -0.0040 | wrong-perm deployed 0.216 | fp16 delta +0.0040
+  t13: ceiling 0.750 | raw: deployed 0.254 refit 0.782 F_enc -0.0320 | re-laid: deployed 0.244 refit 0.792 F_enc -0.0420 | wrong-perm deployed 0.320 | fp16 delta +0.0000
+  t14: ceiling 0.746 | raw: deployed 0.166 refit 0.718 F_enc +0.0220 | re-laid: deployed 0.202 refit 0.674 F_enc +0.0660 | wrong-perm deployed 0.168 | fp16 delta -0.0040
+  t15: ceiling 0.842 | raw: deployed 0.370 refit 0.822 F_enc +0.0200 | re-laid: deployed 0.276 refit 0.814 F_enc +0.0280 | wrong-perm deployed 0.316 | fp16 delta -0.0020
+  t16: ceiling 0.698 | raw: deployed 0.172 refit 0.708 F_enc -0.0160 | re-laid: deployed 0.136 refit 0.676 F_enc +0.0160 | wrong-perm deployed 0.124 | fp16 delta +0.0000
+  t17: ceiling 0.886 | raw: deployed 0.350 refit 0.868 F_enc +0.0240 | re-laid: deployed 0.226 refit 0.870 F_enc +0.0220 | wrong-perm deployed 0.276 | fp16 delta -0.0020
+  t18: ceiling 0.792 | raw: deployed 0.506 refit 0.798 F_enc -0.0160 | re-laid: deployed 0.428 refit 0.818 F_enc -0.0360 | wrong-perm deployed 0.380 | fp16 delta -0.0000
+
+  pooled: F_enc raw +0.0176 -> re-laid +0.0309 | deployed raw 0.2444 -> re-laid 0.2214 (ceiling 0.7374) | wrong-perm must-fail FAIL [0, 1, 3, 4, 5, 6, 7, 9, 11, 12, 13, 15, 17] 6/19 | identity 0.0e+00 | fp16 reload floor 0.006000026226043675
+  wrote /runs/e23/e23_rn/decomp_seed42.json

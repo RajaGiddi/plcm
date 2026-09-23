@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-20",
+  "change": "opt-in `content_chunks` (src/data/permuted_mnist.py, scripts/train.py --content-chunks); additive `construction_fingerprint()`; screen_e18 now asserts num_tasks and content_chunks",
+  "defect_recorded": "content_fingerprint hashes the concatenated index tensors, so chunking one permutation into 5 or 20 pieces collides (T=5 and T=20 both read c1a570a02d35 at seed 42 while sharing no per-task content). Kept byte-compatible because every E18 artifact records it.",
+  "regression_default_path": {
+    "T": 5,
+    "content_chunks": null,
+    "content_fingerprint": "c1a570a02d35",
+    "e18_artifacts_record": "c1a570a02d35",
+    "identical": true,
+    "images_per_task_train": [
+      12000,
+      12000,
+      12000,
+      12000,
+      12000
+    ],
+    "images_per_task_test": [
+      2000,
+      2000,
+      2000,
+      2000,
+      2000
+    ]
+  },
+  "arms": {
+    "A1_t5c5": {
+      "content_fingerprint": "c1a570a02d35",
+      "construction_fingerprint": "6b5822c1556b",
+      "train_per_task": 12000,
+      "test_per_task": 2000
+    },
+    "A2_t5c20": {
+      "content_fingerprint": "30880727788a",
+      "construction_fingerprint": "e8bee63cf0ae",
+      "train_per_task": 3000,
+      "test_per_task": 500
+    },
+    "A3_t20c20": {
+      "content_fingerprint": "c1a570a02d35",
+      "construction_fingerprint": "9e33ed6ae4c5",
+      "train_per_task": 3000,
+      "test_per_task": 500
+    }
+  },
+  "A2_equals_first_five_tasks_of_A3": {
+    "content": true,
+    "permutations": true
+  },
+  "separation": {
+    "content_fingerprint_distinct": 2,
+    "construction_fingerprint_distinct": 3,
+    "of": 3
+  },
+  "verdict": "PASS"
+}

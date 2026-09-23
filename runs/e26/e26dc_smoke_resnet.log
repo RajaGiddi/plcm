@@ -1,0 +1,24 @@
+====================================================================================================
+E26 DC  arm=resnet (pretrained) seed=42 T=19 normalize=l2
+====================================================================================================
+  era prototypes computed for 3 old tasks under their own checkpoints
+
+--- STDERR ---
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Traceback (most recent call last):
+  File "/repo/scripts/e26_dc.py", line 351, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/repo/scripts/e26_dc.py", line 249, in main
+    gate(t - 1, t); gate(t, t)
+    ^^^^^^^^^^^^^^
+  File "/repo/scripts/e26_dc.py", line 166, in <lambda>
+    gate = lambda t, k: assert_p3(load(t), xp, k, label=f"t{t}/k{k}")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/scripts/e12_p3.py", line 126, in assert_p3
+    "p3b_module": assert_p3b(model, x, task_k, label)}
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/scripts/e12_p3.py", line 85, in assert_p3b
+    assert key in model.task_classifiers, (   # ModuleDict has no .get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: P3b FAILED t0/k1: no head exists for task 1

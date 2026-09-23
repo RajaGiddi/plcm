@@ -1,0 +1,26 @@
+/Users/rajagiddi/Desktop/Learning-All/Learning/Research/plcm/.venv/lib/python3.11/site-packages/torch/utils/data/dataloader.py:759: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, device pinned memory won't be used.
+  super().__init__(loader)
+================================================================================================
+HEAD DRIFT  arm=e18_pmd_lstm  kind=permuted  probe seed 20260916
+================================================================================================
+  arm identity: shared head, adapters off, era checkpoints -- 3/3 seeds
+  joining against runs/e18_pmd_lstm/decomp.json (12 cells)
+  s42/t0: ceiling 0.9650  W_T·Z_T 0.1570  h_k·Z_T 0.1805  W_T·Z_k 0.9615  | F_read +0.5765 = frozen +0.5530 + dH +0.0235
+  s42/t1: ceiling 0.9135  W_T·Z_T 0.1500  h_k·Z_T 0.1595  W_T·Z_k 0.9025  | F_read +0.5710 = frozen +0.5615 + dH +0.0095
+  s42/t2: ceiling 0.9320  W_T·Z_T 0.1910  h_k·Z_T 0.1930  W_T·Z_k 0.9285  | F_read +0.5585 = frozen +0.5565 + dH +0.0020
+  s42/t3: ceiling 0.9410  W_T·Z_T 0.3975  h_k·Z_T 0.4165  W_T·Z_k 0.9385  | F_read +0.4305 = frozen +0.4115 + dH +0.0190
+  s1337/t0: ceiling 0.9595  W_T·Z_T 0.1085  h_k·Z_T 0.1255  W_T·Z_k 0.9540  | F_read +0.6550 = frozen +0.6380 + dH +0.0170
+  s1337/t1: ceiling 0.9135  W_T·Z_T 0.0935  h_k·Z_T 0.0925  W_T·Z_k 0.9150  | F_read +0.6930 = frozen +0.6940 + dH -0.0010
+  s1337/t2: ceiling 0.9340  W_T·Z_T 0.1530  h_k·Z_T 0.1575  W_T·Z_k 0.9325  | F_read +0.6085 = frozen +0.6040 + dH +0.0045
+  s1337/t3: ceiling 0.9405  W_T·Z_T 0.3335  h_k·Z_T 0.3555  W_T·Z_k 0.9400  | F_read +0.4980 = frozen +0.4760 + dH +0.0220
+  s2024/t0: ceiling 0.9580  W_T·Z_T 0.1000  h_k·Z_T 0.1165  W_T·Z_k 0.9525  | F_read +0.6265 = frozen +0.6100 + dH +0.0165
+  s2024/t1: ceiling 0.9120  W_T·Z_T 0.1430  h_k·Z_T 0.1390  W_T·Z_k 0.9105  | F_read +0.6160 = frozen +0.6200 + dH -0.0040
+  s2024/t2: ceiling 0.9195  W_T·Z_T 0.1435  h_k·Z_T 0.1490  W_T·Z_k 0.9215  | F_read +0.6005 = frozen +0.5950 + dH +0.0055
+  s2024/t3: ceiling 0.9290  W_T·Z_T 0.3735  h_k·Z_T 0.3925  W_T·Z_k 0.9295  | F_read +0.4320 = frozen +0.4130 + dH +0.0190
+
+  C-ID vs decomp.json: acc_orig / acc_ceiling reproduce to 1e-6 in 12/12 cells -> PASS
+  identity F_read = F_read_frozen + dH: max residual 0.0e+00
+  pooled: F_enc 0.1718  F_read 0.5722 = frozen 0.5610 + dH +0.0111   share 76.9 -> frozen-head share 76.6   F_total 0.7395 -> frozen-head F_total 0.7283
+  dH per seed: s42 +0.0135  s1337 +0.0106  s2024 +0.0093
+
+  wrote runs/head_drift/e18_pmd_lstm.json

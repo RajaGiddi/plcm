@@ -1,0 +1,206 @@
+{
+  "arm": "e18_rmd_mlp",
+  "family": "scratch",
+  "seed": 42,
+  "T": 4,
+  "num_tasks": 5,
+  "normalize": "l2",
+  "sigmas": [
+    0.2,
+    0.3,
+    1.0
+  ],
+  "sigma_headline": 0.3,
+  "ldc": {
+    "lr": 0.001,
+    "epochs": 20,
+    "batch": 128,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "init": "identity",
+    "batch_note": "ours; the paper's text does not state it"
+  },
+  "controls": {
+    "ldc_identity": {
+      "boundary": 1,
+      "from_identity_init_relfro": 0.0,
+      "from_random_init_relfro": 0.9891458394231107,
+      "tol": 0.0001,
+      "pass_identity_init": true,
+      "pass_random_init": false
+    },
+    "sdc_must_fail": {
+      "cells_neg_below_naive": 4,
+      "cells_with_drift_above_floor": 4,
+      "of": 4
+    },
+    "ldc_must_fail": {
+      "cells_shuf_below_naive": 4,
+      "of": 4
+    },
+    "oracle_identity": {
+      "max_abs": 0.0,
+      "pass": true
+    },
+    "c_plumb": {
+      "max_abs": 0.0,
+      "pass": true
+    }
+  },
+  "boundaries": [
+    {
+      "t": 1,
+      "n": 4000,
+      "mean_drift_norm": 0.7688477733508652,
+      "ldc_final_loss": {
+        "0": 0.21441635489463806,
+        "1": 0.21394799649715424,
+        "2": 0.21413807570934296
+      },
+      "seconds": 5.0
+    },
+    {
+      "t": 2,
+      "n": 4000,
+      "mean_drift_norm": 0.7848614148762595,
+      "ldc_final_loss": {
+        "0": 0.21724794805049896,
+        "1": 0.21701006591320038,
+        "2": 0.21740251779556274
+      },
+      "seconds": 3.7
+    },
+    {
+      "t": 3,
+      "n": 4000,
+      "mean_drift_norm": 0.8171565894478033,
+      "ldc_final_loss": {
+        "0": 0.22016718983650208,
+        "1": 0.22026249766349792,
+        "2": 0.22032581269741058
+      },
+      "seconds": 4.1
+    },
+    {
+      "t": 4,
+      "n": 4000,
+      "mean_drift_norm": 0.8020705966968936,
+      "ldc_final_loss": {
+        "0": 0.2245304137468338,
+        "1": 0.22439426183700562,
+        "2": 0.2242412567138672
+      },
+      "seconds": 4.1
+    }
+  ],
+  "rows": [
+    {
+      "seed": 42,
+      "task": 0,
+      "boundaries_crossed": 4,
+      "n_test": 2000,
+      "A0": 0.2175,
+      "N_naive": 0.2235,
+      "N_SDC_0.2": 0.3065,
+      "N_SDC_0.3": 0.287,
+      "N_SDC_1.0": 0.2355,
+      "N_SDC_neg": 0.1695,
+      "N_LDC_mean": 0.4035,
+      "N_LDC_spread": 0.0030000000000000027,
+      "N_LDC_per_seed": [
+        0.4025,
+        0.4055,
+        0.4025
+      ],
+      "N_LDC_shuf": 0.0865,
+      "N_LDC_ls": 0.3895,
+      "N_oracle": 0.727,
+      "oracle_identity_abs": 0.0,
+      "c_plumb_max_abs": 0.0,
+      "sdc_drift_norm": 0.8544905173546475,
+      "res95": 0.02191346617949794
+    },
+    {
+      "seed": 42,
+      "task": 1,
+      "boundaries_crossed": 3,
+      "n_test": 2000,
+      "A0": 0.3555,
+      "N_naive": 0.388,
+      "N_SDC_0.2": 0.495,
+      "N_SDC_0.3": 0.468,
+      "N_SDC_1.0": 0.4035,
+      "N_SDC_neg": 0.2475,
+      "N_LDC_mean": 0.553,
+      "N_LDC_spread": 0.009500000000000064,
+      "N_LDC_per_seed": [
+        0.5495,
+        0.559,
+        0.5505
+      ],
+      "N_LDC_shuf": 0.1105,
+      "N_LDC_ls": 0.5535,
+      "N_oracle": 0.8075,
+      "oracle_identity_abs": 0.0,
+      "c_plumb_max_abs": 0.0,
+      "sdc_drift_norm": 0.7448943445648475,
+      "res95": 0.02191346617949794
+    },
+    {
+      "seed": 42,
+      "task": 2,
+      "boundaries_crossed": 2,
+      "n_test": 2000,
+      "A0": 0.6065,
+      "N_naive": 0.664,
+      "N_SDC_0.2": 0.7535,
+      "N_SDC_0.3": 0.733,
+      "N_SDC_1.0": 0.6615,
+      "N_SDC_neg": 0.402,
+      "N_LDC_mean": 0.7555,
+      "N_LDC_spread": 0.0040000000000000036,
+      "N_LDC_per_seed": [
+        0.7555,
+        0.7535,
+        0.7575
+      ],
+      "N_LDC_shuf": 0.067,
+      "N_LDC_ls": 0.76,
+      "N_oracle": 0.871,
+      "oracle_identity_abs": 0.0,
+      "c_plumb_max_abs": 0.0,
+      "sdc_drift_norm": 0.6058450797371282,
+      "res95": 0.02191346617949794
+    },
+    {
+      "seed": 42,
+      "task": 3,
+      "boundaries_crossed": 1,
+      "n_test": 2000,
+      "A0": 0.9155,
+      "N_naive": 0.9185,
+      "N_SDC_0.2": 0.9295,
+      "N_SDC_0.3": 0.9295,
+      "N_SDC_1.0": 0.92,
+      "N_SDC_neg": 0.8725,
+      "N_LDC_mean": 0.9303333333333335,
+      "N_LDC_spread": 0.0024999999999999467,
+      "N_LDC_per_seed": [
+        0.9305,
+        0.929,
+        0.9315
+      ],
+      "N_LDC_shuf": 0.311,
+      "N_LDC_ls": 0.931,
+      "N_oracle": 0.9365,
+      "oracle_identity_abs": 0.0,
+      "c_plumb_max_abs": 0.0,
+      "sdc_drift_norm": 0.4332395569456107,
+      "res95": 0.02191346617949794
+    }
+  ],
+  "seconds_total": 20.3
+}

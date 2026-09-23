@@ -1,0 +1,223 @@
+{
+  "experiment": "E5 \u2014 UCI HAR hardware-revision shifts",
+  "prereg": "docs/GENERALITY_prereg.md v2 \u00a72 E5",
+  "spec_fingerprint": "3de66e205eb7",
+  "git_commit": null,
+  "channels": [
+    "body_acc_x",
+    "body_acc_y",
+    "body_acc_z",
+    "body_gyro_x",
+    "body_gyro_y",
+    "body_gyro_z",
+    "total_acc_x",
+    "total_acc_y",
+    "total_acc_z"
+  ],
+  "windows": {
+    "train": 7352,
+    "test": 2947,
+    "shape": [
+      128,
+      9
+    ],
+    "classes": 6
+  },
+  "shift_parameters": {
+    "gain_dimensionless": [
+      1.15,
+      0.9,
+      1.08,
+      0.93,
+      1.12,
+      0.88,
+      1.05,
+      0.95,
+      1.1
+    ],
+    "offset_native_units": {
+      "body_acc_x": 0.04,
+      "body_acc_y": -0.03,
+      "body_acc_z": 0.05,
+      "body_gyro_x": -0.05,
+      "body_gyro_y": 0.03,
+      "body_gyro_z": -0.04,
+      "total_acc_x": 0.03,
+      "total_acc_y": 0.05,
+      "total_acc_z": -0.02
+    },
+    "offset_units": "g for the 6 accelerometer channels; rad/s for the 3 gyroscope channels",
+    "offset_justification": "Consumer MEMS accelerometer zero-g offset is specified in the tens of mg (datasheet values for consumer parts reach roughly +/-90 mg before temperature drift), so +/-0.02..0.05 g sits inside the +/-0.1 g class. Gyroscope zero-rate offset is commonly a few deg/s; +/-0.03..0.05 rad/s = +/-1.7..2.9 deg/s. Applied POST-calibration, which is what bias DRIFT means \u2014 the residual calibration does not catch.",
+    "rotation_deg": 30.0,
+    "permutation": [
+      2,
+      0,
+      1,
+      5,
+      3,
+      4,
+      7,
+      8,
+      6
+    ]
+  },
+  "application_order": "z_shifted = P R (G z + b/sigma), applied to the task-0-calibrated stream",
+  "adapter": {
+    "mode": "per_step",
+    "shape": "9x9",
+    "params_per_task": 81,
+    "bytes_per_task_fp32": 324,
+    "bias": false
+  },
+  "per_task": {
+    "0": {
+      "desc": "original calibration (identity)",
+      "cond": 1.0,
+      "offset_native": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_in_sd": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_offset_sd": 0.0
+    },
+    "1": {
+      "desc": "per-channel gain + offset miscalibration",
+      "cond": 1.3068181818181817,
+      "offset_native": [
+        0.04,
+        -0.03,
+        0.05,
+        -0.05,
+        0.03,
+        -0.04,
+        0.03,
+        0.05,
+        -0.02
+      ],
+      "offset_in_sd": [
+        0.2054,
+        -0.2452,
+        0.4682,
+        -0.123,
+        0.0786,
+        -0.1565,
+        0.0724,
+        0.1279,
+        -0.0559
+      ],
+      "max_abs_offset_sd": 0.46815699981555237
+    },
+    "2": {
+      "desc": "axis rotation: 30 deg about z for each acc/gyro triple",
+      "cond": 1.0,
+      "offset_native": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_in_sd": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_offset_sd": 0.0
+    },
+    "3": {
+      "desc": "channel reordering (wiring revision)",
+      "cond": 1.0,
+      "offset_native": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_in_sd": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_offset_sd": 0.0
+    },
+    "4": {
+      "desc": "combined: gain + offset + rotation + reordering",
+      "cond": 1.3068181818181817,
+      "offset_native": [
+        0.05,
+        0.0496,
+        -0.006,
+        -0.04,
+        -0.0583,
+        0.001,
+        0.0583,
+        -0.02,
+        0.001
+      ],
+      "offset_in_sd": [
+        0.2567,
+        0.4057,
+        -0.056,
+        -0.0984,
+        -0.1528,
+        0.0038,
+        0.1408,
+        -0.0512,
+        0.0027
+      ],
+      "max_abs_offset_sd": 0.4056997778233432
+    }
+  },
+  "bias_free_recovery_residual": {
+    "0": 0.0,
+    "1": 0.157622,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.144935
+  },
+  "note": "residual 0 = exactly invertible by the locked bias-free adapter. Tasks 1 and 4 are non-invertible ONLY because of the contracted offsets; an affine fit is exact everywhere.",
+  "source_archive": {
+    "filename": "human+activity+recognition+using+smartphones.zip",
+    "sha256": "c00b803081a5c797cd5e4b83700a9810b38d53d9d84e01917e090e1fdbc81031",
+    "provenance": "user-supplied local copy of the UCI HAR dataset (Anguita et al. 2013)",
+    "note": "recorded so a rerun can prove it consumed the same bytes; read via explicit ZipFile.read(member) with no extractall, so no path traversal."
+  }
+}

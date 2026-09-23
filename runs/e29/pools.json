@@ -1,0 +1,9292 @@
+{
+  "partition_fingerprint": "35b514100b9f",
+  "partition_fingerprint_shifted": "1104af185c87",
+  "heldout_fingerprint": "ccbeb4f4ecf1",
+  "ref_group": 0,
+  "query_group": 3,
+  "ref_subjects": [
+    1,
+    2,
+    11,
+    13,
+    16
+  ],
+  "query_subjects": [
+    4,
+    5,
+    6,
+    18,
+    27
+  ],
+  "aggregation": {
+    "draws_per_target": 10,
+    "target_recovers_at": 9,
+    "pool_succeeds_at": 20,
+    "n_targets": 22
+  },
+  "effective_rank": {
+    "0": 5.448592256244746,
+    "1": 5.182546901505193,
+    "2": 4.444564900081342,
+    "3": 2.7317810869140486,
+    "4": 4.45939297660964,
+    "5": 1.6221431696850444,
+    "all6": 6.572223853952174
+  },
+  "controls": {
+    "plumbing_identity": {
+      "exact": true,
+      "true_rank": 0,
+      "pass": true
+    },
+    "positive_synthetic": {
+      "exact_by_n": {
+        "64": true,
+        "256": true,
+        "1024": true
+      },
+      "pass": true
+    },
+    "must_fail_noise_reference": {
+      "exact_hits": 0,
+      "of": 8,
+      "chance_rate": 2.7557319223985893e-06,
+      "pass": true
+    },
+    "subject_disjoint": {
+      "ref": [
+        1,
+        2,
+        11,
+        13,
+        16
+      ],
+      "query": [
+        4,
+        5,
+        6,
+        18,
+        27
+      ],
+      "pass": true
+    },
+    "partition_fingerprint": "35b514100b9f",
+    "partition_fingerprint_shifted": "1104af185c87"
+  },
+  "pools": {
+    "two_dynamic_n16": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 232.5,
+          "max_true_rank": 690
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.4,
+          "median_true_rank": 221.0,
+          "max_true_rank": 537
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 260.0,
+          "max_true_rank": 504
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 230.0,
+          "max_true_rank": 447
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 310.0,
+          "max_true_rank": 509
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 165.5,
+          "max_true_rank": 364
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 239.5,
+          "max_true_rank": 511
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 337.0,
+          "max_true_rank": 593
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.5,
+          "median_true_rank": 185.0,
+          "max_true_rank": 627
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 213.5,
+          "max_true_rank": 413
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 286.0,
+          "max_true_rank": 476
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.4,
+          "median_true_rank": 329.5,
+          "max_true_rank": 1174
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 284.0,
+          "max_true_rank": 465
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 286.5,
+          "max_true_rank": 564
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.3,
+          "median_true_rank": 304.5,
+          "max_true_rank": 696
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 256.5,
+          "max_true_rank": 468
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.2,
+          "median_true_rank": 276.0,
+          "max_true_rank": 593
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 225.5,
+          "max_true_rank": 350
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 210.0,
+          "max_true_rank": 436
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 243.0,
+          "max_true_rank": 330
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 255.5,
+          "max_true_rank": 573
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.0,
+          "median_true_rank": 459.5,
+          "max_true_rank": 645
+        }
+      ],
+      "spec": "two_dynamic",
+      "n": 16
+    },
+    "two_dynamic_n64": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 230.0,
+          "max_true_rank": 275
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 236.0,
+          "max_true_rank": 306
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 214.0,
+          "max_true_rank": 314
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 231.0,
+          "max_true_rank": 291
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 211.0,
+          "max_true_rank": 317
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 199.5,
+          "max_true_rank": 242
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 215.5,
+          "max_true_rank": 251
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 186.0,
+          "max_true_rank": 342
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 201.5,
+          "max_true_rank": 240
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 248.0,
+          "max_true_rank": 372
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 233.5,
+          "max_true_rank": 329
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 247.0,
+          "max_true_rank": 295
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 176.5,
+          "max_true_rank": 278
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 224.0,
+          "max_true_rank": 387
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 209.0,
+          "max_true_rank": 295
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 205.0,
+          "max_true_rank": 295
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 195.5,
+          "max_true_rank": 336
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 214.5,
+          "max_true_rank": 289
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 239.0,
+          "max_true_rank": 323
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.6,
+          "median_true_rank": 273.0,
+          "max_true_rank": 358
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 201.5,
+          "max_true_rank": 306
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 234.0,
+          "max_true_rank": 264
+        }
+      ],
+      "spec": "two_dynamic",
+      "n": 64
+    },
+    "two_dynamic_n256": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 207.0,
+          "max_true_rank": 267
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 215.0,
+          "max_true_rank": 269
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 205.5,
+          "max_true_rank": 256
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 208.5,
+          "max_true_rank": 229
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 213.0,
+          "max_true_rank": 242
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 218.0,
+          "max_true_rank": 237
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 217.0,
+          "max_true_rank": 257
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 206.5,
+          "max_true_rank": 252
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 220.5,
+          "max_true_rank": 269
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 204.0,
+          "max_true_rank": 233
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 214.0,
+          "max_true_rank": 244
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 210.5,
+          "max_true_rank": 250
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 205.5,
+          "max_true_rank": 219
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 196.5,
+          "max_true_rank": 244
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 212.5,
+          "max_true_rank": 240
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 206.0,
+          "max_true_rank": 217
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 202.5,
+          "max_true_rank": 226
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 207.5,
+          "max_true_rank": 253
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 219.0,
+          "max_true_rank": 264
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 217.0,
+          "max_true_rank": 234
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 209.0,
+          "max_true_rank": 233
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 207.5,
+          "max_true_rank": 263
+        }
+      ],
+      "spec": "two_dynamic",
+      "n": 256
+    },
+    "two_dynamic_n1024": {
+      "unbuildable": true
+    },
+    "static_plus_dynamic_n16": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.5590909090909091,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 30
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 69
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 7
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 12
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 6.0,
+          "median_true_rank": 0.5,
+          "max_true_rank": 29
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 5.8,
+          "median_true_rank": 1.0,
+          "max_true_rank": 17
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 13
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 36
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 6.0,
+          "median_true_rank": 0.5,
+          "max_true_rank": 19
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 23
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 15
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 5.8,
+          "median_true_rank": 4.5,
+          "max_true_rank": 40
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 4.4,
+          "median_true_rank": 2.5,
+          "max_true_rank": 22
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.5,
+          "median_true_rank": 0.0,
+          "max_true_rank": 30
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 31
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 24
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 5.1,
+          "median_true_rank": 1.0,
+          "max_true_rank": 34
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.4,
+          "median_true_rank": 2.5,
+          "max_true_rank": 115
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 5.4,
+          "median_true_rank": 1.0,
+          "max_true_rank": 9
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 6
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 16
+        }
+      ],
+      "spec": "static_plus_dynamic",
+      "n": 16
+    },
+    "static_plus_dynamic_n64": {
+      "targets_recovering": 5,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.8,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 4
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 3
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 6
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 6.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 3
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 7
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 3
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        }
+      ],
+      "spec": "static_plus_dynamic",
+      "n": 64
+    },
+    "static_plus_dynamic_n256": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 0.9954545454545455,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "static_plus_dynamic",
+      "n": 256
+    },
+    "static_plus_dynamic_n1024": {
+      "unbuildable": true
+    },
+    "three_static_n16": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.1,
+          "median_true_rank": 428.0,
+          "max_true_rank": 1292
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 292.0,
+          "max_true_rank": 780
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 372.0,
+          "max_true_rank": 942
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 368.0,
+          "max_true_rank": 1181
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 316.0,
+          "max_true_rank": 739
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 333.0,
+          "max_true_rank": 792
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 360.5,
+          "max_true_rank": 890
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 325.0,
+          "max_true_rank": 771
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 340.0,
+          "max_true_rank": 1206
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.9,
+          "median_true_rank": 482.5,
+          "max_true_rank": 919
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.1,
+          "median_true_rank": 228.5,
+          "max_true_rank": 714
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.2,
+          "median_true_rank": 319.0,
+          "max_true_rank": 711
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.2,
+          "median_true_rank": 323.0,
+          "max_true_rank": 736
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 414.0,
+          "max_true_rank": 2577
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 362.5,
+          "max_true_rank": 928
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 358.0,
+          "max_true_rank": 733
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 307.0,
+          "max_true_rank": 841
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 560.0,
+          "max_true_rank": 924
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 328.0,
+          "max_true_rank": 699
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 356.0,
+          "max_true_rank": 1412
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 372.0,
+          "max_true_rank": 770
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.9,
+          "median_true_rank": 361.0,
+          "max_true_rank": 1046
+        }
+      ],
+      "spec": "three_static",
+      "n": 16
+    },
+    "three_static_n64": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 295.5,
+          "max_true_rank": 720
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 267.5,
+          "max_true_rank": 686
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 299.0,
+          "max_true_rank": 593
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 289.5,
+          "max_true_rank": 470
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 288.5,
+          "max_true_rank": 432
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 275.5,
+          "max_true_rank": 620
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 319.0,
+          "max_true_rank": 450
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 229.0,
+          "max_true_rank": 477
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 249.0,
+          "max_true_rank": 597
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 405.5,
+          "max_true_rank": 627
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 217.5,
+          "max_true_rank": 309
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.3,
+          "median_true_rank": 252.0,
+          "max_true_rank": 559
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 293.0,
+          "max_true_rank": 726
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 155.5,
+          "max_true_rank": 509
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 265.5,
+          "max_true_rank": 449
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 290.0,
+          "max_true_rank": 553
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.2,
+          "median_true_rank": 199.5,
+          "max_true_rank": 486
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 132.0,
+          "max_true_rank": 401
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 349.0,
+          "max_true_rank": 522
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 305.0,
+          "max_true_rank": 706
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 364.0,
+          "max_true_rank": 649
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 234.0,
+          "max_true_rank": 700
+        }
+      ],
+      "spec": "three_static",
+      "n": 64
+    },
+    "three_static_n256": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.0,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h9",
+        "h10",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h17",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 273.0,
+          "max_true_rank": 358
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.2,
+          "median_true_rank": 235.0,
+          "max_true_rank": 334
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.2,
+          "median_true_rank": 271.0,
+          "max_true_rank": 417
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.2,
+          "median_true_rank": 230.5,
+          "max_true_rank": 439
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 301.0,
+          "max_true_rank": 374
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 253.0,
+          "max_true_rank": 409
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.3,
+          "median_true_rank": 160.0,
+          "max_true_rank": 385
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.3,
+          "median_true_rank": 213.0,
+          "max_true_rank": 343
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 238.5,
+          "max_true_rank": 466
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 219.5,
+          "max_true_rank": 399
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 199.0,
+          "max_true_rank": 386
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 212.0,
+          "max_true_rank": 404
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 223.5,
+          "max_true_rank": 391
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.1,
+          "median_true_rank": 274.0,
+          "max_true_rank": 358
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 234.0,
+          "max_true_rank": 354
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 265.5,
+          "max_true_rank": 498
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 235.0,
+          "max_true_rank": 429
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 289.5,
+          "max_true_rank": 403
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 168.5,
+          "max_true_rank": 402
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.1,
+          "median_true_rank": 273.5,
+          "max_true_rank": 363
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 274.5,
+          "max_true_rank": 444
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 228.0,
+          "max_true_rank": 411
+        }
+      ],
+      "spec": "three_static",
+      "n": 256
+    },
+    "three_static_n1024": {
+      "unbuildable": true
+    },
+    "all6_n16": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 0.9681818181818181,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 6
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 4
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6",
+      "n": 16
+    },
+    "all6_n64": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 1.0,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6",
+      "n": 64
+    },
+    "all6_n256": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 1.0,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6",
+      "n": 256
+    },
+    "all6_n1024": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 1.0,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6",
+      "n": 1024
+    },
+    "all6_skew80_n16": {
+      "targets_recovering": 19,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.9318181818181819,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 8.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 11
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 8.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 18
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 4
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 4
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 8.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 9
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.3,
+          "median_true_rank": 0.0,
+          "max_true_rank": 4
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6_skew80",
+      "n": 16
+    },
+    "all6_skew80_n64": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 0.9909090909090909,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.8,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 9,
+          "recovers": true,
+          "mean_channels": 8.6,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6_skew80",
+      "n": 64
+    },
+    "all6_skew80_n256": {
+      "targets_recovering": 22,
+      "n_targets": 22,
+      "succeeds": true,
+      "pooled_exact_rate": 1.0,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 10,
+          "recovers": true,
+          "mean_channels": 9.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 0
+        }
+      ],
+      "spec": "all6_skew80",
+      "n": 256
+    },
+    "all6_skew80_n1024": {
+      "unbuildable": true
+    },
+    "contiguous_stride1_n16": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.031818181818181815,
+      "targets_never_recovering": [
+        "identity",
+        "PERM",
+        "h0",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "h7",
+        "h9",
+        "h11",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h16",
+        "h18",
+        "h19"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.1,
+          "median_true_rank": 5028.5,
+          "max_true_rank": 17074
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.8,
+          "median_true_rank": 2929.0,
+          "max_true_rank": 137900
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.8,
+          "median_true_rank": 3696.5,
+          "max_true_rank": 20110
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.3,
+          "median_true_rank": 256.5,
+          "max_true_rank": 253402
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 7292.5,
+          "max_true_rank": 137900
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.5,
+          "median_true_rank": 3427.0,
+          "max_true_rank": 137469
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.5,
+          "median_true_rank": 9776.5,
+          "max_true_rank": 241134
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.5,
+          "median_true_rank": 11231.0,
+          "max_true_rank": 253402
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.6,
+          "median_true_rank": 2337.0,
+          "max_true_rank": 183042
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.6,
+          "median_true_rank": 7313.0,
+          "max_true_rank": 135562
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.7,
+          "median_true_rank": 3343.5,
+          "max_true_rank": 23226
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.4,
+          "median_true_rank": 11127.5,
+          "max_true_rank": 236719
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 4210.0,
+          "max_true_rank": 23569
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.7,
+          "median_true_rank": 6695.0,
+          "max_true_rank": 102298
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.8,
+          "median_true_rank": 3436.0,
+          "max_true_rank": 273095
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.7,
+          "median_true_rank": 4168.0,
+          "max_true_rank": 4878
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.2,
+          "median_true_rank": 4736.0,
+          "max_true_rank": 140434
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.3,
+          "median_true_rank": 4189.0,
+          "max_true_rank": 132225
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.6,
+          "median_true_rank": 669.0,
+          "max_true_rank": 23226
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 2.1,
+          "median_true_rank": 4762.0,
+          "max_true_rank": 85740
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 1.6,
+          "median_true_rank": 5093.5,
+          "max_true_rank": 134481
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 0.8,
+          "median_true_rank": 39401.5,
+          "max_true_rank": 273091
+        }
+      ],
+      "spec": "contiguous_stride1_n16",
+      "n": 16,
+      "stride": 1
+    },
+    "contiguous_stride1_n64": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.08181818181818182,
+      "targets_never_recovering": [
+        "PERM",
+        "h0",
+        "h1",
+        "h4",
+        "h5",
+        "h6",
+        "h8",
+        "h10",
+        "h11",
+        "h14",
+        "h16"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 4.7,
+          "median_true_rank": 323.5,
+          "max_true_rank": 4219
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 412.0,
+          "max_true_rank": 4535
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 711.5,
+          "max_true_rank": 4600
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.8,
+          "median_true_rank": 792.0,
+          "max_true_rank": 4571
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 116.5,
+          "max_true_rank": 4600
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.4,
+          "median_true_rank": 224.5,
+          "max_true_rank": 4561
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.4,
+          "median_true_rank": 288.5,
+          "max_true_rank": 5261
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 5.0,
+          "median_true_rank": 16.5,
+          "max_true_rank": 3988
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.0,
+          "median_true_rank": 526.5,
+          "max_true_rank": 3980
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 5.5,
+          "median_true_rank": 21.0,
+          "max_true_rank": 4448
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 358.5,
+          "max_true_rank": 1320
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.3,
+          "median_true_rank": 338.5,
+          "max_true_rank": 4535
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.3,
+          "median_true_rank": 232.5,
+          "max_true_rank": 4453
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.8,
+          "median_true_rank": 267.5,
+          "max_true_rank": 4680
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 346.0,
+          "max_true_rank": 5194
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.6,
+          "median_true_rank": 39.5,
+          "max_true_rank": 4021
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 222.0,
+          "max_true_rank": 2830
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.5,
+          "median_true_rank": 269.0,
+          "max_true_rank": 2528
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 4.5,
+          "median_true_rank": 294.5,
+          "max_true_rank": 5172
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 172.5,
+          "max_true_rank": 4571
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 5.1,
+          "median_true_rank": 184.0,
+          "max_true_rank": 4144
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.2,
+          "median_true_rank": 1233.0,
+          "max_true_rank": 5261
+        }
+      ],
+      "spec": "contiguous_stride1_n64",
+      "n": 64,
+      "stride": 1
+    },
+    "contiguous_stride1_n256": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.48636363636363633,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.1,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 7.4,
+          "median_true_rank": 1.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 7.5,
+          "median_true_rank": 1.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 7.6,
+          "median_true_rank": 1.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 7.9,
+          "median_true_rank": 0.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 7.9,
+          "median_true_rank": 0.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 7.5,
+          "median_true_rank": 1.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 7.6,
+          "median_true_rank": 2.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.1,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 7.1,
+          "median_true_rank": 2.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 7.7,
+          "median_true_rank": 1.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 0.5,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 7.6,
+          "median_true_rank": 1.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 7.8,
+          "median_true_rank": 1.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 8.1,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 2
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 8.4,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1
+        }
+      ],
+      "spec": "contiguous_stride1_n256",
+      "n": 256,
+      "stride": 1
+    },
+    "contiguous_stride1_n1024": {
+      "unbuildable": true
+    },
+    "contiguous_stride2_n16": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.09090909090909091,
+      "targets_never_recovering": [
+        "identity",
+        "h1",
+        "h4",
+        "h12",
+        "h13",
+        "h14",
+        "h15",
+        "h17",
+        "h18"
+      ],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.4,
+          "median_true_rank": 3396.0,
+          "max_true_rank": 14155
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.2,
+          "median_true_rank": 1438.0,
+          "max_true_rank": 6863
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 5.1,
+          "median_true_rank": 296.5,
+          "max_true_rank": 8041
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 502.5,
+          "max_true_rank": 14510
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 1464.5,
+          "max_true_rank": 14285
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 1759.5,
+          "max_true_rank": 6590
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.7,
+          "median_true_rank": 3434.5,
+          "max_true_rank": 16734
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.9,
+          "median_true_rank": 588.0,
+          "max_true_rank": 35897
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.5,
+          "median_true_rank": 941.5,
+          "max_true_rank": 17247
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 4.3,
+          "median_true_rank": 1715.5,
+          "max_true_rank": 8910
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 2.9,
+          "median_true_rank": 1782.0,
+          "max_true_rank": 14013
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.1,
+          "median_true_rank": 1257.0,
+          "max_true_rank": 10919
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 311.0,
+          "max_true_rank": 7936
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 4.6,
+          "median_true_rank": 2411.5,
+          "max_true_rank": 16622
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.5,
+          "median_true_rank": 2080.5,
+          "max_true_rank": 14433
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.4,
+          "median_true_rank": 6523.0,
+          "max_true_rank": 94935
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.9,
+          "median_true_rank": 2833.0,
+          "max_true_rank": 14187
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 1410.5,
+          "max_true_rank": 16576
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 3.0,
+          "median_true_rank": 1112.5,
+          "max_true_rank": 13872
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 2.9,
+          "median_true_rank": 3560.0,
+          "max_true_rank": 16622
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 0,
+          "recovers": false,
+          "mean_channels": 3.3,
+          "median_true_rank": 2117.5,
+          "max_true_rank": 19311
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 1,
+          "recovers": false,
+          "mean_channels": 2.7,
+          "median_true_rank": 2082.5,
+          "max_true_rank": 12837
+        }
+      ],
+      "spec": "contiguous_stride2_n16",
+      "n": 16,
+      "stride": 2
+    },
+    "contiguous_stride2_n64": {
+      "targets_recovering": 0,
+      "n_targets": 22,
+      "succeeds": false,
+      "pooled_exact_rate": 0.4409090909090909,
+      "targets_never_recovering": [],
+      "rows": [
+        {
+          "target": "identity",
+          "h": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 5.4,
+          "median_true_rank": 3.0,
+          "max_true_rank": 953
+        },
+        {
+          "target": "PERM",
+          "h": [
+            2,
+            0,
+            1,
+            5,
+            3,
+            4,
+            7,
+            8,
+            6
+          ],
+          "n_exact": 8,
+          "recovers": false,
+          "mean_channels": 8.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 6
+        },
+        {
+          "target": "h0",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            1,
+            0,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 6.3,
+          "median_true_rank": 1.5,
+          "max_true_rank": 733
+        },
+        {
+          "target": "h1",
+          "h": [
+            7,
+            2,
+            6,
+            3,
+            4,
+            8,
+            0,
+            5,
+            1
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.3,
+          "median_true_rank": 1.5,
+          "max_true_rank": 872
+        },
+        {
+          "target": "h2",
+          "h": [
+            2,
+            6,
+            1,
+            8,
+            0,
+            4,
+            3,
+            7,
+            5
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 7.0,
+          "median_true_rank": 1.0,
+          "max_true_rank": 47
+        },
+        {
+          "target": "h3",
+          "h": [
+            5,
+            2,
+            0,
+            1,
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.5,
+          "median_true_rank": 0.0,
+          "max_true_rank": 101
+        },
+        {
+          "target": "h4",
+          "h": [
+            3,
+            1,
+            8,
+            4,
+            5,
+            2,
+            7,
+            0,
+            6
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 7.1,
+          "median_true_rank": 0.0,
+          "max_true_rank": 872
+        },
+        {
+          "target": "h5",
+          "h": [
+            6,
+            7,
+            3,
+            4,
+            0,
+            2,
+            8,
+            5,
+            1
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.3,
+          "median_true_rank": 38.5,
+          "max_true_rank": 188
+        },
+        {
+          "target": "h6",
+          "h": [
+            6,
+            1,
+            5,
+            3,
+            7,
+            4,
+            8,
+            2,
+            0
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.1,
+          "median_true_rank": 4.5,
+          "max_true_rank": 798
+        },
+        {
+          "target": "h7",
+          "h": [
+            4,
+            5,
+            1,
+            2,
+            8,
+            7,
+            6,
+            0,
+            3
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 5.6,
+          "median_true_rank": 4.0,
+          "max_true_rank": 32
+        },
+        {
+          "target": "h8",
+          "h": [
+            3,
+            8,
+            7,
+            2,
+            1,
+            6,
+            5,
+            4,
+            0
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.1,
+          "median_true_rank": 19.0,
+          "max_true_rank": 113
+        },
+        {
+          "target": "h9",
+          "h": [
+            4,
+            3,
+            6,
+            1,
+            0,
+            7,
+            2,
+            8,
+            5
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.3,
+          "median_true_rank": 3.5,
+          "max_true_rank": 1003
+        },
+        {
+          "target": "h10",
+          "h": [
+            6,
+            3,
+            8,
+            2,
+            5,
+            1,
+            0,
+            7,
+            4
+          ],
+          "n_exact": 7,
+          "recovers": false,
+          "mean_channels": 8.0,
+          "median_true_rank": 0.0,
+          "max_true_rank": 1216
+        },
+        {
+          "target": "h11",
+          "h": [
+            0,
+            6,
+            1,
+            7,
+            8,
+            5,
+            2,
+            4,
+            3
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 5.6,
+          "median_true_rank": 28.0,
+          "max_true_rank": 733
+        },
+        {
+          "target": "h12",
+          "h": [
+            6,
+            2,
+            8,
+            4,
+            7,
+            0,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 3,
+          "recovers": false,
+          "mean_channels": 6.0,
+          "median_true_rank": 10.0,
+          "max_true_rank": 634
+        },
+        {
+          "target": "h13",
+          "h": [
+            1,
+            3,
+            4,
+            2,
+            6,
+            5,
+            7,
+            0,
+            8
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 7.0,
+          "median_true_rank": 0.5,
+          "max_true_rank": 99
+        },
+        {
+          "target": "h14",
+          "h": [
+            6,
+            5,
+            1,
+            2,
+            4,
+            0,
+            3,
+            7,
+            8
+          ],
+          "n_exact": 5,
+          "recovers": false,
+          "mean_channels": 6.4,
+          "median_true_rank": 1.5,
+          "max_true_rank": 914
+        },
+        {
+          "target": "h15",
+          "h": [
+            6,
+            5,
+            8,
+            7,
+            2,
+            4,
+            0,
+            3,
+            1
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 4.8,
+          "median_true_rank": 75.0,
+          "max_true_rank": 953
+        },
+        {
+          "target": "h16",
+          "h": [
+            8,
+            2,
+            6,
+            0,
+            4,
+            7,
+            1,
+            3,
+            5
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.3,
+          "median_true_rank": 15.0,
+          "max_true_rank": 89
+        },
+        {
+          "target": "h17",
+          "h": [
+            7,
+            5,
+            4,
+            0,
+            8,
+            2,
+            6,
+            3,
+            1
+          ],
+          "n_exact": 4,
+          "recovers": false,
+          "mean_channels": 6.0,
+          "median_true_rank": 4.0,
+          "max_true_rank": 1003
+        },
+        {
+          "target": "h18",
+          "h": [
+            5,
+            2,
+            1,
+            4,
+            0,
+            6,
+            7,
+            8,
+            3
+          ],
+          "n_exact": 6,
+          "recovers": false,
+          "mean_channels": 7.2,
+          "median_true_rank": 0.0,
+          "max_true_rank": 113
+        },
+        {
+          "target": "h19",
+          "h": [
+            6,
+            3,
+            7,
+            5,
+            4,
+            8,
+            0,
+            2,
+            1
+          ],
+          "n_exact": 2,
+          "recovers": false,
+          "mean_channels": 5.1,
+          "median_true_rank": 41.5,
+          "max_true_rank": 468
+        }
+      ],
+      "spec": "contiguous_stride2_n64",
+      "n": 64,
+      "stride": 2
+    },
+    "contiguous_stride2_n256": {
+      "unbuildable": true
+    },
+    "contiguous_stride2_n1024": {
+      "unbuildable": true
+    }
+  },
+  "seconds": 917.2
+}
