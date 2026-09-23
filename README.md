@@ -1,6 +1,6 @@
-# PLCM — Persistent Latent Cell Memory
+# PLCM: Persistent Latent Cell Memory
 
-**Where does catastrophic forgetting happen — in a network's representation,
+**Where does catastrophic forgetting happen: in a network's representation,
 or in the layer that reads it out?** This repository contains an empirical
 study of that question across four architecture families, the code and
 artifacts behind every number, and an account of which conclusions held up
@@ -28,6 +28,7 @@ under external review and which did not.
 10. [Methodology](#10-methodology)
 11. [Using this repository](#11-using-this-repository)
 12. [Provenance and limitations](#12-provenance-and-limitations)
+13. [Citation](#13-citation)
 
 ---
 
@@ -42,12 +43,12 @@ transformer encoders, and replicates Davari et al. (2022) and Anthes et al.
 **Originally claimed, and not supported:**
 
 - that recovering accuracy by transforming old inputs into the current input
-  format shows the encoder *retained* them — on the benchmarks used, this
-  outcome is guaranteed by how the tasks are constructed;
+  format shows the encoder *retained* them (on the benchmarks used, this
+  outcome is guaranteed by how the tasks are constructed);
 - that scratch-trained and pretrained models behave oppositely because of how
-  they were trained — the comparison is confounded;
-- that the decomposition's identity detects computational errors — it holds
-  for any four numbers.
+  they were trained (the comparison is confounded);
+- that the decomposition's identity detects computational errors (it holds
+  for any four numbers).
 
 **Supported:**
 
@@ -61,7 +62,7 @@ transformer encoders, and replicates Davari et al. (2022) and Anthes et al.
   can resolve.
 
 **A recommendation for similar studies.** Before running an experiment, compute
-what it would show for a model that learned nothing — one trained only on the
+what it would show for a model that learned nothing: one trained only on the
 current task, a randomly initialised encoder, or a linear probe on raw inputs.
 If that baseline already produces the result, the experiment cannot
 distinguish the hypotheses.
@@ -95,29 +96,29 @@ For an old task $k$, four accuracies are measured:
 
 These define
 
-$$
+```math
 F_{\mathrm{enc}} = a - b, \qquad
 F_{\mathrm{read}} = b - c, \qquad
 R = a - d, \qquad
 F_{\mathrm{total}} = d - c,
-$$
+```
 
 where $F_{\mathrm{enc}}$ is loss the encoder no longer supports,
 $F_{\mathrm{read}}$ is loss a new readout can recover, and $R$ is the probe's
 advantage over the model's own readout. They satisfy
 
-$$
+```math
 F_{\mathrm{enc}} + F_{\mathrm{read}} - R = F_{\mathrm{total}}.
-$$
+```
 
 This identity holds by construction: substituting gives $d - c = d - c$. It
 cannot detect an error in any single accuracy.
 
 The **readout share** is a ratio of pooled terms over tasks and seeds:
 
-$$
+```math
 \text{share} = \frac{\overline{F_{\mathrm{read}}}}{\overline{F_{\mathrm{enc}}} + \overline{F_{\mathrm{read}}}}.
-$$
+```
 
 **The probe** is $\ell_2$-regularised multinomial logistic regression
 ($C = 1$), fitted with L-BFGS to scikit-learn's default tolerance. Refitting at
@@ -128,7 +129,7 @@ where measured, and a single task by up to $0.014$, with no consistent sign.
 
 | Term | Meaning |
 |---|---|
-| **Format change** | A transformation $M$ applied to one task's inputs relative to another's — a channel permutation, rotation, or gain and offset on sensor data; a pixel permutation or rotation on images |
+| **Format change** | A transformation $M$ applied to one task's inputs relative to another's, such as a channel permutation, rotation, or gain and offset on sensor data, or a pixel permutation or rotation on images |
 | **Re-laying** | Applying the known transformation to an old task's inputs so they arrive in the format the final model was last trained on |
 | **Bridging** | Regenerating old-format training data from current data using a stored checkpoint and the known map, then refitting the readout |
 | **Frozen trunk** | A pretrained encoder that is never fine-tuned, used as a reference |
@@ -242,9 +243,9 @@ Recorded because each closes a direction that appears promising.
 | Approach | Outcome | Cause (§8) |
 |---|---|---|
 | **External memory of cell states** (the original PLCM architecture) | Stored states became unreadable as the model reading them continued to change | Information bound |
-| **Bridging** | Final forgetting 0.095, close to refitting with retained data (0.081) — but applying the known map directly gives −0.038, and deploying the stored checkpoint gives 0.000 | Dominated by simpler uses of the same resources |
+| **Bridging** | Final forgetting 0.095, close to refitting with retained data (0.081), but applying the known map directly gives −0.038, and deploying the stored checkpoint gives 0.000 | Dominated by simpler uses of the same resources |
 | **Per-task input adapters** | Permuted MNIST accuracy 0.430 → 0.918, at roughly ten times the storage of the replay buffer they outperform. Similar methods exist (AdapterNet, CLR) | Not novel |
-| **Label-free readout repair** — entropy minimisation, diversity objectives, a stored checkpoint as teacher, shared or orthogonal realignment (seven variants) | None met the pre-registered bar | Identifiability |
+| **Label-free readout repair** (entropy minimisation, diversity objectives, a stored checkpoint as teacher, shared or orthogonal realignment; seven variants) | None met the pre-registered bar | Identifiability |
 | **Per-step drift correction** | Drift across one task boundary is no more linear than across the whole sequence | Wrong drift model |
 | **Training for equivariance with an auxiliary loss** | Preserved channel identity (0.836 against 0.549) but made readout repair costlier than plain augmentation. All augmented configurations failed their accuracy precondition, so none is formally compared | Targets the wrong property |
 
@@ -264,8 +265,8 @@ practice; these results are a baseline, not a new method.
 ### 7.1 Channel permutations
 
 Every permutation $P$ of the nine UCI HAR channels is scored against stored
-reference statistics — mean $\mu$, covariance $\Sigma$, and lag-1
-cross-covariance $C_1$:
+reference statistics (mean $\mu$, covariance $\Sigma$, and lag-1
+cross-covariance $C_1$):
 
 ```math
 \hat P = \arg\min_{P \in S_9}\;
@@ -302,32 +303,32 @@ The stored reference is 171 numbers per task, and no labels are needed.
 
 ## 8. Why readout repair is hard: three causes
 
-**A — Identifiability.** A label-free objective depends only on the distribution
+**A. Identifiability.** A label-free objective depends only on the distribution
 of the current features, so it cannot distinguish a correct readout from one
 with the classes relabelled:
 
-$$
+```math
 \mathcal{L}(\sigma \circ \hat h) = \mathcal{L}(\hat h) \quad \text{for all } \sigma \in S_c .
-$$
+```
 
 With $c$ classes there are $c! - 1$ equally scored incorrect readouts for each
 correct one. Resolving this requires information that is not a function of the
-current features — for example, at least one label per class.
+current features, for example at least one label per class.
 
-**B — An information bound.** If $M$ is the input change, any repair that acts
+**B. An information bound.** If $M$ is the input change, any repair that acts
 only on the readout is bounded by what the encoder retains of the changed input:
 
-$$
+```math
 \mathrm{acc}(\hat h \circ f \circ M) \;\le\; \max_h \mathrm{acc}(h \circ f \circ M).
-$$
+```
 
 The bound is tight when the encoder is equivariant to the change:
 
-$$
+```math
 f(Mx) = A\,f(x),\; A \text{ invertible} \;\Longrightarrow\; \hat h = h A^{-1}.
-$$
+```
 
-**C — Misspecified drift models.** Compensation methods assume drift is a
+**C. Misspecified drift models.** Compensation methods assume drift is a
 translation (SDC), a linear map (LDC), or a composition of small linear steps.
 The measured drift fits none of these. What training preserves is the linear
 separability of the classes, not the geometry of the features.
@@ -345,12 +346,16 @@ plasticity** (a frozen encoder). None worked without one of them.
 Probe-based analyses report low encoder damage, but §3 shows this can occur
 when nothing task-specific was retained. Settling this needs:
 
-- **an exclusion control** — a model trained on every task except $k$,
+- **an exclusion control**: a model trained on every task except $k$,
   evaluated on task $k$'s re-laid inputs. On the benchmarks here, the analysis
   in `docs/E31_section0.md` predicts no difference;
 - **raw-input and random-encoder probes**, compared against the same gap on
   the current task, where forgetting cannot explain it;
 - sensitivity to the probe's regularisation strength, and label-budget curves.
+
+A 2026 preprint, *Lost or Hidden?*, reports a related pattern: a linear
+translation of features restores most lost performance, but incompletely for
+most strategies, pointing to partial loss of task information.
 
 ### 9.2 Breaking the relabelling symmetry without labels
 
@@ -365,8 +370,8 @@ run.
 
 For small finite families of input changes, such as channel permutations, a
 model can learn to ignore the change entirely. Continuous families such as
-sensor rotations carry task information — in activity recognition, the
-direction of gravity distinguishes lying from standing — so ignoring them
+sensor rotations carry task information (in activity recognition, the
+direction of gravity distinguishes lying from standing), so ignoring them
 costs accuracy. Whether an encoder that is equivariant by construction (for
 example, vector-neuron layers) makes readout-only repair sufficient in that
 setting is open. Related work: rotation-equivariant activity recognition
@@ -407,8 +412,9 @@ Each experiment followed the same sequence:
 4. **Run, then score** each prediction from the output artifacts.
 5. **Report**, including errors and failed controls.
 
-`CLAUDE.md` records the working rules and the specific errors that motivated
-each — including a control that could not fail, a gate passed on the wrong
+`CLAUDE.md` (which also serves as instructions for the AI coding assistant
+used in the project) records the working rules and the specific errors that motivated
+each, including a control that could not fail, a gate passed on the wrong
 configuration, a fingerprint blind to the property it was meant to guard, and
 a statistic fixed by the design rather than measured.
 
@@ -473,8 +479,31 @@ built on ARM differs from the one used in the reported runs.
 
 ### References
 
-- Anthes, D. et al. (2023). *Diagnosing catastrophic forgetting in continual learning.*
+- Anthes, D., Thorat, S., König, P., Kietzmann, T. C. (2023). *Diagnosing catastrophe: Large parts of accuracy loss in continual learning can be accounted for by readout misalignment.* Conference on Cognitive Computational Neuroscience (CCN). arXiv:2310.05644.
 - Davari, M. et al. (2022). *Probing representation forgetting in supervised and unsupervised continual learning.* CVPR.
+- *Lost or Hidden? A Concept-Level Forgetting in Supervised Continual Learning* (2026). arXiv:2605.16374.
 - Gomez-Villa, A. et al. (2024). *Exemplar-free continual representation learning via learnable drift compensation.* ECCV.
 - Kirichenko, P., Izmailov, P., Wilson, A. G. (2023). *Last layer re-training is sufficient for robustness to spurious correlations.* ICLR.
 - Yu, L. et al. (2020). *Semantic drift compensation for class-incremental learning.* CVPR.
+
+---
+
+## 13. Citation
+
+If you use this code, the artifacts, or the findings, please cite the
+repository. GitHub's **Cite this repository** button reads the same
+information from `CITATION.cff`.
+
+```bibtex
+@software{plcm2026,
+  author = {Giddi, Raja},
+  title  = {{PLCM}: An empirical study of where catastrophic forgetting
+            happens in continual learning},
+  year   = {2026},
+  url    = {https://github.com/RajaGiddi/plcm},
+  note   = {Code, artifacts, pre-registrations and negative results}
+}
+```
+
+When citing a specific result, please also cite the prior work it replicates
+or extends (see References).
