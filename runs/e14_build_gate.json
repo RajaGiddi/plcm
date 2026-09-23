@@ -1,0 +1,26 @@
+[
+  {
+    "item": "C1",
+    "desc": "ResNet-50 branch in PLCM",
+    "ok": true,
+    "detail": "resnet50.a1_in1k | logits(2, 5) feature(2, 2048) | trunk grads=True | amendments default-off=True"
+  },
+  {
+    "item": "C2",
+    "desc": "avgpool->fc binding + positive control",
+    "ok": true,
+    "detail": "timm parity max|d|=0.0e+00 | P3a live max|d|=0.0e+00 | pre-pool control (spatial MAX) delta=2.457e-01 -> FIRED"
+  },
+  {
+    "item": "C3",
+    "desc": "P3a/P3b re-derived, both controls fire",
+    "ok": true,
+    "detail": "P3a max|d|=0.0e+00 | P3b module=head[1] | controls: P3a=True P3b=True"
+  },
+  {
+    "item": "C4",
+    "desc": "weight variant pinned + hashed",
+    "ok": true,
+    "detail": "timm 1.0.20 | resnet50.a1_in1k | params 25.6M | WEIGHT HASH 4aa4ff84c7e0"
+  }
+]

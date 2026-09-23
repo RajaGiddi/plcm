@@ -1,0 +1,38 @@
+[
+  {
+    "item": "B1",
+    "desc": "CIFAR-100 20x5 split",
+    "ok": true,
+    "detail": "fingerprint 4da9de3736a6 | disjoint=True complete=True | counts(train/test) t0: 2500/500, t19: 2500/500"
+  },
+  {
+    "item": "B2",
+    "desc": "timm + ViT-B/16 weights, hash-pinned",
+    "ok": true,
+    "detail": "timm 1.0.20 | vit_base_patch16_224.augreg2_in21k_ft_in1k | params 86.6M | WEIGHT HASH 3416d11351bb"
+  },
+  {
+    "item": "B3",
+    "desc": "CIFAR-100 present at start (never fetched at run time)",
+    "ok": true,
+    "detail": "train 50000, test 10000 at data/cifar-100-python"
+  },
+  {
+    "item": "B4",
+    "desc": "ViT backbone path in PLCM",
+    "ok": true,
+    "detail": "timm parity max|d|=0.0e+00 | logits(2, 5) feature(2, 768) | trunk grads=True | loss 2.2417->1.0252 | amendments default-off=True"
+  },
+  {
+    "item": "B5",
+    "desc": "instrument binding + P3a/P3b asserts, both controls fired",
+    "ok": true,
+    "detail": "P3a max|d|=0.0e+00 on 2 cells | P3b module=head[1] | controls fired: P3a=True P3b=True"
+  },
+  {
+    "item": "B6",
+    "desc": "permuted-pixel shift (efficacy control data)",
+    "ok": true,
+    "detail": "shift fingerprint 24b6131095fd | round-trip exact=True | shift is non-identity=True"
+  }
+]

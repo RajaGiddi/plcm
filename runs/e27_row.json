@@ -1,0 +1,209 @@
+{
+  "guard": 1.0,
+  "arms": {
+    "s72_off": {
+      "family": "LSTM",
+      "cells": 12,
+      "excluded": 1,
+      "excluded_cells": [
+        {
+          "seed": 42,
+          "task": 0,
+          "delta": 1.0374430059038726
+        }
+      ],
+      "delta_valid": 0.6157231460094443,
+      "delta_forced": 0.6508664676673134,
+      "delta_rand": 0.4169321385512204,
+      "delta_tilde_valid": 1.511636671487212,
+      "delta_tilde_forced": 1.5977347367266181,
+      "must_fail": "12/12",
+      "plumb_max": 0.0,
+      "relay_rel_err": null
+    },
+    "e18_pmd_mlp": {
+      "family": "MLP",
+      "cells": 12,
+      "excluded": 0,
+      "excluded_cells": [],
+      "delta_valid": 0.5008528671278298,
+      "delta_forced": 0.5008528671278298,
+      "delta_rand": 0.4255451246135175,
+      "delta_tilde_valid": 1.1818830673315797,
+      "delta_tilde_forced": 1.1818830673315797,
+      "must_fail": "12/12",
+      "plumb_max": 0.0,
+      "relay_rel_err": null
+    },
+    "e18_pmd_lstm": {
+      "family": "LSTM",
+      "cells": 12,
+      "excluded": 0,
+      "excluded_cells": [],
+      "delta_valid": 0.6255740220066487,
+      "delta_forced": 0.6255740220066487,
+      "delta_rand": 0.3880550372056375,
+      "delta_tilde_valid": 1.8506750064669852,
+      "delta_tilde_forced": 1.8506750064669852,
+      "must_fail": "12/12",
+      "plumb_max": 0.0,
+      "relay_rel_err": null
+    },
+    "e23_har_mlp": {
+      "family": "MLP",
+      "cells": 12,
+      "excluded": 1,
+      "excluded_cells": [
+        {
+          "seed": 2024,
+          "task": 0,
+          "delta": 15.103724746587904
+        }
+      ],
+      "delta_valid": 0.5974330366676696,
+      "delta_forced": 1.8062906791610225,
+      "delta_rand": 0.48216520650741673,
+      "delta_tilde_valid": 1.236391445673312,
+      "delta_tilde_forced": 3.583543664301782,
+      "must_fail": "11/12",
+      "plumb_max": 0.0,
+      "relay_rel_err": null
+    },
+    "e18_rmd_mlp": {
+      "family": "MLP",
+      "cells": 12,
+      "excluded": 0,
+      "excluded_cells": [],
+      "delta_valid": 0.5787905668196832,
+      "delta_forced": 0.5787905668196832,
+      "delta_rand": 0.4325011410518183,
+      "delta_tilde_valid": 1.3427206242563774,
+      "delta_tilde_forced": 1.3427206242563774,
+      "must_fail": "12/12",
+      "plumb_max": 0.0,
+      "relay_rel_err": 0.11027302283798453
+    },
+    "e23b_t20": {
+      "family": "LSTM",
+      "cells": 57,
+      "excluded": 0,
+      "excluded_cells": [],
+      "delta_valid": 0.600443114492344,
+      "delta_forced": 0.600443114492344,
+      "delta_rand": 0.2810576091629115,
+      "delta_tilde_valid": 2.1910313670743737,
+      "delta_tilde_forced": 2.1910313670743737,
+      "must_fail": "57/57",
+      "plumb_max": 0.0,
+      "relay_rel_err": null
+    }
+  },
+  "controls": {
+    "positive_square_invertible": {
+      "lam": 0.0,
+      "bar": 0.01,
+      "draws": 10,
+      "delta_per_draw": {
+        "784": [
+          2.6800783146571577e-12,
+          1.0353859589672214e-09,
+          1.1111704243648093e-12,
+          7.125674403319951e-12,
+          2.3822328739666976e-11,
+          3.6006293098712586e-12,
+          7.373187476043359e-13,
+          1.25100465699463e-12,
+          2.7946109081819343e-12,
+          2.3766879037870998e-11
+        ],
+        "1152": [
+          1.6610767261586863e-09,
+          2.6055917733904147e-11,
+          2.442759016336069e-12,
+          1.9794968223314498e-11,
+          1.1173125473827748e-12,
+          9.100203652320486e-12,
+          8.114921943375474e-11,
+          9.813624642338901e-11,
+          3.855156649435506e-12,
+          1.3518917246113673e-12
+        ]
+      },
+      "delta_max": {
+        "784": 1.0353859589672214e-09,
+        "1152": 1.6610767261586863e-09
+      },
+      "pass": true,
+      "pricing": "lambda chosen so that ALL draws clear the bar with margin. 1e-6 leaves delta at 0.037 (784) and 0.036 (1152) -- priced at d=256 in the contract. 1e-8 clears at 784 (max 0.0013) but FAILS at 1152 on some draws (max 0.0258); 1e-10 still fails a bad draw (0.0151). The residual of a ridge fit to an EXACT linear map scales with lambda and with cond(W), which ranges 1200-69307 here -- so no lambda > 0 is safe against the draw. An exact map needs no ridge: at lambda = 0 the worst of 10 draws reads 3.4e-9 (784) and 5.5e-9 (1152), six orders under the bar. Fourth pricing; the first three each fixed a real defect (wrong shape, then wrong lambda, then shared rng) and the fourth removes the knob instead of tuning it."
+    },
+    "floor_random_784_256": {
+      "delta": 0.8490847206666691,
+      "target": 0.85,
+      "pass": true
+    },
+    "must_fail_shape_synthetic": {
+      "unshuffled": 0.8488442502904189,
+      "shuffled": 1.0340946972289433,
+      "pass": true
+    }
+  },
+  "family_delta_tilde": {
+    "LSTM": 1.851114348342857,
+    "MLP": 1.2536650457537564
+  },
+  "primary": {
+    "n": 46,
+    "rho_tilde": 0.5959296947271046,
+    "ci": [
+      0.5714814814814815,
+      0.7057870370370372
+    ],
+    "rho_raw": 0.7152019734813444,
+    "fires": false
+  },
+  "within_arm": {
+    "s72_off": 0.9181818181818183,
+    "e18_pmd_mlp": 0.6293706293706295,
+    "e18_pmd_lstm": 0.06293706293706294,
+    "e23_har_mlp": 0.19090909090909092
+  },
+  "reading": "Positive but not at the registered bar.",
+  "predictions": [
+    {
+      "prediction": "rho(delta~, G) >= 0.6 with interval excluding zero",
+      "odds": 40,
+      "outcome": "did not fire",
+      "note": "rho +0.596 [+0.571,+0.706]"
+    },
+    {
+      "prediction": "mean delta~ on LSTM arms exceeds MLP arms",
+      "odds": 70,
+      "outcome": "fired",
+      "note": "LSTM 1.851 vs MLP 1.254"
+    },
+    {
+      "prediction": "delta~ < 1 on the MLP arms (training moved toward equivariance)",
+      "odds": 55,
+      "outcome": "MISS",
+      "note": "1.18, 1.24, 1.34"
+    },
+    {
+      "prediction": "delta~ > 1 on the LSTM arms",
+      "odds": 50,
+      "outcome": "fired",
+      "note": "1.51, 1.85, 2.19"
+    },
+    {
+      "prediction": "positive control below 0.01",
+      "odds": 95,
+      "outcome": "fired",
+      "note": "max 1.7e-09"
+    },
+    {
+      "prediction": "must-fail passes on every cell",
+      "odds": 90,
+      "outcome": "MISS",
+      "note": "116/117"
+    }
+  ]
+}

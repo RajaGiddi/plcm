@@ -1,0 +1,219 @@
+{
+  "reading": "PER-STEP DRIFT IS AS NON-LINEAR AS ENDPOINT DRIFT. No arm's per-step residual clears the 15% bar, and each sits close to its own single-shot residual, so the non-linearity is PER-STEP. Sec B's third branch: no rolling method has a foundation here.",
+  "arms": {
+    "s72_off": {
+      "seeds": [
+        42,
+        1337,
+        2024
+      ],
+      "n_cells": 12,
+      "num_tasks": 5,
+      "family": "LSTM",
+      "residual_step_mean": 0.45657560477980313,
+      "residual_step_t95": 0.18915371435873793,
+      "residual_step_max": 0.8734166077714701,
+      "residual_single_shot": 0.446607780191047,
+      "acc_deployed": 0.8514384776353836,
+      "acc_composed": 0.8794342478116354,
+      "acc_single_shot": 0.86634428302447,
+      "acc_ceiling": 0.852903867761294,
+      "acc_shuffled": 0.1766565628349781,
+      "c_plumb_norm": 4.148532440803398,
+      "spread_step_mean": 12.001655824372238,
+      "res95_mean": 0.03283014434688431,
+      "composed_vs_chain_maxabs": 6.224187831804784e-14,
+      "residual_under_bar": false,
+      "composed_vs_single_pp": 0.013089964787165398,
+      "composed_within_5pp_of_single": true,
+      "composed_within_5pp_of_ceiling": true,
+      "c_shuf_cells_at_or_below_deployed": 12,
+      "c_shuf_pass": true,
+      "sharing": {
+        "n_pairs": 36,
+        "loss_mean": 0.025128255287806194,
+        "loss_min": -0.10755813121795654,
+        "loss_max": 0.24938875436782837,
+        "within_res": 10
+      }
+    },
+    "e18_pmd_mlp": {
+      "seeds": [
+        42,
+        1337,
+        2024
+      ],
+      "n_cells": 12,
+      "num_tasks": 5,
+      "family": "MLP",
+      "residual_step_mean": 0.4184341633283108,
+      "residual_step_t95": 0.04945731796429172,
+      "residual_step_max": 0.47641912702865075,
+      "residual_single_shot": 0.4096728925491107,
+      "acc_deployed": 0.9582083274920782,
+      "acc_composed": 0.9606666763623556,
+      "acc_single_shot": 0.9605000019073486,
+      "acc_ceiling": 0.961749995748202,
+      "acc_shuffled": 0.10700000015397866,
+      "c_plumb_norm": 0.21743976009870739,
+      "spread_step_mean": 8.645292966019253,
+      "res95_mean": 0.008400697694276654,
+      "composed_vs_chain_maxabs": 1.2656542480726785e-14,
+      "residual_under_bar": false,
+      "composed_vs_single_pp": 0.00016667445500695433,
+      "composed_within_5pp_of_single": true,
+      "composed_within_5pp_of_ceiling": true,
+      "c_shuf_cells_at_or_below_deployed": 12,
+      "c_shuf_pass": true,
+      "sharing": {
+        "n_pairs": 36,
+        "loss_mean": 0.005930562814076741,
+        "loss_min": -0.001999974250793457,
+        "loss_max": 0.019500017166137695,
+        "within_res": 25
+      }
+    },
+    "e18_pmd_lstm": {
+      "seeds": [
+        42,
+        1337,
+        2024
+      ],
+      "n_cells": 12,
+      "num_tasks": 5,
+      "family": "LSTM",
+      "residual_step_mean": 0.4655534730025184,
+      "residual_step_t95": 0.01808364671900138,
+      "residual_step_max": 0.49065798581733944,
+      "residual_single_shot": 0.4520496558175504,
+      "acc_deployed": 0.926625003417333,
+      "acc_composed": 0.9365416665871938,
+      "acc_single_shot": 0.9365000029404958,
+      "acc_ceiling": 0.9347916692495346,
+      "acc_shuffled": 0.09954166784882545,
+      "c_plumb_norm": 0.27911830070439886,
+      "spread_step_mean": 9.873897843152701,
+      "res95_mean": 0.010694121472532412,
+      "composed_vs_chain_maxabs": 1.887379141862766e-14,
+      "residual_under_bar": false,
+      "composed_vs_single_pp": 4.166364669799805e-05,
+      "composed_within_5pp_of_single": true,
+      "composed_within_5pp_of_ceiling": true,
+      "c_shuf_cells_at_or_below_deployed": 12,
+      "c_shuf_pass": true,
+      "sharing": {
+        "n_pairs": 36,
+        "loss_mean": 0.0064583271741867065,
+        "loss_min": -0.006999969482421875,
+        "loss_max": 0.03299999237060547,
+        "within_res": 27
+      }
+    },
+    "e18_rmd_mlp": {
+      "seeds": [
+        42,
+        1337,
+        2024
+      ],
+      "n_cells": 12,
+      "num_tasks": 5,
+      "family": "MLP",
+      "residual_step_mean": 0.41994319047869605,
+      "residual_step_t95": 0.01705754048385833,
+      "residual_step_max": 0.452491055425121,
+      "residual_single_shot": 0.41542022301420234,
+      "acc_deployed": 0.9678750038146973,
+      "acc_composed": 0.965499997138977,
+      "acc_single_shot": 0.9666666686534882,
+      "acc_ceiling": 0.9674166639645895,
+      "acc_shuffled": 0.09625000009934108,
+      "c_plumb_norm": 0.12323713119929341,
+      "spread_step_mean": 8.701390420326524,
+      "res95_mean": 0.007728292732922839,
+      "composed_vs_chain_maxabs": 1.8318679906315083e-14,
+      "residual_under_bar": false,
+      "composed_vs_single_pp": -0.0011666715145111084,
+      "composed_within_5pp_of_single": true,
+      "composed_within_5pp_of_ceiling": true,
+      "c_shuf_cells_at_or_below_deployed": 12,
+      "c_shuf_pass": true,
+      "sharing": {
+        "n_pairs": 36,
+        "loss_mean": -0.0005138897233539157,
+        "loss_min": -0.00550001859664917,
+        "loss_max": 0.006999969482421875,
+        "within_res": 36
+      }
+    },
+    "e23b_t20": {
+      "seeds": [
+        42,
+        1337,
+        2024
+      ],
+      "n_cells": 57,
+      "num_tasks": 20,
+      "family": "LSTM",
+      "residual_step_mean": 0.5023196747987977,
+      "residual_step_t95": 0.04056897259981072,
+      "residual_step_max": 0.5771725411921379,
+      "residual_single_shot": 0.496481374743286,
+      "acc_deployed": 0.8677543872281125,
+      "acc_composed": 0.8303157948611075,
+      "acc_single_shot": 0.8823859681162918,
+      "acc_ceiling": 0.858175443975549,
+      "acc_shuffled": 0.09852631638447444,
+      "c_plumb_norm": 0.289722861499362,
+      "spread_step_mean": 10.181106689180009,
+      "res95_mean": 0.03033350593135035,
+      "composed_vs_chain_maxabs": 1.1546319456101628e-14,
+      "residual_under_bar": false,
+      "composed_vs_single_pp": -0.05207017325518426,
+      "composed_within_5pp_of_single": false,
+      "composed_within_5pp_of_ceiling": true,
+      "c_shuf_cells_at_or_below_deployed": 57,
+      "c_shuf_pass": true,
+      "sharing": {
+        "n_pairs": 60,
+        "loss_mean": 0.0366333395242691,
+        "loss_min": -0.23000001907348633,
+        "loss_max": 0.2839999794960022,
+        "within_res": 13
+      }
+    }
+  },
+  "predictions": [
+    {
+      "prediction": "per-step residual < 15% on the MLP arms",
+      "odds": 50,
+      "outcome": "MISS",
+      "note": "residuals 0.418, 0.420"
+    },
+    {
+      "prediction": "per-step residual < 15% on the LSTM arms",
+      "odds": 35,
+      "outcome": "did not fire",
+      "note": "residuals 0.457, 0.466, 0.502"
+    },
+    {
+      "prediction": "composed within 5pp of single-shot",
+      "odds": 55,
+      "outcome": "MISS",
+      "note": ""
+    },
+    {
+      "prediction": "per-step repair shared across tasks within floor",
+      "odds": 30,
+      "outcome": "did not fire",
+      "note": "within res 10/36, 25/36, 27/36, 36/36, 13/60"
+    },
+    {
+      "prediction": "A3's 20-step composition within 5pp of refit",
+      "odds": 30,
+      "outcome": "fired",
+      "note": "SCORED AGAINST THE CEILING, not the refit -- see the module docstring; the contract names the refit and the artifact records acc(h_k, Z_k)"
+    }
+  ],
+  "bar": 0.15,
+  "deviation": "prediction 5 scored against acc_ceiling = acc(h_k, Z_k); the contract names the refit. Stated, not absorbed."
+}

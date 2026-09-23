@@ -1,0 +1,54 @@
+{
+  "arm": "s72_off seed 42, theta_T (runs/ckpt_e10off_ec_seed42/mafc_seed42_fp32/task4_epoch9.pt, pulled from the volume 2026-09-18)",
+  "control": "v3 raw feature o_t*tanh(c_t) substituted for the deployed post-composition feature c'_t; head = model.classifier (shared head, OFF arm); 64 test windows per task, probe draw 20260916",
+  "live": {
+    "P-A": "pass (bitwise) on 4/4 tasks",
+    "P-B d_logit": 0.0
+  },
+  "per_task": {
+    "0": {
+      "max_feature_diff": 1.306,
+      "max_head_wrong_minus_logits": 5.567,
+      "prediction_flips_pct": 14.1
+    },
+    "1": {
+      "max_feature_diff": 1.76,
+      "max_head_wrong_minus_logits": 4.595,
+      "prediction_flips_pct": 7.8
+    },
+    "2": {
+      "max_feature_diff": 1.761,
+      "max_head_wrong_minus_logits": 4.879,
+      "prediction_flips_pct": 32.8
+    },
+    "3": {
+      "max_feature_diff": 1.664,
+      "max_head_wrong_minus_logits": 5.616,
+      "prediction_flips_pct": 14.1
+    }
+  },
+  "vit_control_from_logs": {
+    "task-IL base, seeds 42/1337/2024/1234/7": [
+      86.71,
+      69.9,
+      75.86,
+      72.02,
+      66.93
+    ],
+    "class-IL seeds 42/1337/2024": [
+      111.2,
+      59.27,
+      40.3
+    ],
+    "source": "runs/e12_decomp_v2/logs/e12dec_base_*.log, runs/e12cildec_*.log"
+  },
+  "resnet_control_from_logs": {
+    "seeds 42/1337/2024": [
+      24.35,
+      26.2,
+      32.69
+    ],
+    "build_gate": 0.2457,
+    "source": "runs/e14_decomp/logs/e14dec_*.log, runs/e14_build_gate.json"
+  }
+}

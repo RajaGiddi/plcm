@@ -1,0 +1,64 @@
+{
+  "predictions": [
+    {
+      "prediction": "D1: transfer loss <= 5pp on adjacent tasks, all four arms",
+      "odds": 60,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D1: transfer loss <= 5pp on all pairs, all four arms",
+      "odds": 35,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D1: deploy(k) within resolution of own(k) on >= 3 of 4 arms",
+      "odds": 40,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D2: spread < 0.5 on the MLP arms (T, re-laid)",
+      "odds": 65,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "D2: spread < 0.5 on the LSTM arms (T, re-laid)",
+      "odds": 45,
+      "outcome": "did not fire"
+    },
+    {
+      "prediction": "D2: F_enc correlates with log sigma_d across the 48 cells (r < -0.5)",
+      "odds": 55,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D2: the residual explains F_enc better than sigma_d (|partial r| larger)",
+      "odds": 45,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D2: re-laid F_enc within resolution of 0 on >= 3 of 4 scratch arms",
+      "odds": 55,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D3: ||D_in|| coefficient positive, interval excluding 0, pretrained arms",
+      "odds": 60,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "D3: ||D_out|| coefficient's interval includes 0, pretrained arms",
+      "odds": 55,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "D3: fit residual under 10% of ||Z_k|| (S, re-laid, test, all arms)",
+      "odds": 70,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "C-SHUF passes 12/12 on every arm",
+      "odds": 90,
+      "outcome": "fired"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+========================================================================================================
+E28 MEASURE  arm=b0_ep30 seed=42  heldout ccbeb4f4ecf1
+========================================================================================================
+  arm identity: aug_family=None p=0.0 aux=0.0 heldout=None epochs=30
+
+--- STDERR ---
+Traceback (most recent call last):
+  File "/repo/scripts/e28_measure.py", line 187, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/repo/scripts/e28_measure.py", line 114, in main
+    m4 = load(f"{root}/{CKPT[args.arm].format(s=args.seed)}", T)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/scripts/channel_decomp.py", line 116, in load
+    m = PLCM.load_era(d, task, epoch=epoch)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/src/models/plcm.py", line 907, in load_era
+    ckpt = _read(task, epoch)
+           ^^^^^^^^^^^^^^^^^^
+  File "/repo/src/models/plcm.py", line 905, in _read
+    return torch.load(p, weights_only=True, map_location="cpu")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 1561, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 795, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/serialization.py", line 776, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/runs/ckpt_e28b_b0_ep30_seed42/mafc_seed42_fp32/task4_epoch9.pt'

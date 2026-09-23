@@ -1,0 +1,42 @@
+====================================================================================================
+E12 DECOMPOSITION — arm=cil seed=2024 device=cuda
+====================================================================================================
+  checkpoints: runs/ckpt_e12_cil_seed2024/mafc_seed2024
+  class order fingerprint 4019d151cd42
+
+----------------------------------------------------------------------------------------------------
+P3 GATES (re-fired on the trained ViT checkpoints, not inherited)
+----------------------------------------------------------------------------------------------------
+    P3a control fired: P3a FAILED CONTROL: head(captured_feature) != deployed_logits (max |delta| = 4.030e+01)...
+    P3b: N/A — class-IL has a single shared readout (use_task_heads=false), so 'which head' has no referent
+  catch-32 label alignment: loader order == dataset indexing, bitwise on 64 samples -> PASS
+  fitting the all-seen-classes probe (100-way, all 20 train splits)
+    fit on 50000 samples, 100 classes (chance 0.0100)
+  T0  ceil 0.9440 orig 0.0000 refit 0.9420 refit_ceil 0.9740 | R +0.0300 F_enc +0.0320 F_read +0.9420 share  96.7% | id 0.0e+00 | fp16 d +0.0000  (38s)
+  T1  ceil 0.9800 orig 0.0000 refit 0.9760 refit_ceil 0.9820 | R +0.0020 F_enc +0.0060 F_read +0.9760 share  99.4% | id 0.0e+00 | fp16 d +0.0000  (75s)
+  T2  ceil 0.9600 orig 0.0000 refit 0.9660 refit_ceil 0.9680 | R +0.0080 F_enc +0.0020 F_read +0.9660 share  99.8% | id 0.0e+00 | fp16 d -0.0000  (112s)
+  T3  ceil 0.9280 orig 0.0000 refit 0.9440 refit_ceil 0.9680 | R +0.0400 F_enc +0.0240 F_read +0.9440 share  97.5% | id 0.0e+00 | fp16 d -0.0000  (146s)
+  T4  ceil 0.9440 orig 0.0000 refit 0.9340 refit_ceil 0.9600 | R +0.0160 F_enc +0.0260 F_read +0.9340 share  97.3% | id 0.0e+00 | fp16 d +0.0000  (181s)
+  T5  ceil 0.9520 orig 0.0000 refit 0.9400 refit_ceil 0.9640 | R +0.0120 F_enc +0.0240 F_read +0.9400 share  97.5% | id 0.0e+00 | fp16 d +0.0000  (217s)
+  T6  ceil 0.9380 orig 0.0000 refit 0.9520 refit_ceil 0.9640 | R +0.0260 F_enc +0.0120 F_read +0.9520 share  98.8% | id 0.0e+00 | fp16 d +0.0000  (250s)
+  T7  ceil 0.9380 orig 0.0000 refit 0.9420 refit_ceil 0.9680 | R +0.0300 F_enc +0.0260 F_read +0.9420 share  97.3% | id 0.0e+00 | fp16 d +0.0000  (284s)
+  T8  ceil 0.9580 orig 0.0000 refit 0.9680 refit_ceil 0.9720 | R +0.0140 F_enc +0.0040 F_read +0.9680 share  99.6% | id 0.0e+00 | fp16 d +0.0000  (318s)
+  T9  ceil 0.8840 orig 0.0000 refit 0.8660 refit_ceil 0.9120 | R +0.0280 F_enc +0.0460 F_read +0.8660 share  95.0% | id 0.0e+00 | fp16 d +0.0000  (352s)
+  T10 ceil 0.9580 orig 0.0000 refit 0.9540 refit_ceil 0.9660 | R +0.0080 F_enc +0.0120 F_read +0.9540 share  98.8% | id 0.0e+00 | fp16 d +0.0000  (386s)
+  T11 ceil 0.9160 orig 0.0000 refit 0.9100 refit_ceil 0.9480 | R +0.0320 F_enc +0.0380 F_read +0.9100 share  96.0% | id 0.0e+00 | fp16 d +0.0000  (420s)
+  T12 ceil 0.9560 orig 0.0000 refit 0.9500 refit_ceil 0.9620 | R +0.0060 F_enc +0.0120 F_read +0.9500 share  98.8% | id 0.0e+00 | fp16 d -0.0000  (457s)
+  T13 ceil 0.9840 orig 0.0000 refit 0.9560 refit_ceil 0.9820 | R -0.0020 F_enc +0.0260 F_read +0.9560 share  97.4% | id 0.0e+00 | fp16 d +0.0000  (491s)
+  T14 ceil 0.9620 orig 0.0000 refit 0.9540 refit_ceil 0.9640 | R +0.0020 F_enc +0.0100 F_read +0.9540 share  99.0% | id 0.0e+00 | fp16 d +0.0000  (525s)
+  T15 ceil 0.9460 orig 0.0000 refit 0.9560 refit_ceil 0.9560 | R +0.0100 F_enc +0.0000 F_read +0.9560 share 100.0% | id 0.0e+00 | fp16 d -0.0000  (559s)
+  T16 ceil 0.9660 orig 0.0020 refit 0.9560 refit_ceil 0.9720 | R +0.0060 F_enc +0.0160 F_read +0.9540 share  98.4% | id 0.0e+00 | fp16 d +0.0000  (592s)
+  T17 ceil 0.9300 orig 0.0000 refit 0.9480 refit_ceil 0.9480 | R +0.0180 F_enc +0.0000 F_read +0.9480 share 100.0% | id 0.0e+00 | fp16 d +0.0000  (628s)
+  T18 ceil 0.9500 orig 0.0020 refit 0.9420 refit_ceil 0.9620 | R +0.0120 F_enc +0.0200 F_read +0.9400 share  97.9% | id 0.0e+00 | fp16 d -0.0000  (663s)
+
+====================================================================================================
+  identity   max |F_enc + F_read - R - F_total| = 0.00e+00 -> OK
+  P3a        max |head(feature) - logits| = 0.00e+00
+  fp16 reload delta vs stored boundary: mean +0.00000  max |d| 0.00000  (boundary-time value is authoritative)
+  R (pooled) +0.0157 vs bar 0.05 -> PASS
+  F_total 0.9468  F_enc 0.0177  F_read 0.9448  reader share 98.2%
+  task-0: ceiling 0.9440 -> deployed 0.0000 -> REFIT 0.9420
+  wrote /runs/e12_decomp_cil_v3/cil_2024.json

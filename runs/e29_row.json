@@ -1,0 +1,1112 @@
+{
+  "predictions": [
+    {
+      "prediction": "A1 two dynamic activities, balanced, succeeds",
+      "odds": 55,
+      "outcome": "MISS",
+      "note": "0/22 targets, pooled 0.00"
+    },
+    {
+      "prediction": "A2 one static + one dynamic, balanced, succeeds",
+      "odds": 60,
+      "outcome": "fired",
+      "note": "22/22 targets, pooled 1.00"
+    },
+    {
+      "prediction": "A3 three static activities only, succeeds",
+      "odds": 25,
+      "outcome": "did not fire",
+      "note": "0/22 targets, pooled 0.00"
+    },
+    {
+      "prediction": "A4 all six skewed 80/20, succeeds",
+      "odds": 50,
+      "outcome": "fired",
+      "note": "22/22 targets, pooled 1.00"
+    },
+    {
+      "prediction": "A5 contiguous session, stride 2, succeeds",
+      "odds": 45,
+      "outcome": "unmeasurable",
+      "note": "UNMEASURABLE at the contracted n (see note)"
+    },
+    {
+      "prediction": "A6 contiguous session, stride 1, succeeds",
+      "odds": 35,
+      "outcome": "did not fire",
+      "note": "0/22 targets, pooled 0.49"
+    },
+    {
+      "prediction": "B1 median error across pairings at n=256 below 10 deg",
+      "odds": 55,
+      "outcome": "MISS",
+      "note": "median 12.21 deg"
+    },
+    {
+      "prediction": "B2 error plateaus by n=256 (bias, not variance)",
+      "odds": 65,
+      "outcome": "fired",
+      "note": "n256 12.21 vs n1024 13.36, rel 0.09 < 0.2 [DEFINITION SUPPLIED AFTER THE FACT]"
+    },
+    {
+      "prediction": "B3 deployed accuracy at 9 deg error within 2pp of exact",
+      "odds": 50,
+      "outcome": "fired",
+      "note": "mean drop +0.0094 over 6 cells"
+    },
+    {
+      "prediction": "B4 estimated re-layout within 2pp of exact (rotations)",
+      "odds": 45,
+      "outcome": "fired",
+      "note": "rot -0.0033; permutations -0.0333 (reported beside)"
+    }
+  ],
+  "parts": {
+    "A": {
+      "two_dynamic_n16": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "two_dynamic_n64": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "two_dynamic_n256": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "static_plus_dynamic_n16": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.5590909090909091
+      },
+      "static_plus_dynamic_n64": {
+        "succeeds": false,
+        "targets_recovering": 5,
+        "pooled_exact_rate": 0.8
+      },
+      "static_plus_dynamic_n256": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 0.9954545454545455
+      },
+      "three_static_n16": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "three_static_n64": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "three_static_n256": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.0
+      },
+      "all6_n16": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 0.9681818181818181
+      },
+      "all6_n64": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 1.0
+      },
+      "all6_n256": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 1.0
+      },
+      "all6_n1024": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 1.0
+      },
+      "all6_skew80_n16": {
+        "succeeds": false,
+        "targets_recovering": 19,
+        "pooled_exact_rate": 0.9318181818181819
+      },
+      "all6_skew80_n64": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 0.9909090909090909
+      },
+      "all6_skew80_n256": {
+        "succeeds": true,
+        "targets_recovering": 22,
+        "pooled_exact_rate": 1.0
+      },
+      "contiguous_stride1_n16": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.031818181818181815
+      },
+      "contiguous_stride1_n64": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.08181818181818182
+      },
+      "contiguous_stride1_n256": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.48636363636363633
+      },
+      "contiguous_stride2_n16": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.09090909090909091
+      },
+      "contiguous_stride2_n64": {
+        "succeeds": false,
+        "targets_recovering": 0,
+        "pooled_exact_rate": 0.4409090909090909
+      }
+    },
+    "B": {
+      "n16": {
+        "median_deg": 23.292208369667158,
+        "iqr": [
+          12.645892807907106,
+          38.955816087186044
+        ],
+        "min": 6.959811513020106,
+        "max": 179.0067626894191,
+        "max_equivariance_spread": 4.75911613051494e-06,
+        "n_pairings": 20,
+        "cells": [
+          {
+            "ref": 0,
+            "query": 1,
+            "errors_deg": [
+              16.072414694483506,
+              16.072413814480228,
+              16.072413181692657
+            ],
+            "equivariance_spread": 1.512790849034218e-06,
+            "residual": 0.3536760988175191
+          },
+          {
+            "ref": 0,
+            "query": 2,
+            "errors_deg": [
+              11.179113025262374,
+              11.179112631472238,
+              11.179112855852548
+            ],
+            "equivariance_spread": 3.937901364992058e-07,
+            "residual": 0.3138639012215052
+          },
+          {
+            "ref": 0,
+            "query": 3,
+            "errors_deg": [
+              15.416005571270555,
+              15.416005560134126,
+              15.41600524259304
+            ],
+            "equivariance_spread": 3.2867751542653423e-07,
+            "residual": 0.09773480848666607
+          },
+          {
+            "ref": 0,
+            "query": 4,
+            "errors_deg": [
+              12.848666671767676,
+              12.84866531692977,
+              12.848666506544458
+            ],
+            "equivariance_spread": 1.3548379058647697e-06,
+            "residual": 1.2541256203152653
+          },
+          {
+            "ref": 1,
+            "query": 0,
+            "errors_deg": [
+              179.00676229896567,
+              179.00676276438946,
+              179.0067630049021
+            ],
+            "equivariance_spread": 7.059364293127146e-07,
+            "residual": 0.5218356892364504
+          },
+          {
+            "ref": 1,
+            "query": 2,
+            "errors_deg": [
+              46.999341091459506,
+              46.99934264537696,
+              46.99934093949597
+            ],
+            "equivariance_spread": 1.7058809902437133e-06,
+            "residual": 0.316252022118163
+          },
+          {
+            "ref": 1,
+            "query": 3,
+            "errors_deg": [
+              10.847245016892689,
+              10.847245526339151,
+              10.84724490203475
+            ],
+            "equivariance_spread": 6.243044001763565e-07,
+            "residual": 0.11643777628424495
+          },
+          {
+            "ref": 1,
+            "query": 4,
+            "errors_deg": [
+              74.83637285207722,
+              74.83637389948834,
+              74.83637420152262
+            ],
+            "equivariance_spread": 1.3494453980911203e-06,
+            "residual": 0.6574044609505569
+          },
+          {
+            "ref": 2,
+            "query": 0,
+            "errors_deg": [
+              12.037572523070436,
+              12.037572773524111,
+              12.037572912565013
+            ],
+            "equivariance_spread": 3.894945770355207e-07,
+            "residual": 0.1759584417543965
+          },
+          {
+            "ref": 2,
+            "query": 1,
+            "errors_deg": [
+              9.391453556126011,
+              9.391453068005948,
+              9.391453427438876
+            ],
+            "equivariance_spread": 4.881200634798688e-07,
+            "residual": 0.2843267037310969
+          },
+          {
+            "ref": 2,
+            "query": 3,
+            "errors_deg": [
+              25.91978878593804,
+              25.919788583151938,
+              25.919788933521737
+            ],
+            "equivariance_spread": 3.503697989515331e-07,
+            "residual": 0.19143208246277654
+          },
+          {
+            "ref": 2,
+            "query": 4,
+            "errors_deg": [
+              14.872141852112632,
+              14.872141864896376,
+              14.87214089392727
+            ],
+            "equivariance_spread": 9.709691060066916e-07,
+            "residual": 0.6755941325768307
+          },
+          {
+            "ref": 3,
+            "query": 0,
+            "errors_deg": [
+              31.302268345183542,
+              31.302269415027922,
+              31.30226892022599
+            ],
+            "equivariance_spread": 1.0698443801970825e-06,
+            "residual": 0.266519057805121
+          },
+          {
+            "ref": 3,
+            "query": 1,
+            "errors_deg": [
+              6.95981133816668,
+              6.959811589572581,
+              6.959811611321055
+            ],
+            "equivariance_spread": 2.731543755629673e-07,
+            "residual": 0.3303763357877843
+          },
+          {
+            "ref": 3,
+            "query": 2,
+            "errors_deg": [
+              46.62673280355021,
+              46.62673181816434,
+              46.62673234969972
+            ],
+            "equivariance_spread": 9.8538587423036e-07,
+            "residual": 1.0297026871498405
+          },
+          {
+            "ref": 3,
+            "query": 4,
+            "errors_deg": [
+              44.42240709286348,
+              44.42241076609597,
+              44.42240600697984
+            ],
+            "equivariance_spread": 4.75911613051494e-06,
+            "residual": 2.136970012931876
+          },
+          {
+            "ref": 4,
+            "query": 0,
+            "errors_deg": [
+              25.79991879285282,
+              25.799917562745943,
+              25.799918087129896
+            ],
+            "equivariance_spread": 1.2301068785802727e-06,
+            "residual": 0.3358800922489561
+          },
+          {
+            "ref": 4,
+            "query": 1,
+            "errors_deg": [
+              21.80233949728887,
+              21.80233839801645,
+              21.802338170153966
+            ],
+            "equivariance_spread": 1.3271349033061597e-06,
+            "residual": 0.21964801163123238
+          },
+          {
+            "ref": 4,
+            "query": 2,
+            "errors_deg": [
+              24.782077767971913,
+              24.78207767854103,
+              24.782078706030738
+            ],
+            "equivariance_spread": 1.0274897093154323e-06,
+            "residual": 0.24703306260525332
+          },
+          {
+            "ref": 4,
+            "query": 3,
+            "errors_deg": [
+              37.133618922747395,
+              37.13361864421755,
+              37.13361882646611
+            ],
+            "equivariance_spread": 2.7852984629817e-07,
+            "residual": 0.2582659327850954
+          }
+        ]
+      },
+      "n64": {
+        "median_deg": 15.179161249099312,
+        "iqr": [
+          8.700576862380277,
+          22.780212521837285
+        ],
+        "min": 4.602495632964621,
+        "max": 176.3803043970829,
+        "max_equivariance_spread": 4.071705294705907e-06,
+        "n_pairings": 20,
+        "cells": [
+          {
+            "ref": 0,
+            "query": 1,
+            "errors_deg": [
+              11.789019676948346,
+              11.78901988841881,
+              11.789020002107721
+            ],
+            "equivariance_spread": 3.25159374980899e-07,
+            "residual": 0.12794804878313948
+          },
+          {
+            "ref": 0,
+            "query": 2,
+            "errors_deg": [
+              7.7114474763594405,
+              7.711447765494501,
+              7.71144718669913
+            ],
+            "equivariance_spread": 5.78795371630747e-07,
+            "residual": 0.13155678109241759
+          },
+          {
+            "ref": 0,
+            "query": 3,
+            "errors_deg": [
+              25.732562318780275,
+              25.732561994697896,
+              25.732561443670118
+            ],
+            "equivariance_spread": 8.751101567838759e-07,
+            "residual": 0.11212084137973921
+          },
+          {
+            "ref": 0,
+            "query": 4,
+            "errors_deg": [
+              14.368170998758652,
+              14.368174696188355,
+              14.36817449689258
+            ],
+            "equivariance_spread": 3.697429702853583e-06,
+            "residual": 0.5883547209501846
+          },
+          {
+            "ref": 1,
+            "query": 0,
+            "errors_deg": [
+              6.947301355372558,
+              6.947300820369924,
+              6.947300537644288
+            ],
+            "equivariance_spread": 8.177282708743405e-07,
+            "residual": 0.12434879061110111
+          },
+          {
+            "ref": 1,
+            "query": 2,
+            "errors_deg": [
+              14.167809669517128,
+              14.16780983817851,
+              14.16781020011251
+            ],
+            "equivariance_spread": 5.305953827416943e-07,
+            "residual": 0.2793710649538272
+          },
+          {
+            "ref": 1,
+            "query": 3,
+            "errors_deg": [
+              8.650630301273651,
+              8.650630503835567,
+              8.650630623885672
+            ],
+            "equivariance_spread": 3.226120206534233e-07,
+            "residual": 0.0717804772001169
+          },
+          {
+            "ref": 1,
+            "query": 4,
+            "errors_deg": [
+              26.283971044934976,
+              26.283971665839978,
+              26.283971760447308
+            ],
+            "equivariance_spread": 7.155123320501389e-07,
+            "residual": 0.614677143190947
+          },
+          {
+            "ref": 2,
+            "query": 0,
+            "errors_deg": [
+              4.602495750498281,
+              4.602495606643086,
+              4.602495541752496
+            ],
+            "equivariance_spread": 2.0874578421370416e-07,
+            "residual": 0.14562761287312234
+          },
+          {
+            "ref": 2,
+            "query": 1,
+            "errors_deg": [
+              5.943129497507464,
+              5.9431287710294995,
+              5.943129548755102
+            ],
+            "equivariance_spread": 7.777256021412882e-07,
+            "residual": 0.14163100315821575
+          },
+          {
+            "ref": 2,
+            "query": 3,
+            "errors_deg": [
+              27.230842878343,
+              27.230842714251047,
+              27.230841332164236
+            ],
+            "equivariance_spread": 1.546178765465811e-06,
+            "residual": 0.12959731276806422
+          },
+          {
+            "ref": 2,
+            "query": 4,
+            "errors_deg": [
+              8.717225274571284,
+              8.717225560071974,
+              8.717226138546225
+            ],
+            "equivariance_spread": 8.639749413674735e-07,
+            "residual": 0.43616659707510935
+          },
+          {
+            "ref": 3,
+            "query": 0,
+            "errors_deg": [
+              176.38030433889782,
+              176.38030438192888,
+              176.38030447042203
+            ],
+            "equivariance_spread": 1.315242172950093e-07,
+            "residual": 0.1611716981786429
+          },
+          {
+            "ref": 3,
+            "query": 1,
+            "errors_deg": [
+              10.145672769485909,
+              10.1456729586054,
+              10.145673052844275
+            ],
+            "equivariance_spread": 2.8335836610438037e-07,
+            "residual": 0.2383075745159769
+          },
+          {
+            "ref": 3,
+            "query": 2,
+            "errors_deg": [
+              21.50787123425482,
+              21.507871861097193,
+              21.50787120268356
+            ],
+            "equivariance_spread": 6.584136329479406e-07,
+            "residual": 0.2577245861508398
+          },
+          {
+            "ref": 3,
+            "query": 4,
+            "errors_deg": [
+              47.28044991836872,
+              47.28044675222044,
+              47.28044881847419
+            ],
+            "equivariance_spread": 3.1661482751133008e-06,
+            "residual": 0.9236446072244358
+          },
+          {
+            "ref": 4,
+            "query": 0,
+            "errors_deg": [
+              21.79609342657278,
+              21.79609724344886,
+              21.796097498278076
+            ],
+            "equivariance_spread": 4.071705294705907e-06,
+            "residual": 0.31216611765538416
+          },
+          {
+            "ref": 4,
+            "query": 1,
+            "errors_deg": [
+              19.019800061418717,
+              19.019799797336457,
+              19.019799429555963
+            ],
+            "equivariance_spread": 6.318627541190835e-07,
+            "residual": 0.12840536511848835
+          },
+          {
+            "ref": 4,
+            "query": 2,
+            "errors_deg": [
+              15.990148172212393,
+              15.990149791765159,
+              15.990149338778739
+            ],
+            "equivariance_spread": 1.6195527656748254e-06,
+            "residual": 0.12930330071907684
+          },
+          {
+            "ref": 4,
+            "query": 3,
+            "errors_deg": [
+              21.097747997442728,
+              21.09774711966718,
+              21.09774651208148
+            ],
+            "equivariance_spread": 1.4853612491094736e-06,
+            "residual": 0.2909492670440277
+          }
+        ]
+      },
+      "n256": {
+        "median_deg": 12.208195580197248,
+        "iqr": [
+          9.300357229383813,
+          21.72395339010601
+        ],
+        "min": 3.5170633069447645,
+        "max": 33.85668137784706,
+        "max_equivariance_spread": 2.4321877347688314e-06,
+        "n_pairings": 20,
+        "cells": [
+          {
+            "ref": 0,
+            "query": 1,
+            "errors_deg": [
+              5.488765743027762,
+              5.4887666970835625,
+              5.488764854557482
+            ],
+            "equivariance_spread": 1.8425260801535615e-06,
+            "residual": 0.2962713049696093
+          },
+          {
+            "ref": 0,
+            "query": 2,
+            "errors_deg": [
+              7.927162553441052,
+              7.92716285922822,
+              7.927163127848982
+            ],
+            "equivariance_spread": 5.744079301095439e-07,
+            "residual": 0.24381206193709462
+          },
+          {
+            "ref": 0,
+            "query": 3,
+            "errors_deg": [
+              20.62758485499201,
+              20.62758542295439,
+              20.627585481715077
+            ],
+            "equivariance_spread": 6.267230681089586e-07,
+            "residual": 0.08823074136420697
+          },
+          {
+            "ref": 0,
+            "query": 4,
+            "errors_deg": [
+              13.720778159131749,
+              13.720777156604967,
+              13.720777346807902
+            ],
+            "equivariance_spread": 1.0025267815905181e-06,
+            "residual": 0.4009672293249349
+          },
+          {
+            "ref": 1,
+            "query": 0,
+            "errors_deg": [
+              10.50420389364709,
+              10.504203331286929,
+              10.504203648335125
+            ],
+            "equivariance_spread": 5.623601602167128e-07,
+            "residual": 0.13274248708407743
+          },
+          {
+            "ref": 1,
+            "query": 2,
+            "errors_deg": [
+              8.062623199475873,
+              8.062623383276687,
+              8.062623173499283
+            ],
+            "equivariance_spread": 2.0977740433636427e-07,
+            "residual": 0.13430856216930354
+          },
+          {
+            "ref": 1,
+            "query": 3,
+            "errors_deg": [
+              10.526238455708615,
+              10.52623833591578,
+              10.526238408057747
+            ],
+            "equivariance_spread": 1.197928352070221e-07,
+            "residual": 0.04902927945966589
+          },
+          {
+            "ref": 1,
+            "query": 4,
+            "errors_deg": [
+              19.92077395895323,
+              19.920771526765495,
+              19.92077319869235
+            ],
+            "equivariance_spread": 2.4321877347688314e-06,
+            "residual": 0.23651039659903184
+          },
+          {
+            "ref": 2,
+            "query": 0,
+            "errors_deg": [
+              3.517063868518011,
+              3.5170628438626252,
+              3.5170632084536573
+            ],
+            "equivariance_spread": 1.0246553858728191e-06,
+            "residual": 0.09205753827775612
+          },
+          {
+            "ref": 2,
+            "query": 1,
+            "errors_deg": [
+              8.028465677144206,
+              8.028465347730842,
+              8.028465380292005
+            ],
+            "equivariance_spread": 3.294133641418284e-07,
+            "residual": 0.1047320958759943
+          },
+          {
+            "ref": 2,
+            "query": 3,
+            "errors_deg": [
+              24.359185154179038,
+              24.35918550052152,
+              24.35918594706342
+            ],
+            "equivariance_spread": 7.928843821503051e-07,
+            "residual": 0.1267117907242521
+          },
+          {
+            "ref": 2,
+            "query": 4,
+            "errors_deg": [
+              10.43299746832699,
+              10.432999678413227,
+              10.432999632770539
+            ],
+            "equivariance_spread": 2.210086236686948e-06,
+            "residual": 0.19761660732634762
+          },
+          {
+            "ref": 3,
+            "query": 0,
+            "errors_deg": [
+              33.856681011608515,
+              33.85668189277428,
+              33.85668122915839
+            ],
+            "equivariance_spread": 8.811657679075324e-07,
+            "residual": 0.15521034818652574
+          },
+          {
+            "ref": 3,
+            "query": 1,
+            "errors_deg": [
+              10.695613745780516,
+              10.695613589311272,
+              10.695613483547096
+            ],
+            "equivariance_spread": 2.622334207558197e-07,
+            "residual": 0.24191002821402147
+          },
+          {
+            "ref": 3,
+            "query": 2,
+            "errors_deg": [
+              22.81453608923228,
+              22.81453538355153,
+              22.81453478456619
+            ],
+            "equivariance_spread": 1.3046660889415307e-06,
+            "residual": 0.3798630254705297
+          },
+          {
+            "ref": 3,
+            "query": 4,
+            "errors_deg": [
+              27.86700978196674,
+              27.867010715176683,
+              27.86700920338188
+            ],
+            "equivariance_spread": 1.511794803121802e-06,
+            "residual": 0.6552737661294681
+          },
+          {
+            "ref": 4,
+            "query": 0,
+            "errors_deg": [
+              16.71620789825954,
+              16.716207217244484,
+              16.716207992795653
+            ],
+            "equivariance_spread": 7.755511681750704e-07,
+            "residual": 0.20094725418968387
+          },
+          {
+            "ref": 4,
+            "query": 1,
+            "errors_deg": [
+              21.36042550628676,
+              21.360426656529015,
+              21.360425978491605
+            ],
+            "equivariance_spread": 1.150242255221201e-06,
+            "residual": 0.10659719083714284
+          },
+          {
+            "ref": 4,
+            "query": 2,
+            "errors_deg": [
+              9.71293609611455,
+              9.712934980759497,
+              9.712934588577264
+            ],
+            "equivariance_spread": 1.5075372861161895e-06,
+            "residual": 0.14490063790194188
+          },
+          {
+            "ref": 4,
+            "query": 3,
+            "errors_deg": [
+              25.876092279623073,
+              25.87609272600958,
+              25.87609333412388
+            ],
+            "equivariance_spread": 1.0545008066742412e-06,
+            "residual": 0.19533785872023648
+          }
+        ]
+      },
+      "n1024": {
+        "median_deg": 13.361473737809465,
+        "iqr": [
+          6.842052445546731,
+          21.812299224026468
+        ],
+        "min": 4.996385660962944,
+        "max": 28.250165632378568,
+        "max_equivariance_spread": 1.7010267328032569e-06,
+        "n_pairings": 20,
+        "cells": [
+          {
+            "ref": 0,
+            "query": 1,
+            "errors_deg": [
+              7.099399036215994,
+              7.099399324434667,
+              7.0993994643954705
+            ],
+            "equivariance_spread": 4.2817947676354606e-07,
+            "residual": 0.15662760886710436
+          },
+          {
+            "ref": 0,
+            "query": 2,
+            "errors_deg": [
+              4.996385614063384,
+              4.996386257244632,
+              4.9963851115808176
+            ],
+            "equivariance_spread": 1.1456638144835551e-06,
+            "residual": 0.15762647810179775
+          },
+          {
+            "ref": 0,
+            "query": 3,
+            "errors_deg": [
+              20.77675206072123,
+              20.77675205702848,
+              20.776751983620546
+            ],
+            "equivariance_spread": 7.710068317123842e-08,
+            "residual": 0.09642181606210366
+          },
+          {
+            "ref": 0,
+            "query": 4,
+            "errors_deg": [
+              15.094527617864058,
+              15.094528452817574,
+              15.094528850931384
+            ],
+            "equivariance_spread": 1.2330673264671077e-06,
+            "residual": 0.5113426350650536
+          },
+          {
+            "ref": 1,
+            "query": 0,
+            "errors_deg": [
+              5.484255056494201,
+              5.484255316334177,
+              5.484254844438262
+            ],
+            "equivariance_spread": 4.718959143446e-07,
+            "residual": 0.09553678623759668
+          },
+          {
+            "ref": 1,
+            "query": 2,
+            "errors_deg": [
+              5.1502066817735805,
+              5.150206378298358,
+              5.150206861357838
+            ],
+            "equivariance_spread": 4.830594804161592e-07,
+            "residual": 0.14377580095158315
+          },
+          {
+            "ref": 1,
+            "query": 3,
+            "errors_deg": [
+              11.013163925432016,
+              11.013163833262709,
+              11.01316404369442
+            ],
+            "equivariance_spread": 2.1043171116730264e-07,
+            "residual": 0.04989515253038739
+          },
+          {
+            "ref": 1,
+            "query": 4,
+            "errors_deg": [
+              24.2979306919456,
+              24.297930301682555,
+              24.297928990918866
+            ],
+            "equivariance_spread": 1.7010267328032569e-06,
+            "residual": 0.3133288658545131
+          },
+          {
+            "ref": 2,
+            "query": 0,
+            "errors_deg": [
+              6.070011954224514,
+              6.0700113501759425,
+              6.07001256702192
+            ],
+            "equivariance_spread": 1.2168459777583962e-06,
+            "residual": 0.07937490159639096
+          },
+          {
+            "ref": 2,
+            "query": 1,
+            "errors_deg": [
+              6.001605189554595,
+              6.001604909982569,
+              6.001605444057181
+            ],
+            "equivariance_spread": 5.340746120907625e-07,
+            "residual": 0.09193139649657636
+          },
+          {
+            "ref": 2,
+            "query": 3,
+            "errors_deg": [
+              21.495052442024978,
+              21.495052280280312,
+              21.495052265723178
+            ],
+            "equivariance_spread": 1.76301799825751e-07,
+            "residual": 0.1187582523835831
+          },
+          {
+            "ref": 2,
+            "query": 4,
+            "errors_deg": [
+              11.935580551463737,
+              11.935581062316883,
+              11.93558208109892
+            ],
+            "equivariance_spread": 1.529635182961897e-06,
+            "residual": 0.19591268329929146
+          },
+          {
+            "ref": 3,
+            "query": 0,
+            "errors_deg": [
+              19.550402517669003,
+              19.550403058227626,
+              19.550402289909222
+            ],
+            "equivariance_spread": 7.683184044537938e-07,
+            "residual": 0.13005423583651776
+          },
+          {
+            "ref": 3,
+            "query": 1,
+            "errors_deg": [
+              9.772551387265919,
+              9.772551275933136,
+              9.77255177292592
+            ],
+            "equivariance_spread": 4.969927847042754e-07,
+            "residual": 0.21297097828994216
+          },
+          {
+            "ref": 3,
+            "query": 2,
+            "errors_deg": [
+              23.181698211411256,
+              23.181699363178836,
+              23.181699102928857
+            ],
+            "equivariance_spread": 1.151767580864771e-06,
+            "residual": 0.31172827314000173
+          },
+          {
+            "ref": 3,
+            "query": 4,
+            "errors_deg": [
+              24.641267516277487,
+              24.641268731814247,
+              24.641267859841964
+            ],
+            "equivariance_spread": 1.2155367592470157e-06,
+            "residual": 0.675355000174646
+          },
+          {
+            "ref": 4,
+            "query": 0,
+            "errors_deg": [
+              14.787366564289705,
+              14.787365573447982,
+              14.787366594239565
+            ],
+            "equivariance_spread": 1.0207915828175373e-06,
+            "residual": 0.22695410509502262
+          },
+          {
+            "ref": 4,
+            "query": 1,
+            "errors_deg": [
+              22.76404031517625,
+              22.7640395116663,
+              22.764039897389647
+            ],
+            "equivariance_spread": 8.035099483549857e-07,
+            "residual": 0.10875734400749655
+          },
+          {
+            "ref": 4,
+            "query": 2,
+            "errors_deg": [
+              9.702182461334816,
+              9.702182710986346,
+              9.702183874529041
+            ],
+            "equivariance_spread": 1.413194224753056e-06,
+            "residual": 0.09997686056396196
+          },
+          {
+            "ref": 4,
+            "query": 3,
+            "errors_deg": [
+              28.25016572858102,
+              28.250165954985665,
+              28.250165213569016
+            ],
+            "equivariance_spread": 7.414166489638774e-07,
+            "residual": 0.2016573642728704
+          }
+        ]
+      }
+    }
+  },
+  "reads_branch": "MODAL AGREES with the laptop on both directions: mixed pools recover, single-activity pools do not. Part A proceeds as written.",
+  "readings": [
+    "A: a two-activity pool of a few hundred windows suffices, BUT ONLY IF THE TWO CONTRAST. static+dynamic recovers 22/22 at n=256; two dynamic activities recover 0/22 and three static recover 0/22. The requirement P5 must state is not 'how many activities' but 'at least one static and one dynamic' \u2014 a calibration period can be short and passive, and must be varied in kind rather than in count.",
+    "B: the MEDIAN transfer bias (12.2 deg) sits inside the model's tolerance (15 deg on task 4, the task with a working readout), so rotations are recoverable well enough from covariance on a typical subject pair. But the spread is the story the median hides: the upper quartile is 21.7 deg and the worst pairing 33.9 deg, both OUTSIDE tolerance. P5 extends to rotations for most deployments and fails for a minority, and P6's equivariant encoder is what would have to absorb that tail."
+  ]
+}

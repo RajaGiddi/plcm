@@ -1,0 +1,227 @@
+{
+  "vit": {
+    "runs": 3,
+    "decomps": 3,
+    "rpt": 3,
+    "b1": 3,
+    "P1": {
+      "frozen_mean": 0.7217,
+      "frozen_min": 0.572,
+      "trainable_mean": 0.8171666666666667,
+      "pass": false
+    },
+    "P2a": {
+      "drops": {
+        "42": 0.756,
+        "1337": 0.6739999999999999,
+        "2024": 0.6699999999999999
+      },
+      "pass": true
+    },
+    "P2b": {
+      "ctrl": {
+        "42": 0.0,
+        "1337": 0.0,
+        "2024": 0.015000000000000013
+      },
+      "pass": true
+    },
+    "C_WIT": true,
+    "C_FLOOR": {
+      "cells_identical": 9,
+      "n_cells": 400,
+      "max_cell_delta": 0.28400000000000003,
+      "avg_delta": 0.028900000000000037,
+      "F_enc_floor_raw": 0.016105263157894747,
+      "F_enc_floor_relaid": 0.03400000000000003
+    },
+    "C_RELOAD": 0.00199999475479129,
+    "C_ID_wrong_perm": false,
+    "F_enc": {
+      "raw": 0.08,
+      "relaid": 0.09870175438596492,
+      "b1": 0.05596491228070174,
+      "per_seed": {
+        "42": {
+          "raw": 0.08505263157894738,
+          "relaid": 0.09789473684210526,
+          "b1": 0.0754736842105263,
+          "p": 0.7335789473684211,
+          "n_test": 500,
+          "n_cells": 19
+        },
+        "1337": {
+          "raw": 0.07810526315789473,
+          "relaid": 0.10757894736842104,
+          "b1": 0.05442105263157891,
+          "p": 0.7488421052631579,
+          "n_test": 500,
+          "n_cells": 19
+        },
+        "2024": {
+          "raw": 0.07684210526315789,
+          "relaid": 0.09063157894736842,
+          "b1": 0.03799999999999997,
+          "p": 0.7676842105263157,
+          "n_test": 500,
+          "n_cells": 19
+        }
+      }
+    },
+    "E1": {
+      "delta": 0.04273684210526318,
+      "floor": 0.043710782178227825,
+      "holds": true
+    },
+    "E2": {
+      "delta": -0.018701754385964903,
+      "floor": 0.023203791811166417,
+      "holds": false
+    },
+    "sign_relaid_minus_b1_positive": true,
+    "reading": "E2 fails, both large: re-layout does not recover on a pretrained backbone; the discriminator is scratch-scoped"
+  },
+  "resnet": {
+    "runs": 3,
+    "decomps": 3,
+    "rpt": 3,
+    "b1": 3,
+    "P1": {
+      "frozen_mean": 0.6997000000000001,
+      "frozen_min": 0.538,
+      "trainable_mean": 0.7596333333333333,
+      "pass": false
+    },
+    "P2a": {
+      "drops": {
+        "42": 0.6940000000000001,
+        "1337": 0.728,
+        "2024": 0.698
+      },
+      "pass": true
+    },
+    "P2b": {
+      "ctrl": {
+        "42": 0.0015000000000000013,
+        "1337": 0.0005000000000000004,
+        "2024": 0.0050000000000000044
+      },
+      "pass": true
+    },
+    "C_WIT": true,
+    "C_FLOOR": {
+      "cells_identical": 12,
+      "n_cells": 400,
+      "max_cell_delta": 0.12400000000000005,
+      "avg_delta": -0.0011999999999999789,
+      "F_enc_floor_raw": 0.002210526315789491,
+      "F_enc_floor_relaid": 0.01042105263157897
+    },
+    "C_RELOAD": 0.00799997568130495,
+    "C_ID_wrong_perm": false,
+    "F_enc": {
+      "raw": 0.011929824561403507,
+      "relaid": 0.025052631578947365,
+      "b1": 0.007578947368421038,
+      "per_seed": {
+        "42": {
+          "raw": 0.017578947368421055,
+          "relaid": 0.03094736842105263,
+          "b1": 0.008421052631578932,
+          "p": 0.7062105263157894,
+          "n_test": 500,
+          "n_cells": 19
+        },
+        "1337": {
+          "raw": 0.016631578947368424,
+          "relaid": 0.028105263157894737,
+          "b1": 0.0062105263157894615,
+          "p": 0.7358947368421053,
+          "n_test": 500,
+          "n_cells": 19
+        },
+        "2024": {
+          "raw": 0.0015789473684210424,
+          "relaid": 0.016105263157894727,
+          "b1": 0.008105263157894721,
+          "p": 0.7533684210526316,
+          "n_test": 500,
+          "n_cells": 19
+        }
+      }
+    },
+    "E1": {
+      "delta": 0.017473684210526325,
+      "floor": 0.020396078054371145,
+      "holds": true
+    },
+    "E2": {
+      "delta": -0.013122807017543857,
+      "floor": 0.012598599112431344,
+      "holds": false
+    },
+    "sign_relaid_minus_b1_positive": true,
+    "reading": "E2 fails, both small: the pretrained encoder absorbs the permutation; nothing to discriminate on this construction"
+  },
+  "arm_b": {
+    "P1": false,
+    "P2a": true,
+    "F_enc": -0.000626008172811989,
+    "F_read": 0.3725992204594075,
+    "share": 1.0016829388572468,
+    "lstm_share": 0.7780503757897355,
+    "lstm_F_enc": 0.087236115641119
+  },
+  "predictions": [
+    {
+      "prediction": "P1 passes on both A arms",
+      "odds": 90,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "(E2) holds on A-ViT",
+      "odds": 75,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "(E2) holds on A-RN",
+      "odds": 80,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "(E1) holds on A-ViT",
+      "odds": 45,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "(E1) holds on A-RN",
+      "odds": 50,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "F_enc(B6 re-laid) - F_enc(B1) positive on both backbones",
+      "odds": 60,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "Arm B passes all preconditions (P1 as contracted, P2a)",
+      "odds": 80,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "Arm B share within 10 points of S72's 0.778",
+      "odds": 45,
+      "outcome": "did not fire"
+    },
+    {
+      "prediction": "Arm B F_enc below S72's 0.087",
+      "odds": 65,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "C-ID wrong-permutation must-fail 19/19 on every seed and backbone",
+      "odds": 90,
+      "outcome": "MISS"
+    }
+  ]
+}

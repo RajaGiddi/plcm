@@ -1,0 +1,148 @@
+{
+  "arms": {
+    "e23_rn": {
+      "cells": 57,
+      "seeds": [
+        1337,
+        2024,
+        42
+      ],
+      "peak_at_own": 11,
+      "peak_at_last": 3,
+      "peak_at_base_k_ge_1": 12,
+      "cells_k_ge_1": 54,
+      "own_within_2": 18,
+      "flat": 0,
+      "deployed_peak_at_chance": 14,
+      "mean_frames_within_res": 5.824561403508772,
+      "P_flat_cells": 6,
+      "P_cells": 57,
+      "mean_D_own": 0.25800000026560665,
+      "mean_D_last": 0.23442105360721288,
+      "mean_D_base": 0.2194035092466756,
+      "mean_peak": 0.29445613999115794,
+      "controls": {
+        "c_id_pass": true,
+        "relay_exact": true,
+        "must_fail": "57/57",
+        "c_id_jk_max": 0.0,
+        "c_id_jT_max": 0.0
+      },
+      "majority_own": false,
+      "majority_last": false,
+      "majority_base": false,
+      "majority_own_within_2": false,
+      "majority_flat": false,
+      "P_flat_majority": false
+    },
+    "e23_vit": {
+      "cells": 57,
+      "seeds": [
+        1337,
+        2024,
+        42
+      ],
+      "peak_at_own": 21,
+      "peak_at_last": 6,
+      "peak_at_base_k_ge_1": 5,
+      "cells_k_ge_1": 54,
+      "own_within_2": 23,
+      "flat": 0,
+      "deployed_peak_at_chance": 14,
+      "mean_frames_within_res": 4.7368421052631575,
+      "P_flat_cells": 5,
+      "P_cells": 57,
+      "mean_D_own": 0.2710526313698083,
+      "mean_D_last": 0.2085263170955474,
+      "mean_D_base": 0.22280701968753547,
+      "mean_peak": 0.2965614019255889,
+      "controls": {
+        "c_id_pass": true,
+        "relay_exact": true,
+        "must_fail": "56/57",
+        "c_id_jk_max": 0.0,
+        "c_id_jT_max": 0.0
+      },
+      "majority_own": false,
+      "majority_last": false,
+      "majority_base": false,
+      "majority_own_within_2": false,
+      "majority_flat": false,
+      "P_flat_majority": false
+    },
+    "e23b_t20": {
+      "cells": 57,
+      "seeds": [
+        1337,
+        2024,
+        42
+      ],
+      "peak_at_own": 0,
+      "peak_at_last": 57,
+      "peak_at_base_k_ge_1": 0,
+      "cells_k_ge_1": 54,
+      "own_within_2": 6,
+      "flat": 0,
+      "deployed_peak_at_chance": 0,
+      "mean_frames_within_res": 1.0,
+      "P_flat_cells": 0,
+      "P_cells": 57,
+      "mean_D_own": 0.16098245677717946,
+      "mean_D_last": 0.8775438561774137,
+      "mean_D_base": 0.10515789504636798,
+      "mean_peak": 0.8775438561774137,
+      "controls": {
+        "c_id_pass": true,
+        "relay_exact": true,
+        "must_fail": "57/57",
+        "c_id_jk_max": 0.0,
+        "c_id_jT_max": 0.0
+      },
+      "majority_own": false,
+      "majority_last": true,
+      "majority_base": false,
+      "majority_own_within_2": false,
+      "majority_flat": false,
+      "P_flat_majority": false
+    }
+  },
+  "reading": "H-flat on the deployed head: \"does not converge to the latest format\" only; the stronger clause dropped. The refit is the quantity that reads here.",
+  "predictions": [
+    {
+      "prediction": "pretrained, argmax D_k(j) = k on a majority of cells, ViT",
+      "odds": 55,
+      "outcome": "MISS",
+      "note": "21/57"
+    },
+    {
+      "prediction": "same, ResNet",
+      "odds": 50,
+      "outcome": "MISS",
+      "note": "11/57"
+    },
+    {
+      "prediction": "pretrained peak within +-2 frames of k, either backbone",
+      "odds": 60,
+      "outcome": "MISS",
+      "note": ""
+    },
+    {
+      "prediction": "H-base: pretrained peaks at j=0 on a majority of cells, either backbone",
+      "odds": 25,
+      "outcome": "did not fire",
+      "note": "counted on k>=1, where own != base"
+    },
+    {
+      "prediction": "scratch A3 peaks at j=T on a majority of cells",
+      "odds": 90,
+      "outcome": "fired",
+      "note": "57/57"
+    },
+    {
+      "prediction": "P_k(j) flat within floor across the six frames on pretrained",
+      "odds": 50,
+      "outcome": "MISS",
+      "note": ""
+    }
+  ]
+}

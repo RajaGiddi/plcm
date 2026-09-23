@@ -1,0 +1,38 @@
+[
+  {
+    "item": "B1",
+    "desc": "CIFAR-100 20x5 split",
+    "ok": true,
+    "detail": "fingerprint 4da9de3736a6 | disjoint=True complete=True | counts(train/test) t0: 2500/500, t19: 2500/500"
+  },
+  {
+    "item": "B2",
+    "desc": "timm + ViT-B/16 weights, hash-pinned",
+    "ok": false,
+    "detail": "timm not importable: ModuleNotFoundError"
+  },
+  {
+    "item": "B3",
+    "desc": "CIFAR-100 present at start (never fetched at run time)",
+    "ok": true,
+    "detail": "train 50000, test 10000 at data/cifar-100-python"
+  },
+  {
+    "item": "B4",
+    "desc": "ViT backbone path in PLCM",
+    "ok": false,
+    "detail": "backbone accepts {'lstm','mlp'} only \u2014 ViT path NOT IMPLEMENTED"
+  },
+  {
+    "item": "B5",
+    "desc": "instrument binding + P3a/P3b asserts, both controls fired",
+    "ok": false,
+    "detail": "blocked on B4 (no ViT forward to bind to)"
+  },
+  {
+    "item": "B6",
+    "desc": "permuted-pixel shift (efficacy control data)",
+    "ok": true,
+    "detail": "shift fingerprint 24b6131095fd | round-trip exact=True | shift is non-identity=True"
+  }
+]

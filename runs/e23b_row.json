@@ -1,0 +1,137 @@
+{
+  "e18_pmd_lstm": {
+    "n_cells": 12,
+    "seeds": [
+      42,
+      1337,
+      2024
+    ],
+    "pooled": {
+      "F_enc": 0.171875,
+      "F_read": 0.5720833323597908,
+      "R": 0.004499997417132066,
+      "F_total": 0.7394583349426588,
+      "F_enc_relaid": 0.010833333333333334,
+      "F_read_relaid": -0.006541674017906183,
+      "F_total_relaid": -0.00020833810170491537,
+      "acc_orig": 0.19533333430687586,
+      "acc_relaid": 0.9350000073512396,
+      "acc_ceiling": 0.9347916692495346,
+      "acc_wrong_perm": 0.1132499985396862,
+      "res95": 0.010694121472532415
+    },
+    "res95": 0.010694121472532412,
+    "floor": 0.010694121472532412,
+    "removes_encoder_term": false,
+    "relaid_helps": true,
+    "wrong_perm_pass": true,
+    "identity_max": 0.0,
+    "construction_fingerprint": "5adc486ad5cd",
+    "per_seed_F_enc_relaid": {
+      "1337": 0.010999999999999982,
+      "2024": 0.008750000000000008,
+      "42": 0.012750000000000011
+    }
+  },
+  "e23b_t5c20": {
+    "n_cells": 12,
+    "seeds": [
+      42,
+      1337,
+      2024
+    ],
+    "pooled": {
+      "F_enc": 0.12566666666666668,
+      "F_read": 0.5721666670193275,
+      "R": 0.032666675647099803,
+      "F_total": 0.6651666580388943,
+      "F_enc_relaid": -0.004999999999999995,
+      "F_read_relaid": 0.01766666988531747,
+      "F_total_relaid": -0.02000000576178233,
+      "acc_orig": 0.1588333329806725,
+      "acc_relaid": 0.8439999967813492,
+      "acc_ceiling": 0.8239999910195669,
+      "acc_wrong_perm": 0.11083333256344001,
+      "res95": 0.03311777570809977
+    },
+    "res95": 0.033117775708099775,
+    "floor": 0.033117775708099775,
+    "removes_encoder_term": true,
+    "relaid_helps": true,
+    "wrong_perm_pass": true,
+    "identity_max": 0.0,
+    "construction_fingerprint": "61332f320d13",
+    "per_seed_F_enc_relaid": {
+      "1337": -0.0010000000000000009,
+      "2024": -0.017499999999999988,
+      "42": 0.003500000000000003
+    }
+  },
+  "e23b_t20": {
+    "n_cells": 57,
+    "seeds": [
+      42,
+      1337,
+      2024
+    ],
+    "pooled": {
+      "F_enc": 0.16919298245614037,
+      "F_read": 0.543368420415803,
+      "R": 0.015368415673573813,
+      "F_total": 0.6971929871983695,
+      "F_enc_relaid": -0.006315789473684215,
+      "F_read_relaid": 0.002315792945393349,
+      "F_total_relaid": -0.01936841220186468,
+      "acc_orig": 0.16098245677717946,
+      "acc_relaid": 0.8775438561774136,
+      "acc_ceiling": 0.858175443975549,
+      "acc_wrong_perm": 0.11898245636308402,
+      "res95": 0.03033350593135035
+    },
+    "res95": 0.03033350593135035,
+    "floor": 0.03033350593135035,
+    "removes_encoder_term": true,
+    "relaid_helps": true,
+    "wrong_perm_pass": true,
+    "identity_max": 0.0,
+    "construction_fingerprint": "27848bfe6a1d",
+    "per_seed_F_enc_relaid": {
+      "1337": -0.006842105263157901,
+      "2024": -0.012421052631578952,
+      "42": 0.0003157894736842108
+    }
+  },
+  "reading": "SEQUENCE LENGTH DOES NOT EXPLAIN E23. Re-laying removes the encoder term at T=20 on a scratch LSTM while it raises it on both pretrained backbones, so \u00a74.2's scope sentence is TRAINING REGIME (encoders overwritten to the current frame) and E23's reading stands.",
+  "predictions": [
+    {
+      "prediction": "A3 (T=20): re-laying still removes the encoder term \u2014 sequence length does not explain E23",
+      "odds": 55,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "A2 (T=5, 3k): re-laying removes it \u2014 images-per-task does not explain E23",
+      "odds": 85,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "A3: re-laid deployed accuracy above raw (the scratch direction)",
+      "odds": 70,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "total forgetting higher at T=20 than at T=5 with the same images/task",
+      "odds": 75,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "A2's F_enc within 2 pp of A1's",
+      "odds": 50,
+      "outcome": "MISS"
+    },
+    {
+      "prediction": "the wrong-permutation must-fail passes on both new arms",
+      "odds": 80,
+      "outcome": "fired"
+    }
+  ]
+}

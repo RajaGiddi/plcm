@@ -1,0 +1,427 @@
+{
+  "contract": "docs/E25_prereg.md sec C + addendum",
+  "c_id": {
+    "arms": {
+      "A0": 0.0,
+      "A1": 0.0,
+      "A6": 0.0,
+      "SNAP": 0.0
+    },
+    "pass": true,
+    "tol": 1e-06,
+    "missing": []
+  },
+  "contracted": {
+    "0": {
+      "A4": 0.9304085671901703,
+      "A3": 0.881618415315946,
+      "delta": 0.04879015187422431,
+      "readable": false,
+      "why": "catch 35(a): no floor exists"
+    },
+    "1": {
+      "A4": 0.891439417997996,
+      "A3": 0.8445116223560438,
+      "delta": 0.04692779564195215,
+      "floor": 0.049166279534498813,
+      "beats": false,
+      "readable": true
+    },
+    "2": {
+      "A4": 0.7952172098060449,
+      "A3": 0.7520783502194618,
+      "delta": 0.043138859586583145,
+      "floor": 0.2995064395169418,
+      "beats": false,
+      "readable": true
+    },
+    "3": {
+      "A4": 0.678025983273983,
+      "A3": 0.6342495183149973,
+      "delta": 0.043776464958985684,
+      "floor": 0.19651839633782708,
+      "beats": false,
+      "readable": true
+    }
+  },
+  "addendum": {
+    "lambda40": {
+      "0": {
+        "readable": false,
+        "why": "one realization at eps=0 and a deterministic search: both floor components are zero by construction (catch 35a)"
+      },
+      "1": {
+        "readable": true,
+        "mean": 0.0469277956419521,
+        "per_real": [
+          0.048654173811276756,
+          0.053609189887841545,
+          0.038520023226737976
+        ],
+        "paired_t95": 0.019106236775971636,
+        "paired_clears_zero": true,
+        "cells_positive": 11,
+        "n_cells": 36,
+        "realizations_positive": 3,
+        "n_realizations": 3
+      },
+      "2": {
+        "readable": true,
+        "mean": 0.04313885958658325,
+        "per_real": [
+          -0.04026636357108752,
+          0.0856311172246933,
+          0.08405182510614395
+        ],
+        "paired_t95": 0.17944257749695086,
+        "paired_clears_zero": false,
+        "cells_positive": 15,
+        "n_cells": 36,
+        "realizations_positive": 2,
+        "n_realizations": 3
+      },
+      "3": {
+        "readable": true,
+        "mean": 0.04377646495898565,
+        "per_real": [
+          0.0896622861425082,
+          0.011905411879221598,
+          0.029761696855227154
+        ],
+        "paired_t95": 0.10117619255501,
+        "paired_clears_zero": false,
+        "cells_positive": 19,
+        "n_cells": 36,
+        "realizations_positive": 3,
+        "n_realizations": 3
+      },
+      "_label": "lambda=40"
+    },
+    "lambda1": {
+      "0": {
+        "readable": false,
+        "why": "one realization at eps=0 and a deterministic search: both floor components are zero by construction (catch 35a)"
+      },
+      "1": {
+        "readable": true,
+        "mean": 0.03242139104339812,
+        "per_real": [
+          0.023389299710591633,
+          0.06277789423863094,
+          0.01109697918097178
+        ],
+        "paired_t95": 0.06706772740869021,
+        "paired_clears_zero": false,
+        "cells_positive": 8,
+        "n_cells": 36,
+        "realizations_positive": 3,
+        "n_realizations": 3
+      },
+      "2": {
+        "readable": true,
+        "mean": 0.07833907670444913,
+        "per_real": [
+          0.06277747203906377,
+          0.12344598273436229,
+          0.04879377533992132
+        ],
+        "paired_t95": 0.09858179844528467,
+        "paired_clears_zero": false,
+        "cells_positive": 12,
+        "n_cells": 36,
+        "realizations_positive": 3,
+        "n_realizations": 3
+      },
+      "3": {
+        "readable": true,
+        "mean": 0.08937626373436718,
+        "per_real": [
+          0.09587657451629639,
+          0.09040443475047748,
+          0.08184778193632762
+        ],
+        "paired_t95": 0.01756455888783264,
+        "paired_clears_zero": true,
+        "cells_positive": 17,
+        "n_cells": 36,
+        "realizations_positive": 3,
+        "n_realizations": 3
+      },
+      "_label": "lambda=1"
+    }
+  },
+  "must_fail_signflip": {
+    "worse_than_A3": 36,
+    "cells": 36,
+    "pass": true,
+    "per_cell": [
+      {
+        "seed": 42,
+        "task": 0,
+        "A4_signflip": 0.5158924460411072,
+        "A3": 0.7432762980461121
+      },
+      {
+        "seed": 42,
+        "task": 1,
+        "A4_signflip": 0.5348837375640869,
+        "A3": 0.9011628031730652
+      },
+      {
+        "seed": 42,
+        "task": 2,
+        "A4_signflip": 0.4642857015132904,
+        "A3": 1.0
+      },
+      {
+        "seed": 42,
+        "task": 3,
+        "A4_signflip": 0.5718015432357788,
+        "A3": 0.9112271666526794
+      },
+      {
+        "seed": 1337,
+        "task": 0,
+        "A4_signflip": 0.5256723761558533,
+        "A3": 0.5770171284675598
+      },
+      {
+        "seed": 1337,
+        "task": 1,
+        "A4_signflip": 0.5174418687820435,
+        "A3": 0.9098837375640869
+      },
+      {
+        "seed": 1337,
+        "task": 2,
+        "A4_signflip": 0.49234694242477417,
+        "A3": 0.7729591727256775
+      },
+      {
+        "seed": 1337,
+        "task": 3,
+        "A4_signflip": 0.4673629105091095,
+        "A3": 0.8929504156112671
+      },
+      {
+        "seed": 2024,
+        "task": 0,
+        "A4_signflip": 0.49877750873565674,
+        "A3": 0.8655256628990173
+      },
+      {
+        "seed": 2024,
+        "task": 1,
+        "A4_signflip": 0.42151162028312683,
+        "A3": 0.7470930218696594
+      },
+      {
+        "seed": 2024,
+        "task": 2,
+        "A4_signflip": 0.5229591727256775,
+        "A3": 0.9362244606018066
+      },
+      {
+        "seed": 2024,
+        "task": 3,
+        "A4_signflip": 0.3942558765411377,
+        "A3": 0.8485639691352844
+      },
+      {
+        "seed": 42,
+        "task": 0,
+        "A4_signflip": 0.26894864439964294,
+        "A3": 0.5378972887992859
+      },
+      {
+        "seed": 42,
+        "task": 1,
+        "A4_signflip": 0.43313953280448914,
+        "A3": 0.770348846912384
+      },
+      {
+        "seed": 42,
+        "task": 2,
+        "A4_signflip": 0.5280612111091614,
+        "A3": 1.0
+      },
+      {
+        "seed": 42,
+        "task": 3,
+        "A4_signflip": 0.6318537592887878,
+        "A3": 0.8877284526824951
+      },
+      {
+        "seed": 1337,
+        "task": 0,
+        "A4_signflip": 0.27139365673065186,
+        "A3": 0.4034229815006256
+      },
+      {
+        "seed": 1337,
+        "task": 1,
+        "A4_signflip": 0.31976744532585144,
+        "A3": 0.9098837375640869
+      },
+      {
+        "seed": 1337,
+        "task": 2,
+        "A4_signflip": 0.5153061151504517,
+        "A3": 0.9489796161651611
+      },
+      {
+        "seed": 1337,
+        "task": 3,
+        "A4_signflip": 0.37336814403533936,
+        "A3": 0.8929504156112671
+      },
+      {
+        "seed": 2024,
+        "task": 0,
+        "A4_signflip": 0.6112469434738159,
+        "A3": 0.8655256628990173
+      },
+      {
+        "seed": 2024,
+        "task": 1,
+        "A4_signflip": 0.47965115308761597,
+        "A3": 0.8517441749572754
+      },
+      {
+        "seed": 2024,
+        "task": 2,
+        "A4_signflip": 0.625,
+        "A3": 0.9362244606018066
+      },
+      {
+        "seed": 2024,
+        "task": 3,
+        "A4_signflip": 0.4360313415527344,
+        "A3": 0.8485639691352844
+      },
+      {
+        "seed": 42,
+        "task": 0,
+        "A4_signflip": 0.2518337368965149,
+        "A3": 0.6919315457344055
+      },
+      {
+        "seed": 42,
+        "task": 1,
+        "A4_signflip": 0.4127906858921051,
+        "A3": 0.9593023061752319
+      },
+      {
+        "seed": 42,
+        "task": 2,
+        "A4_signflip": 0.5382652878761292,
+        "A3": 1.0
+      },
+      {
+        "seed": 42,
+        "task": 3,
+        "A4_signflip": 0.5195822715759277,
+        "A3": 0.9112271666526794
+      },
+      {
+        "seed": 1337,
+        "task": 0,
+        "A4_signflip": 0.2640586793422699,
+        "A3": 0.8801956176757812
+      },
+      {
+        "seed": 1337,
+        "task": 1,
+        "A4_signflip": 0.3255814015865326,
+        "A3": 0.9098837375640869
+      },
+      {
+        "seed": 1337,
+        "task": 2,
+        "A4_signflip": 0.5229591727256775,
+        "A3": 0.9489796161651611
+      },
+      {
+        "seed": 1337,
+        "task": 3,
+        "A4_signflip": 0.2819843292236328,
+        "A3": 0.6396867036819458
+      },
+      {
+        "seed": 2024,
+        "task": 0,
+        "A4_signflip": 0.49877750873565674,
+        "A3": 0.8655256628990173
+      },
+      {
+        "seed": 2024,
+        "task": 1,
+        "A4_signflip": 0.4854651093482971,
+        "A3": 0.8517441749572754
+      },
+      {
+        "seed": 2024,
+        "task": 2,
+        "A4_signflip": 0.4591836631298065,
+        "A3": 0.9362244606018066
+      },
+      {
+        "seed": 2024,
+        "task": 3,
+        "A4_signflip": 0.4647519588470459,
+        "A3": 0.8485639691352844
+      }
+    ]
+  },
+  "flag_regression": {
+    "per_arm_max_abs": {
+      "A0": 0.0,
+      "A1": 0.0,
+      "A2": 0.0029069767441860517,
+      "A3": 0.0,
+      "A4": 0.0,
+      "A5": 0.0,
+      "A5d": 0.0,
+      "A6": 0.0,
+      "A7": 0.004889975550122272,
+      "SNAP": 0.0
+    },
+    "bit_identical_arms": [
+      "A0",
+      "A1",
+      "A3",
+      "A4",
+      "A5",
+      "A5d",
+      "A6",
+      "SNAP"
+    ],
+    "note": "A2 and A7 route through refit_probe; their deltas are whole test windows (1/344 and 2/409), which is E21's ruled A2/A7 window floor arriving independently"
+  },
+  "predictions": [
+    {
+      "prediction": "A4 at lambda=40 beats A3 by more than floor at m=1",
+      "odds": 40,
+      "outcome": "did not fire"
+    },
+    {
+      "prediction": "lambda=40 beats lambda=1",
+      "odds": 45,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "A4 at lambda=40 recovers the exact map at m=1 on >= 27/36",
+      "odds": 30,
+      "outcome": "fired"
+    },
+    {
+      "prediction": "sign-flip must-fail passes 36/36",
+      "odds": 85,
+      "outcome": "fired"
+    }
+  ],
+  "exact_map_recovered": {
+    "cells": 34,
+    "of": 36
+  }
+}

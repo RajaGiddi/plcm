@@ -1,0 +1,114 @@
+================================================================================================
+EV1 — EXCLUSION-SET RECONCILIATION   (did the guard change which cells count?)
+================================================================================================
+  guard: denominator > 0.02
+
+  --- HAR/OFF ---
+    C0    kept 10 -> 12   excluded old ['s2024/t1', 's42/t3']  new []
+          POPULATION CHANGED: only-old ['s2024/t1', 's42/t3']  only-new []  (both: [])
+    C1    kept 10 -> 12   excluded old ['s2024/t1', 's42/t3']  new []
+          POPULATION CHANGED: only-old ['s2024/t1', 's42/t3']  only-new []  (both: [])
+    C0C1  kept 10 -> 12   excluded old ['s2024/t1', 's42/t3']  new []
+          POPULATION CHANGED: only-old ['s2024/t1', 's42/t3']  only-new []  (both: [])
+    C2    kept 10 -> 12   excluded old ['s2024/t1', 's42/t3']  new []
+          POPULATION CHANGED: only-old ['s2024/t1', 's42/t3']  only-new []  (both: [])
+    C3    kept 12 -> 11   excluded old []  new ['s42/t3']
+          POPULATION CHANGED: only-old []  only-new ['s42/t3']  (both: [])
+            new-excluded s42/t3: rho would be +0.000 (D=+0.0104), BELOW the kept mean +0.974 -> excluding it RAISES the headline
+
+    per-cell C3 denominator (RAW), old -> new:
+      s42/t0         old D +0.4817   new D +0.2934
+      s42/t1         old D +0.4622   new D +0.6773
+      s42/t2         old D +0.7423   new D +0.7526
+      s42/t3         old D +0.2977   new D +0.0104   <- CROSSED THE GUARD
+      s1337/t0       old D +0.2054   new D +0.3790
+      s1337/t1       old D +0.4012   new D +0.5814
+      s1337/t2       old D +0.5638   new D +0.7551
+      s1337/t3       old D +0.1436   new D +0.0940
+      s2024/t0       old D +0.1711   new D +0.1980
+      s2024/t1       old D +0.1628   new D +0.3052
+      s2024/t2       old D +0.2857   new D +0.3087
+      s2024/t3       old D +0.2559   new D +0.1749
+
+  --- HAR/ON ---
+    C0    kept 10 -> 11   excluded old ['s1337/t0', 's1337/t3']  new ['s2024/t3']
+          POPULATION CHANGED: only-old ['s1337/t0', 's1337/t3']  only-new ['s2024/t3']  (both: [])
+            new-excluded s2024/t3: rho would be +nan (D=-0.0418), BELOW the kept mean -0.262 -> excluding it RAISES the headline
+    C1    kept 10 -> 11   excluded old ['s1337/t0', 's1337/t3']  new ['s2024/t3']
+          POPULATION CHANGED: only-old ['s1337/t0', 's1337/t3']  only-new ['s2024/t3']  (both: [])
+            new-excluded s2024/t3: rho would be +nan (D=-0.0418), BELOW the kept mean +0.283 -> excluding it RAISES the headline
+    C0C1  kept 10 -> 11   excluded old ['s1337/t0', 's1337/t3']  new ['s2024/t3']
+          POPULATION CHANGED: only-old ['s1337/t0', 's1337/t3']  only-new ['s2024/t3']  (both: [])
+            new-excluded s2024/t3: rho would be +nan (D=-0.0418), BELOW the kept mean +0.039 -> excluding it RAISES the headline
+    C2    kept 10 -> 11   excluded old ['s1337/t0', 's1337/t3']  new ['s2024/t3']
+          POPULATION CHANGED: only-old ['s1337/t0', 's1337/t3']  only-new ['s2024/t3']  (both: [])
+            new-excluded s2024/t3: rho would be +nan (D=-0.0418), BELOW the kept mean +0.734 -> excluding it RAISES the headline
+    C3    kept 12 -> 11   excluded old []  new ['s2024/t3']
+          POPULATION CHANGED: only-old []  only-new ['s2024/t3']  (both: [])
+            new-excluded s2024/t3: rho would be -0.800 (D=+0.0131), BELOW the kept mean +0.998 -> excluding it RAISES the headline
+
+    per-cell C3 denominator (RAW), old -> new:
+      s42/t0         old D +0.1198   new D +0.0367
+      s42/t1         old D +0.1919   new D +0.2791
+      s42/t2         old D +0.3929   new D +0.2883
+      s42/t3         old D +0.4386   new D +0.1436
+      s1337/t0       old D +0.0880   new D +0.2421
+      s1337/t1       old D +0.3198   new D +0.4331
+      s1337/t2       old D +0.4898   new D +0.6556
+      s1337/t3       old D +0.1775   new D +0.2167
+      s2024/t0       old D +0.2249   new D +0.2812
+      s2024/t1       old D +0.5000   new D +0.6860
+      s2024/t2       old D +0.4439   new D +0.4337
+      s2024/t3       old D +0.3185   new D +0.0131   <- CROSSED THE GUARD
+
+  C3 SENSITIVITY — guard-excluded cells forced back in:
+    HAR/OFF    guarded +0.974 (11 cells)   forced-inclusion +0.893 (12 cells)   delta -0.081
+    HAR/ON     guarded +0.998 (11 cells)   forced-inclusion +0.848 (12 cells)   delta -0.150
+
+  EV1 VERDICT: POPULATION MOVED — the improvement is not measured on a fixed cell set; EV2/EV3 must be read with that in mind
+
+================================================================================================
+EV2 — DEGENERATE-CELL AUDIT   (what does the mean-of-ratios rest on?)
+================================================================================================
+
+  --- HAR/OFF ---
+    C0    mean -2.949  sd 8.637  | worst cell s42/t3 rho -30.000 (D=+0.0209)  | mean without it -0.490
+          ^ mean shifts 2.459 when the single worst cell is removed — headline rests on it
+    C1    mean +0.076  sd 0.124  | worst cell s42/t3 rho +0.375 (D=+0.0209)  | mean without it +0.049
+    C0C1  mean -2.881  sd 8.647  | worst cell s42/t3 rho -30.000 (D=+0.0209)  | mean without it -0.416
+          ^ mean shifts 2.465 when the single worst cell is removed — headline rests on it
+    C2    mean +0.979  sd 1.105  | worst cell s42/t3 rho +4.375 (D=+0.0209)  | mean without it +0.670
+          ^ mean shifts 0.309 when the single worst cell is removed — headline rests on it
+    C3    mean +0.974  sd 0.197  | worst cell s1337/t3 rho +1.278 (D=+0.0940)  | mean without it +0.944
+
+  --- HAR/ON ---
+    C0    mean -0.262  sd 0.588  | worst cell s1337/t3 rho -1.753 (D=+0.2324)  | mean without it -0.113
+          ^ mean shifts 0.149 when the single worst cell is removed — headline rests on it
+    C1    mean +0.283  sd 0.330  | worst cell s42/t1 rho +0.951 (D=+0.1773)  | mean without it +0.216
+    C0C1  mean +0.039  sd 0.730  | worst cell s1337/t3 rho -1.674 (D=+0.2324)  | mean without it +0.210
+          ^ mean shifts 0.171 when the single worst cell is removed — headline rests on it
+    C2    mean +0.734  sd 0.530  | worst cell s42/t1 rho +1.803 (D=+0.1773)  | mean without it +0.627
+          ^ mean shifts 0.107 when the single worst cell is removed — headline rests on it
+    C3    mean +0.998  sd 0.204  | worst cell s1337/t3 rho +1.410 (D=+0.2167)  | mean without it +0.957
+
+================================================================================================
+EV3 — CATCH 24: is C3 dominated by the era snapshot it already requires?
+================================================================================================
+  Trivial use of C3's assumed resource = DEPLOY THE SNAPSHOT for task k.
+  That is `acc_ceiling` in every row: the era model's own deployed logits
+  on task k's test set — same instrument, same cells, same denominators
+  as C3. Storage: C3 needs the snapshot PLUS a generator; the trivial
+  baseline needs the snapshot alone.
+
+  --- HAR/OFF ---
+    C3        mean rho +0.974  [+0.898, +1.050]  kept 11  sd 0.197
+    SNAPSHOT  mean rho +1.136  [+1.051, +1.221]  kept 11  sd 0.434   (raw denominator, as C3)
+    -> snapshot DOMINATES C3 by +0.162, at strictly less storage
+       => deployment-shaped claim (use C3) is not supportable; mechanism-shaped claim is
+  --- HAR/ON ---
+    C3        mean rho +0.998  [+0.803, +1.193]  kept 11  sd 0.204
+    SNAPSHOT  mean rho +1.794  [+0.708, +2.879]  kept 11  sd 1.725   (raw denominator, as C3)
+    -> snapshot DOMINATES C3 by +0.796, at strictly less storage
+       => deployment-shaped claim (use C3) is not supportable; mechanism-shaped claim is
+
+  wrote runs/e11_evaluations_e10.json
