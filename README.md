@@ -267,12 +267,12 @@ Every permutation $P$ of the nine UCI HAR channels is scored against stored
 reference statistics — mean $\mu$, covariance $\Sigma$, and lag-1
 cross-covariance $C_1$:
 
-$$
+\[
 \hat P = \arg\min_{P \in S_9}\;
 \frac{\|\Sigma' - P\Sigma P^\top\|_F^2}{\|\Sigma\|_F^2}
 + \frac{\|C_1' - P C_1 P^\top\|_F^2}{\|C_1\|_F^2}
 + \frac{\|\mu' - P\mu\|_2^2}{\|\mu\|_2^2 + \epsilon}.
-$$
+\]
 
 Reference and query drawn from different subjects, 256 query windows,
 22 target permutations:
